@@ -76,8 +76,8 @@ esac
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
 
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
@@ -140,9 +140,14 @@ RUBY_BIN_PATH="/home/bremme/.gem/ruby/1.9.1/bin/"
 # append to PATH
 export PATH=$RUBY_BIN_PATH:$NPM_PACKAGES/bin:/home/bremme/scripts:/home/bremme/bin:$PATH
 
+source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 
-if [ -x /usr/games/cowsay -a -x /usr/games/fortune ]; then
-    fortune -s | cowsay
+if [ -x /usr/games/cowsay -a -x /usr/games/fortune -a -x /usr/bin/toilet ]; then
+#  files=(/usr/share/cowsay/cows/*); cowsay -f `echo ${files[$((RANDOM%${#files}))]}` `fortune` | toilet -F gay -f term
+  fortune -s | cowsay -f $(ls /usr/share/cowsay/cows/ | shuf -n1) | toilet --gay -f term
+elif [ -x /usr/games/cowsay -a -x /usr/games/fortune ]; then
+  fortune -s | cowsay
+elif [ -x /usr/games/cowsay ]; then
+  cowsay "kaptein"
 fi
 
-source "$HOME/.homesick/repos/homeshick/homeshick.sh"

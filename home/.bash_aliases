@@ -44,8 +44,8 @@ alias ....='cd ../../..'
 
 if [ -x /usr/bin/pygmentize ]; then
 	alias cat='pygmentize -g'
-	echo "pygmentize"
+
 else
-	echo "nono"
+	echo "pygmentize not installed, using regular cat"
 fi
 
