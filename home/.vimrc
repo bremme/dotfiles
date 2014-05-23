@@ -74,6 +74,39 @@ set clipboard=unnamedplus,unnamed
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
 
+"----KEYMAPPINGS--------------------------------------------
+
+" Map ctrl-movement keys to window switching
+map <C-k> <C-w><Up>
+map <C-j> <C-w><Down>
+map <C-l> <C-w><Right>
+map <C-h> <C-w><Left>
+
+" Switch to alternate file
+"map <C-Tab> :bnext<CR>
+"map <C-S-Tab> :bprevious<CR>
+
+" Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy,
+" which is the default
+map Y y$
+
+" Map <C-L> (redraw screen) to also turn off search highlighting until the
+" next search
+nnoremap <C-L> :nohl<CR><C-L>
+
+"------------------------------------------------------------
+"
+" Automatically set screen title
+let &titlestring = hostname() . ": vim -> " . expand("%:t") 
+if &term == "screen"
+  set t_ts=^[k
+    set t_fs=^[\
+  endif
+if &term == "screen" || &term == "xterm"
+  set title
+endif
+
+
 "------------------------------------------------------------
 " Must have options {{{1
 "
@@ -198,26 +231,5 @@ set expandtab
 "
 " Useful mappings
 
-" Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy,
-" which is the default
-map Y y$
-
-" Map <C-L> (redraw screen) to also turn off search highlighting until the
-" next search
-nnoremap <C-L> :nohl<CR><C-L>
-
-
-
-"------------------------------------------------------------
-"
-" Automatically set screen title
-let &titlestring = hostname() . ": vim -> " . expand("%:t") 
-if &term == "screen"
-  set t_ts=^[k
-    set t_fs=^[\
-  endif
-if &term == "screen" || &term == "xterm"
-  set title
-endif
 
 
