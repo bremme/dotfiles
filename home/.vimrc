@@ -71,10 +71,25 @@ colorscheme molokai
 "enable copy/paste from/to X11 clipboard
 set clipboard=unnamedplus,unnamed
 
+" softwrap text at full words
+set wrap linebreak nolist
+"give column 80 a color
+set colorcolumn=81
+
+"set textwidth=80
+
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
 
-"----KEYMAPPINGS--------------------------------------------
+"----EDITOR---------------------------------------------------------------------
+
+" Indentation settings for using 2 spaces instead of tabs.
+" Do not change 'tabstop' from its default value of 8 with this setup.
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+
+"----KEYMAPPINGS---------------------------------------------------------------- 
 
 " Map ctrl-movement keys to window switching
 map <C-k> <C-w><Up>
@@ -214,11 +229,6 @@ set pastetoggle=<F11>
 "
 " Indentation settings according to personal preference.
 
-" Indentation settings for using 2 spaces instead of tabs.
-" Do not change 'tabstop' from its default value of 8 with this setup.
-set shiftwidth=2
-set softtabstop=2
-set expandtab
 
 " Indentation settings for using hard tabs for indent. Display tabs as
 " two characters wide.
