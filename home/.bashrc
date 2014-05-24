@@ -72,9 +72,14 @@ xterm*|rxvt*)
     ;;
 esac
 
+
+# dircolors
+DIRCOLORS="$HOME/.dircolors"
+DIRCOLORS="$HOME/.dircolors.monokai.jtheoof"
+
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    test -r $DIRCOLORS && eval "$(dircolors -b $DIRCOLORS)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
     alias dir='dir --color=auto'
     alias vdir='vdir --color=auto'
