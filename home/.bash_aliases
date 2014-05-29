@@ -49,6 +49,8 @@ alias agis='sudo apt-get install -s'
 alias agr='sudo apt-get remove'
 alias agp='sudo apt-get purge'
 
+# git 
+alias st='status'
 
 # got to directory
 alias gtrapp='cd /usr/share/appliactions'
