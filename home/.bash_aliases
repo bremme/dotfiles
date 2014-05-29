@@ -1,5 +1,9 @@
 
+# dircolors
+DIRCOLORS="$HOME/.dircolors.monokai.echelon"
+# DIRCOLORS="$HOME/.dircolors.monokai.jtheoof"
 # enable color support of ls and also add handy aliases
+
 if [ -x /usr/bin/dircolors ]; then
     test -r $DIRCOLORS && eval "$(dircolors -b $DIRCOLORS)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
@@ -52,6 +56,7 @@ alias gtapp='cd ~/.local/share/applications'
 
 # sublime text
 alias st='/home/bremme/bin/sublime'
+alias v='vim'
 
 # sudo commands
 alias snano='sudo nano'
@@ -62,8 +67,7 @@ alias ....='cd ../../..'
 
 if [ -x /usr/bin/pygmentize ]; then
 	alias cat='pygmentize -g'
-
 else
-	echo "pygmentize not installed, using regular cat"
+  echo "pygmentize not installed, using regular cat"
 fi
 

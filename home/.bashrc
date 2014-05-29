@@ -72,28 +72,6 @@ xterm*|rxvt*)
     ;;
 esac
 
-
-# dircolors
-DIRCOLORS="$HOME/.dircolors"
-DIRCOLORS="$HOME/.dircolors.monokai.jtheoof"
-
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r $DIRCOLORS && eval "$(dircolors -b $DIRCOLORS)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    alias dir='dir --color=auto'
-    alias vdir='vdir --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
-
-# some more ls aliases
-alias ll='ls -alFh'
-alias la='ls -Ah'
-alias l='ls -CF'
-
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
@@ -103,9 +81,6 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -120,6 +95,8 @@ fi
 
 # CUSTOM ADDITIONS 
 
+### KEYMAPPINGS ################################################################
+
 # auto complete history search
 bind '"\e[5~": history-search-backward'
 bind '"\e[6~": history-search-forward'
@@ -127,8 +104,7 @@ bind '"\e[6~": history-search-forward'
 # use z
 . "$HOME/scripts/z.sh"
 
-# only show current folder on path
-PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\$ '
+### PATH #######################################################################
 
 # setup node/npm as user (bremme)
 NPM_PACKAGES="$HOME/.npm-packages"
@@ -145,14 +121,25 @@ RUBY_BIN_PATH="/home/bremme/.gem/ruby/1.9.1/bin/"
 # append to PATH
 export PATH=$RUBY_BIN_PATH:$NPM_PACKAGES/bin:/home/bremme/scripts:/home/bremme/bin:$PATH
 
+#### OTHER SOURCES #############################################################
+
+
+# aliases
+if [ -f ~/.bash_aliases ]; then
+    source "$HOME/.bash_aliases"
+fi
+# prompt
+source "$HOME/.bash_prompt"
+
+# other
+source "$HOME/.bash_completion_homeshick"
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 
 if [ -x /usr/games/cowsay -a -x /usr/games/fortune -a -x /usr/bin/toilet ]; then
-#  files=(/usr/share/cowsay/cows/*); cowsay -f `echo ${files[$((RANDOM%${#files}))]}` `fortune` | toilet -F gay -f term
+  #  files=(/usr/share/cowsay/cows/*); cowsay -f `echo ${files[$((RANDOM%${#files}))]}` `fortune` | toilet -F gay -f term
   fortune -s | cowsay -f $(ls /usr/share/cowsay/cows/ | shuf -n1) | toilet --gay -f term
 elif [ -x /usr/games/cowsay -a -x /usr/games/fortune ]; then
   fortune -s | cowsay
 elif [ -x /usr/games/cowsay ]; then
   cowsay "kaptein"
 fi
-
