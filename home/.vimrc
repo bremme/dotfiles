@@ -18,7 +18,7 @@ call vundle#begin()
   Plugin 'bling/vim-airline' "lean & mean status/tabline for vim that's light as air.
 
   Plugin 'Valloric/YouCompleteMe' " Code completion
-
+  Plugin 'msanders/snipmate.vim.git'
   Plugin 'scrooloose/nerdcommenter'
 
   "----Syntax highlighting--------------------------------------------------------
@@ -192,7 +192,9 @@ inoremap <A-k> <Esc>:m .-2<CR>==gi
 vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
 "--------LEADER-----------------------------------------------------------------
-
+hi clear SpellBad
+hi SpellBad cterm=underline ctermfg=red
+" other option: cterm=underline 
 "turn spellchecking on or off
 nnoremap <leader>spu :setlocal spell spelllang=en_us<CR>
 nnoremap <Leader>spg :setlocal spell spelllang=en_gb<CR>
@@ -205,11 +207,13 @@ nnoremap <leader>bk :bnext<CR>
 nnoremap <leader>bb :bnext<CR>
 nnoremap <leader>bh :bfirst<CR>
 nnoremap <leader>bl :blast<CR>
+nnoremap <leader>bd :bd<CR>
 
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>qq :quitall<CR>
 nnoremap <leader>qo :only<CR,
+
 nnoremap <leader>rl :source ~/.vimrc<CR>
 
 "--------COMMANDMODE------------------------------------------------------------
@@ -226,7 +230,8 @@ let g:spellfile_URL = 'http://ftp.vim.org/vim/runtime/spell'
 autocmd vimenter * if !argc() | NERDTree | endif
 " Close vim if only NERDtree is open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-
+" turn spellcheck on for .tex, .md
+autocmd FileType tex,md setlocal spell spelllang=en_us
 "----Window title-------------------------------------------------------------
 
 " Automatically set screen title
