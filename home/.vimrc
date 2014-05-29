@@ -1,23 +1,38 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
-
-"set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
+""set the runtime path to include Vundle and initialize
+set runtimepath+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+  Plugin 'gmarik/Vundle.vim' " let Vundle manage Vundle, required
+  Plugin 'scrooloose/nerdtree'
+  Plugin 'sjl/gundo.vim.git'
+  Plugin 'tpope/vim-fugitive' " git plugin
+  Plugin 'tpope/vim-commentary'
+  Plugin 'kien/ctrlp.vim'
 
-Plugin 'scrooloose/nerdtree'
+  "Plugin 'git://git.code.sf.net/p/vim-latex/vim-latex' "latex support
+  Plugin 'LaTeX-Box-Team/LaTeX-Box'
+  Plugin 'bling/vim-airline' "lean & mean status/tabline for vim that's light as air.
 
-" Markdown syntax highlighting
-Plugin 'plasticboy/vim-markdown'
+  Plugin 'Valloric/YouCompleteMe' " Code completion
 
+  Plugin 'scrooloose/nerdcommenter'
 
-" Color themes
-Plugin 'tomasr/molokai'
+  "----Syntax highlighting--------------------------------------------------------
+  Plugin 'plasticboy/vim-markdown' " Markdown 
+  Plugin 'digitaltoad/vim-jade' " Jade 
+
+  "----THEMES---------------------------------------------------------------------
+  Plugin 'tomasr/molokai' " Color themes
+
+"----Intactive
+"Plugins--------------------------------------------------------- 
+" Plugin 'fholgado/minibufexpl.vim'
+" Plugin minibufexpl.vim
+
 "" The following are examples of different formats supported.
 "" Keep Plugin commands between vundle#begin/end.
 "" plugin on GitHub repo
@@ -63,54 +78,157 @@ filetype plugin indent on    " required
 " These options and commands enable some very useful features in Vim, that
 " no user should have to live without.
 
+"----Theming & Color-----------------------------------------------
+
 " Enable syntax highlighting
 syntax enable
-set t_Co=256
+if ! has("gui_running")
+    set t_Co=256
+endif
 colorscheme molokai
+
+
+
+"----EDITOR---------------------------------------------------------------------
 
 "enable copy/paste from/to X11 clipboard
 set clipboard=unnamedplus,unnamed
 
 " softwrap text at full words
 set wrap linebreak nolist
+
 "give column 80 a color
 set colorcolumn=81
-
-"set textwidth=80
-
-" Allow saving of files as sudo when I forgot to start vim using sudo.
-cmap w!! w !sudo tee > /dev/null %
-
-"----EDITOR---------------------------------------------------------------------
 
 " Indentation settings for using 2 spaces instead of tabs.
 " Do not change 'tabstop' from its default value of 8 with this setup.
 set shiftwidth=2
 set softtabstop=2
 set expandtab
+" show white spaces
+set list
+set listchars=tab:→\ ,trail:·,nbsp:·
+
+"set a fold column (to display the folds)
+set foldcolumn=4
+
+"----LATEX----------------------------------------------------------------
+
+let g:ycm_filetype_blacklist = {
+  \ 'tex' : 1,
+  \}
+
+let g:LatexBox_latexmk_options ='-pvc -pdfps -auxdir=build' 
+"let g:LatexBox_latexmk_options ='-pvc - pdfps'
+let g:LatexBox_latexmk_preview_continuously=1
+let g:LatexBox_build_dir='build'
+" IMPORTANT: grep will sometimes skip displaying the file name if you
+" search in a singe file. This will confuse Latex-Suite. Set your grep
+" program to always generate a file-name.
+set grepprg=grep\ -nH\ $*
+
+
+" OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to
+" 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
+" The following changes the default filetype back to 'tex':
+let g:tex_flavor='latex'
+
+" this is mostly a matter of taste. but LaTeX looks good with just a bit
+" of indentation.
+set sw=2
+" TIP: if you write your \label's as \label{fig:something}, then if you
+" type in \ref{fig: and press <C-n> you will automatically cycle through
+" all the figure labels. Very useful!
+set iskeyword+=:
 
 "----KEYMAPPINGS---------------------------------------------------------------- 
 
-" Map ctrl-movement keys to window switching
-map <C-k> <C-w><Up>
-map <C-j> <C-w><Down>
-map <C-l> <C-w><Right>
-map <C-h> <C-w><Left>
+" With a map leader it's possible to do extra key combinations
+" like <leader>w saves the current file
+let mapleader = ","
+let g:mapleader = ","
 
-" Switch to alternate file
-"map <C-Tab> :bnext<CR>
-"map <C-S-Tab> :bprevious<CR>
+" workaround for gnome-terminal for <A-x> mapping
+" See http://stackoverflow.com/questions/6778961/alt-key-shortcuts-not-working-on-gnome-terminal-with-vim
+"let c='a'
+"while c <= 'z'
+  "exec "set <A-".c.">=\e".c
+  "exec "imap \e".c." <A-".c.">"
+  "let c = nr2char(1+char2nr(c))
+"endw
+
+"" Map ctrl-movement keys to window switching
+"map <C-k> <C-w><Up>
+"map <C-j> <C-w><Down>
+"map <C-l> <C-w><Right>
+"map <C-h> <C-w><Left>
+map <C-n> :NERDTreeToggle<CR>
+map <C-g> :GundoToggle<CR>
 
 " Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy,
 " which is the default
 map Y y$
 
+"--------NORMALMODE-------------------------------------------------------------
+nmap <CR> o<Esc>
+nmap <S-CR> O<Esc>
+
+" move a line of text using ALT-{h,j,k,l}
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+
 " Map <C-L> (redraw screen) to also turn off search highlighting until the
 " next search
 nnoremap <C-L> :nohl<CR><C-L>
+"--------INSERTMODE-------------------------------------------------------------
 
-"------------------------------------------------------------
-"
+" move a line of text using ALT-{h,j,k,l}
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+
+"--------VISUALMODE-------------------------------------------------------------
+
+" move a line of text using ALT-{h,j,k,l}
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
+"--------LEADER-----------------------------------------------------------------
+
+"turn spellchecking on or off
+nnoremap <leader>spu :setlocal spell spelllang=en_us<CR>
+nnoremap <Leader>spg :setlocal spell spelllang=en_gb<CR>
+nnoremap <Leader>spn :setlocal spell spelllang=nl_nl<CR>
+nnoremap <Leader>spo :setlocal nospell<CR> 
+
+" moving between buffers
+nnoremap <leader>bj :bprevious<CR>
+nnoremap <leader>bk :bnext<CR>
+nnoremap <leader>bb :bnext<CR>
+nnoremap <leader>bh :bfirst<CR>
+nnoremap <leader>bl :blast<CR>
+
+nnoremap <leader>w :w<CR>
+nnoremap <leader>q :q<CR>
+nnoremap <leader>qq :quitall<CR>
+nnoremap <leader>qo :only<CR,
+nnoremap <leader>rl :source ~/.vimrc<CR>
+
+"--------COMMANDMODE------------------------------------------------------------
+
+" Allow saving of files as sudo when I forgot to start vim using sudo.
+cmap W w !sudo tee > /dev/null %
+
+" where it should get the dictionary files
+let g:spellfile_URL = 'http://ftp.vim.org/vim/runtime/spell'
+
+"----NERDTree-------------------------------------------------------------------
+
+" Open NERDtree is no file is openend
+autocmd vimenter * if !argc() | NERDTree | endif
+" Close vim if only NERDtree is open
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+"----Window title-------------------------------------------------------------
+
 " Automatically set screen title
 let &titlestring = hostname() . ": vim -> " . expand("%:t") 
 if &term == "screen"
@@ -121,6 +239,17 @@ if &term == "screen" || &term == "xterm"
   set title
 endif
 
+"----Airline------------------------------------------------
+
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme = "dark"
+
+
+"----CtrlP---------------------------------------------------------------------
+
+let g:ctrlp_map = '<C-p>'
+let g:ctrlp_cmd = 'CtrlPMRU'
 
 "------------------------------------------------------------
 " Must have options {{{1
@@ -175,6 +304,8 @@ set hlsearch
 " Use case insensitive search, except when using capital letters
 set ignorecase
 set smartcase
+" Makes search act like search in modern browsers
+set incsearch
 
 " Allow backspacing over autoindent, line breaks and start of insert action
 set backspace=indent,eol,start
@@ -222,24 +353,4 @@ set notimeout ttimeout ttimeoutlen=200
 
 " Use <F11> to toggle between 'paste' and 'nopaste'
 set pastetoggle=<F11>
-
-
-"------------------------------------------------------------
-" Indentation options {{{1
-"
-" Indentation settings according to personal preference.
-
-
-" Indentation settings for using hard tabs for indent. Display tabs as
-" two characters wide.
-"set shiftwidth=2
-"set tabstop=2
-
-
-"------------------------------------------------------------
-" Mappings {{{1
-"
-" Useful mappings
-
-
 
