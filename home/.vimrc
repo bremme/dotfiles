@@ -1,3 +1,4 @@
+
 set nocompatible              " be iMproved, required
 filetype off                  " required
 ""set the runtime path to include Vundle and initialize
@@ -18,7 +19,9 @@ call vundle#begin()
   Plugin 'bling/vim-airline' "lean & mean status/tabline for vim that's light as air.
 
   Plugin 'Valloric/YouCompleteMe' " Code completion
-  Plugin 'msanders/snipmate.vim.git'
+  Plugin 'ervandew/supertab'
+  Plugin 'SirVer/ultisnips'
+  Plugin 'honza/vim-snippets'
   Plugin 'scrooloose/nerdcommenter'
 
   "----Syntax highlighting--------------------------------------------------------
@@ -28,55 +31,23 @@ call vundle#begin()
   "----THEMES---------------------------------------------------------------------
   Plugin 'tomasr/molokai' " Color themes
 
-"----Intactive
-"Plugins--------------------------------------------------------- 
+"----Intactive------------------------------------------------------------------
 " Plugin 'fholgado/minibufexpl.vim'
 " Plugin minibufexpl.vim
+" Plugin 'msanders/snipmate.vim.git'
+" Plugin 'garbas/vim-snipmate'
 
 "" The following are examples of different formats supported.
-"" Keep Plugin commands between vundle#begin/end.
-"" plugin on GitHub repo
-"Plugin 'tpope/vim-fugitive'
-"" plugin from http://vim-scripts.org/vim/scripts.html
-"Plugin 'L9'
-"" Git plugin not hosted on GitHub
-"Plugin 'git://git.wincent.com/command-t.git'
-"" git repos on your local machine (i.e. when working on your own plugin)
-"Plugin 'file:///home/gmarik/path/to/plugin'
-"" The sparkup vim script is in a subdirectory of this repo called vim.
-"" Pass the path to set the runtimepath properly.
-"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-"" Avoid a name conflict with L9
-"Plugin 'user/L9', {'name': 'newL9'}
+"Plugin 'tpope/vim-fugitive' (github)
+"Plugin 'L9' (vim-script.org)
+"Plugin 'git://git.wincent.com/command-t.git' (non github)
+"Plugin 'file:///home/gmarik/path/to/plugin' (local machine)
 
-" All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 "
-" Brief help
-" :PluginList          - list configured plugins
-" :PluginInstall(!)    - install (update) plugins
-" :PluginSearch(!) foo - search (or refresh cache first) for foo
-" :PluginClean(!)      - confirm (or auto-approve) removal of unused plugins
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-
-
-"URL: http://vim.wikia.com/wiki/Example_vimrc
-" Authors: http://vim.wikia.com/wiki/Vim_on_Freenode
-" Description: A minimal, but feature rich, example .vimrc. If you are a
-"              newbie, basing your first .vimrc on this file is a good choice.
-"              If you're a more advanced user, building your own .vimrc based
-"              on this file is still a good idea.
-
-"------------------------------------------------------------
-" Features {{{1
-"
-" These options and commands enable some very useful features in Vim, that
-" no user should have to live without.
 
 "----Theming & Color-----------------------------------------------
 
@@ -88,29 +59,111 @@ endif
 colorscheme molokai
 
 
-
 "----EDITOR---------------------------------------------------------------------
 
-"enable copy/paste from/to X11 clipboard
+"enable copy/paste from/to X11 clipboard (important! make <C-S-v> and middle
+"click work)
 set clipboard=unnamedplus,unnamed
-
-" softwrap text at full words
-set wrap linebreak nolist
 
 "give column 80 a color
 set colorcolumn=81
 
-" Indentation settings for using 2 spaces instead of tabs.
-" Do not change 'tabstop' from its default value of 8 with this setup.
-set shiftwidth=2
-set softtabstop=2
-set expandtab
 " show white spaces
 set list
 set listchars=tab:→\ ,trail:·,nbsp:·
 
 "set a fold column (to display the folds)
 set foldcolumn=4
+
+" Custom highlight for spellchecking
+hi clear SpellBad
+hi SpellBad cterm=underline ctermfg=red
+
+" where it should get the dictionary files
+let g:spellfile_URL = 'http://ftp.vim.org/vim/runtime/spell'
+
+"Switch between buffers without saving
+set hidden
+
+" Enable use of the mouse for all modes
+set mouse=a
+
+" Set the command window height to 2 lines, to avoid many cases of having to
+" "press <Enter> to continue"
+set cmdheight=2
+
+" Display line numbers on the left
+set number
+
+" Instead of failing a command because of unsaved changes, instead raise a
+" dialogue asking if you wish to save changed files.
+set confirm
+
+" Display the cursor position on the last line of the screen or in the status
+" line of a window
+set ruler
+
+" Better command-line completion
+set wildmenu
+
+" Show partial commands in the last line of the screen
+set showcmd
+
+" Allow backspacing over autoindent, line breaks and start of insert action
+set backspace=indent,eol,start
+
+" When opening a new line and no filetype-specific indenting is enabled, keep
+" the same indent as the line you're currently on. Useful for READMEs, etc.
+" set autoindent
+
+" Stop certain movements from always going to the first character of a line.
+" While this behaviour deviates from that of Vi, it does what most users
+" coming from other editors would expect.
+" set nostartofline
+
+" Always display the status line, even if only one window is displayed
+set laststatus=2
+
+" Use visual bell instead of beeping when doing something wrong
+set visualbell
+
+" And reset the terminal code for the visual bell. If visualbell is set, and
+" this line is also included, vim will neither flash nor beep. If visualbell
+" is unset, this does nothing.
+set t_vb=
+
+" Quickly time out on keycodes, but never time out on mappings
+set notimeout ttimeout ttimeoutlen=200
+
+" Use <F11> to toggle between 'paste' and 'nopaste'
+set pastetoggle=<F11>
+
+"----Searching------------------------------------------------------------------ 
+
+" Highlight searches 
+set hlsearch
+" Use case insensitive search, except when using capital letters
+set ignorecase
+set smartcase
+" Makes search act like search in modern browsers
+set incsearch
+
+"----TextWrapping---------------------------------------------------------------
+
+" softwrap text at full words
+set wrap linebreak nolist
+
+"----Indentation----------------------------------------------------------------
+
+" Indentation settings for using 2 spaces instead of tabs.
+" Do not change 'tabstop' from its default value of 8 with this setup.
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+
+" this is mostly a matter of taste. but LaTeX looks good with just a bit
+" of indentation.
+set sw=2
 
 "----LATEX----------------------------------------------------------------
 
@@ -127,15 +180,11 @@ let g:LatexBox_build_dir='build'
 " program to always generate a file-name.
 set grepprg=grep\ -nH\ $*
 
-
 " OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to
 " 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
 " The following changes the default filetype back to 'tex':
 let g:tex_flavor='latex'
 
-" this is mostly a matter of taste. but LaTeX looks good with just a bit
-" of indentation.
-set sw=2
 " TIP: if you write your \label's as \label{fig:something}, then if you
 " type in \ref{fig: and press <C-n> you will automatically cycle through
 " all the figure labels. Very useful!
@@ -143,19 +192,20 @@ set iskeyword+=:
 
 "----KEYMAPPINGS---------------------------------------------------------------- 
 
-" With a map leader it's possible to do extra key combinations
-" like <leader>w saves the current file
+" Remap the leader key (default is \)
 let mapleader = ","
 let g:mapleader = ","
 
-" workaround for gnome-terminal for <A-x> mapping
-" See http://stackoverflow.com/questions/6778961/alt-key-shortcuts-not-working-on-gnome-terminal-with-vim
-"let c='a'
-"while c <= 'z'
-  "exec "set <A-".c.">=\e".c
-  "exec "imap \e".c." <A-".c.">"
-  "let c = nr2char(1+char2nr(c))
-"endw
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
 
 "" Map ctrl-movement keys to window switching
 "map <C-k> <C-w><Up>
@@ -170,30 +220,51 @@ map <C-g> :GundoToggle<CR>
 map Y y$
 
 "--------NORMALMODE-------------------------------------------------------------
-nmap <CR> o<Esc>
-nmap <S-CR> O<Esc>
+" I like it better to just insert blank lines in normal mode
+nnoremap o o<Esc>
+nnoremap O O<Esc>
 
-" move a line of text using ALT-{h,j,k,l}
-nnoremap <A-j> :m .+1<CR>==
-nnoremap <A-k> :m .-2<CR>==
+"Saves time; maps the spacebar to colon
+nmap <space> :
+
+" workaround for gnome-terminal for <A-x> mapping
+" See http://stackoverflow.com/questions/6778961/alt-key-shortcuts-not-working-on-gnome-terminal-with-vim
+"let c='a'
+"while c <= 'z'
+  "exec "set <A-".c.">=\e".c
+  "exec "imap \e".c." <A-".c.">"
+  "let c = nr2char(1+char2nr(c))
+"endw
+" move a line of text using ALT-{h,j,k,l} (does not work in termal without a
+" hack)
+" nnoremap <A-j> :m .+1<CR>==
+" nnoremap <A-k> :m .-2<CR>==
 
 " Map <C-L> (redraw screen) to also turn off search highlighting until the
 " next search
 nnoremap <C-L> :nohl<CR><C-L>
 "--------INSERTMODE-------------------------------------------------------------
 
-" move a line of text using ALT-{h,j,k,l}
-inoremap <A-j> <Esc>:m .+1<CR>==gi
-inoremap <A-k> <Esc>:m .-2<CR>==gi
+"Map escape key to jj -- much faster
+imap jj <esc>
+
+"Map code completion to , + tab
+imap <leader><tab> <C-x><C-o>
+
+" move a line of text using ALT-{h,j,k,l} (does not work in termal without a
+" hack)
+" inoremap <A-j> <Esc>:m .+1<CR>==gi
+" inoremap <A-k> <Esc>:m .-2<CR>==gi
 
 "--------VISUALMODE-------------------------------------------------------------
 
-" move a line of text using ALT-{h,j,k,l}
-vnoremap <A-j> :m '>+1<CR>gv=gv
-vnoremap <A-k> :m '<-2<CR>gv=gv
+" move a line of text using ALT-{h,j,k,l} (does not work in termal without a
+" hack)
+" vnoremap <A-j> :m '>+1<CR>gv=gv
+" vnoremap <A-k> :m '<-2<CR>gv=gv
+
 "--------LEADER-----------------------------------------------------------------
-hi clear SpellBad
-hi SpellBad cterm=underline ctermfg=red
+
 " other option: cterm=underline 
 "turn spellchecking on or off
 nnoremap <leader>spu :setlocal spell spelllang=en_us<CR>
@@ -214,15 +285,13 @@ nnoremap <leader>q :q<CR>
 nnoremap <leader>qq :quitall<CR>
 nnoremap <leader>qo :only<CR,
 
-nnoremap <leader>rl :source ~/.vimrc<CR>
+nnoremap <leader>rl :source ~/.vimrc<CR>:nohl<CR>
+nnoremap <leader>evm :e ~/.vimrc<CR>
 
 "--------COMMANDMODE------------------------------------------------------------
 
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap W w !sudo tee > /dev/null %
-
-" where it should get the dictionary files
-let g:spellfile_URL = 'http://ftp.vim.org/vim/runtime/spell'
 
 "----NERDTree-------------------------------------------------------------------
 
@@ -232,6 +301,7 @@ autocmd vimenter * if !argc() | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 " turn spellcheck on for .tex, .md
 autocmd FileType tex,md setlocal spell spelllang=en_us
+
 "----Window title-------------------------------------------------------------
 
 " Automatically set screen title
@@ -256,106 +326,4 @@ let g:airline_theme = "dark"
 let g:ctrlp_map = '<C-p>'
 let g:ctrlp_cmd = 'CtrlPMRU'
 
-"------------------------------------------------------------
-" Must have options {{{1
-"
-" These are highly recommended options.
-
-" Vim with default settings does not allow easy switching between multiple files
-" in the same editor window. Users can use multiple split windows or multiple
-" tab pages to edit multiple files, but it is still best to enable an option to
-" allow easier switching between files.
-"
-" One such option is the 'hidden' option, which allows you to re-use the same
-" window and switch from an unsaved buffer without saving it first. Also allows
-" you to keep an undo history for multiple files when re-using the same window
-" in this way. Note that using persistent undo also lets you undo in multiple
-" files even in the same window, but is less efficient and is actually designed
-" for keeping undo history after closing Vim entirely. Vim will complain if you
-" try to quit without saving, and swap files will keep you safe if your computer
-" crashes.
-set hidden
-
-" Note that not everyone likes working this way (with the hidden option).
-" Alternatives include using tabs or split windows instead of re-using the same
-" window as mentioned above, and/or either of the following options:
-" set confirm
-" set autowriteall
-
-" Better command-line completion
-set wildmenu
-
-" Show partial commands in the last line of the screen
-set showcmd
-
-" Highlight searches (use <C-L> to temporarily turn off highlighting; see the
-" mapping of <C-L> below)
-set hlsearch
-
-" Modelines have historically been a source of security vulnerabilities. As
-" such, it may be a good idea to disable them and use the securemodelines
-" script, <http://www.vim.org/scripts/script.php?script_id=1876>.
-" set nomodeline
-
-
-"------------------------------------------------------------
-" Usability options {{{1
-"
-" These are options that users frequently set in their .vimrc. Some of them
-" change Vim's behaviour in ways which deviate from the true Vi way, but
-" which are considered to add usability. Which, if any, of these options to
-" use is very much a personal preference, but they are harmless.
-
-" Use case insensitive search, except when using capital letters
-set ignorecase
-set smartcase
-" Makes search act like search in modern browsers
-set incsearch
-
-" Allow backspacing over autoindent, line breaks and start of insert action
-set backspace=indent,eol,start
-
-" When opening a new line and no filetype-specific indenting is enabled, keep
-" the same indent as the line you're currently on. Useful for READMEs, etc.
-set autoindent
-
-" Stop certain movements from always going to the first character of a line.
-" While this behaviour deviates from that of Vi, it does what most users
-" coming from other editors would expect.
-set nostartofline
-
-" Display the cursor position on the last line of the screen or in the status
-" line of a window
-set ruler
-
-" Always display the status line, even if only one window is displayed
-set laststatus=2
-
-" Instead of failing a command because of unsaved changes, instead raise a
-" dialogue asking if you wish to save changed files.
-set confirm
-
-" Use visual bell instead of beeping when doing something wrong
-set visualbell
-
-" And reset the terminal code for the visual bell. If visualbell is set, and
-" this line is also included, vim will neither flash nor beep. If visualbell
-" is unset, this does nothing.
-set t_vb=
-
-" Enable use of the mouse for all modes
-set mouse=a
-
-" Set the command window height to 2 lines, to avoid many cases of having to
-" "press <Enter> to continue"
-set cmdheight=2
-
-" Display line numbers on the left
-set number
-
-" Quickly time out on keycodes, but never time out on mappings
-set notimeout ttimeout ttimeoutlen=200
-
-" Use <F11> to toggle between 'paste' and 'nopaste'
-set pastetoggle=<F11>
 

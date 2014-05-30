@@ -1,0 +1,10 @@
+
+if [ -x /usr/games/cowsay -a -x /usr/games/fortune -a -x /usr/bin/toilet ]; then
+#  files=(/usr/share/cowsay/cows/*); cowsay -f `echo ${files[$((RANDOM%${#files}))]}` `fortune` | toilet -F gay -f term
+  fortune -s | cowsay -f $(ls /usr/share/cowsay/cows/ | shuf -n1) | toilet --gay -f term
+elif [ -x /usr/games/cowsay -a -x /usr/games/fortune ]; then
+  fortune -s | cowsay
+elif [ -x /usr/games/cowsay ]; then
+  cowsay "kaptein"
+fi
+
