@@ -111,3 +111,7 @@ source $ZSH/oh-my-zsh.sh
 if [[ "$ZSH_THEME" == "robbyrussell" ]] ; then
   PROMPT="%{$fg_bold[white]%}%n@%{$fg_bold[green]%}%m%{$reset_color%} ${PROMPT}"
 fi
+
+if [[ -x /usr/bin/neofetch ]]; then
+  neofetch
+fi
