@@ -22,3 +22,5 @@ alias p="python"
 
 # reload zsh
 alias rlz="source ~/.zshrc"
+
+alias hs="homeshick"
