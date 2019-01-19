@@ -24,3 +24,13 @@ alias p="python"
 alias rlz="source ~/.zshrc"
 
 alias hs="homeshick"
+
+
+# set good defaults for cp
+alias cp="cp --interactive --recursive --archive"
+# set good defaults for rm
+alias rm="rm --recursive --interactive=once"
+# set good defaults for mkdir
+alias mkdir="mkdir --parents --verbose"
+# set good defaults for mv
+alias mv="mv --interactive --verbose"
