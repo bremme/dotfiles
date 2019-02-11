@@ -1,6 +1,6 @@
 
-if [ -x /usr/local/bin/pygmentize ]; then
-   alias ccat='pygmentize -g -O style=colorful,linenos=1'
+if [ -x /usr/bin/pygmentize ]; then
+   alias catc='pygmentize -g -O style=colorful,linenos=1'
 fi
 
 # chmod
