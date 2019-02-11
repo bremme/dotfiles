@@ -4,6 +4,7 @@
 # >>> conda init >>>
 # !! Contents within this block are managed by 'conda init' !!
 load_conda() {
+  echo "Loading Conda environment..."
   unset -f conda
   unset -f python
   unset -f ipython
@@ -37,5 +38,13 @@ ipython() {
 pip() {
   load_conda
   pip "$@"
+}
+disable_conda() {
+  echo "Remove all Conda aliases. Now you can use the default python interperter"
+  unset -f conda
+  unset -f python
+  unset -f ipython
+  unset -f pip
+  unset -f load_conda
 }
 # <<< conda init <<<
