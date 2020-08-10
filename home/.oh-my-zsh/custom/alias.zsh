@@ -17,6 +17,10 @@ alias standby-sda="sudo hdparm -y /dev/sda"
 alias standby-sdb="sudo hdparm -y /dev/sdb"
 alias standby-sdc="sudo hdparm -y /dev/sdc"
 
+alias du-size="du --max-depth=1 --human-readable --one-file-system"
+alias du-size-2="du --max-depth=2 --human-readable --one-file-system"
+alias du-size-3="du --max-depth=3 --human-readable --one-file-system"
+
 alias c="clear"
 alias p="python"
 
@@ -34,3 +38,5 @@ alias rm="rm --recursive --interactive=once"
 alias mkdir="mkdir --parents --verbose"
 # set good defaults for mv
 alias mv="mv --interactive --verbose"
+#
+alias tree="tree -a -I .git"
