@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=Custom GSettings
+Comment=Apply custom Gsettings at login
+Type=Application
+Exec=$HOME/scripts/custom-gsettings.sh
