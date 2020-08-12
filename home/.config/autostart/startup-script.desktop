@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Custom startup script
+Comment=Apply custom settings at startup
+Type=Application
+Exec=$HOME/scripts/startup-script.sh
+Name[en_US]=startup-script.desktop

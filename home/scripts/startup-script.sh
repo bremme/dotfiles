@@ -16,3 +16,7 @@ gsettings\
 gsettings\
   set org.gnome.desktop.wm.keybindings  switch-group-backward\
   "['<Shift><Super>Above_Tab', '<Shift><Alt>Above_Tab', '<Shift><Ctrl>backspace']"
+
+
+# unload auto suspend module (prevents buzzing sounds when soundcard is turned off after idling for x seconds)
+pactl unload-module module-suspend-on-idle
