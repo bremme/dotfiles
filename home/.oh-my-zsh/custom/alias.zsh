@@ -1,6 +1,6 @@
 
 if [ -x /usr/bin/pygmentize ]; then
-   alias catc='pygmentize -g -O style=colorful,linenos=1'
+   alias ccat='pygmentize -g -O style=colorful,linenos=1'
 fi
 
 # chmod
@@ -16,6 +16,10 @@ alias find-orangepi="sudo arp-scan --localnet | grep '12:22:1e\|4a:f7:d2\|6e:a5:
 alias standby-sda="sudo hdparm -y /dev/sda"
 alias standby-sdb="sudo hdparm -y /dev/sdb"
 alias standby-sdc="sudo hdparm -y /dev/sdc"
+alias standby-sdd="sudo hdparm -y /dev/sdd"
+alias standby-sde="sudo hdparm -y /dev/sde"
+alias standby-sdf="sudo hdparm -y /dev/sdf"
+alias standby-sdg="sudo hdparm -y /dev/sdg"
 
 alias du-size="du --max-depth=1 --human-readable --one-file-system"
 alias du-size-2="du --max-depth=2 --human-readable --one-file-system"
@@ -26,8 +30,6 @@ alias p="python"
 
 # reload zsh
 alias rlz="source ~/.zshrc"
-
-alias hs="homeshick"
 
 
 # set good defaults for cp

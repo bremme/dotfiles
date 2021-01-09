@@ -69,13 +69,6 @@ ZSH_THEME="robbyrussell"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git z fzf)
 
-# load homeshick
-if [ -f "$HOME/.homesick/repos/homeshick/homeshick.sh" ] ; then
-  source "$HOME/.homesick/repos/homeshick/homeshick.sh"
-  # add the homeshick/completions directory to the ZSH tab completion lookup path.
-  fpath=($HOME/.homesick/repos/homeshick/completions $fpath)
-fi
-
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -106,12 +99,3 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# add user@host to prompt for robbyrussel theme
-if [[ "$ZSH_THEME" == "robbyrussell" ]] ; then
-  PROMPT="%{$fg_bold[white]%}%n@%{$fg_bold[green]%}%m%{$reset_color%} ${PROMPT}"
-fi
-
-if [[ -x /usr/bin/neofetch ]]; then
-  neofetch
-fi
