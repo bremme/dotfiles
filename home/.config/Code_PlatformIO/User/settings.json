@@ -1,0 +1,7 @@
+{
+    // "window.title": "${dirty}${activeEditorShort}${separator}${rootName}${separator}${appName}"
+    "window.title": "${dirty}${activeEditorShort}${separator}${rootName}${separator}PlatformIO",
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.colorTheme": "Atom One Light",
+    "workbench.startupEditor": "newUntitledFile"
+}
