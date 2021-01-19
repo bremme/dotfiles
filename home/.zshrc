@@ -14,7 +14,6 @@ ZSH_THEME="robbyrussell"
 # ZSH_THEME="bureau"
 # ZSH_THEME="spaceship"
 
-
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
@@ -99,3 +98,8 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# add user@host to prompt for robbyrussel theme
+if [[ "$ZSH_THEME" == "robbyrussell" ]] ; then
+  export PROMPT="%{$fg_bold[white]%}%n@%{$fg_bold[green]%}%m%{$reset_color%} ${PROMPT}"
+fi

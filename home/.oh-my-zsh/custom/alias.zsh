@@ -1,6 +1,8 @@
 
 if [ -x /usr/bin/pygmentize ]; then
-   alias ccat='pygmentize -g -O style=colorful,linenos=1'
+   # STYLE="colorful"
+   STYLE="solarized-dark"
+   alias ccat='pygmentize -g -O style=$STYLE,linenos=1'
 fi
 
 # chmod

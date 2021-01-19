@@ -1,5 +1,5 @@
 {
-    "workbench.colorTheme": "Visual Studio Dark",
+    "workbench.colorTheme": "Atom One Dark",
     "editor.renderWhitespace": "all",
     "files.trimTrailingWhitespace": true,
     "window.zoomLevel": 0,
@@ -8,5 +8,9 @@
         88,
         120
     ],
-    "explorer.confirmDragAndDrop": false
+    "explorer.confirmDragAndDrop": false,
+    "workbench.iconTheme": "material-icon-theme",
+    "files.associations": {
+        "*.desktop": "ini"
+    }
 }

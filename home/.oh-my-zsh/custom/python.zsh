@@ -1,12 +1,25 @@
 
-readonly PYCUSTOM_SYSPY2_ENV="py2"
-readonly PYCUSTOM_SYSPY3_ENV="py3"
-readonly PYCUSTOM_CONDA_ENV="conda"
-readonly PYCUSTOM_PYENV_ENV="pyenv"
-export PYCUSTOM_ENVS=(
-  $PYCUSTOM_SYSPY2_ENV $PYCUSTOM_SYSPY3_ENV $PYCUSTOM_CONDA_ENV $PYCUSTOM_PYENV_ENV
-)
+PYCUSTOM_SYSPY2_ENV="py2"
+PYCUSTOM_SYSPY3_ENV="py3"
+PYCUSTOM_CONDA_ENV="conda"
+PYCUSTOM_PYENV_ENV="pyenv"
+export PYCUSTOM_ENVS=()
 
+if [ -x "$(which python)" ]; then
+  PYCUSTOM_ENVS+=( $PYCUSTOM_SYSPY2_ENV )
+fi
+
+if [ -x "$(which python3)" ]; then
+  PYCUSTOM_ENVS+=( $PYCUSTOM_SYSPY3_ENV )
+fi
+
+if [ -f "$HOME/.miniconda3/etc/profile.d/conda.sh" ]; then
+  PYCUSTOM_ENVS+=( $PYCUSTOM_CONDA_ENV )
+fi
+
+if [ -d "$HOME/.pyenv" ]; then
+  PYCUSTOM_ENVS+=( $PYCUSTOM_PYENV_ENV )
+fi
 
 PYCUSTOM_DEFAULT_ENV=$PYCUSTOM_PYENV_ENV
 
