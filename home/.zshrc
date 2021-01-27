@@ -102,4 +102,7 @@ source $ZSH/oh-my-zsh.sh
 # add user@host to prompt for robbyrussel theme
 if [[ "$ZSH_THEME" == "robbyrussell" ]] ; then
   export PROMPT="%{$fg_bold[white]%}%n@%{$fg_bold[green]%}%m%{$reset_color%} ${PROMPT}"
+  if command -v task &> /dev/null; then
+    # export PROMPT="$(task +PENDING +in count) inbox ${PROMPT}"
+  fi
 fi

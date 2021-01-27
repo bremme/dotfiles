@@ -54,3 +54,10 @@ report.someday.filter		= status:pending +someday -BLOCKED
 report.someday.sort		= project+,tags+
 
 search.case.sensitive=no
+
+# Connect to remote server
+# taskd.server=:port
+# taskd.credentials=taskd/taskd/ed224156-e893-407a-8fbc-cf746382dc57
+# taskd.certificate=~/.task/username.cert.pem
+# taskd.key=~/.task/username.key.pem
+# taskd.ca=~/.task/ca.cert.pem
