@@ -3,6 +3,7 @@ PYCUSTOM_SYSPY2_ENV="py2"
 PYCUSTOM_SYSPY3_ENV="py3"
 PYCUSTOM_CONDA_ENV="conda"
 PYCUSTOM_PYENV_ENV="pyenv"
+
 export PYCUSTOM_ENVS=()
 
 if [ -x "$(which python)" ]; then
@@ -20,8 +21,6 @@ fi
 if [ -d "$HOME/.pyenv" ]; then
   PYCUSTOM_ENVS+=( $PYCUSTOM_PYENV_ENV )
 fi
-
-PYCUSTOM_DEFAULT_ENV=$PYCUSTOM_PYENV_ENV
 
 export PYCUSTOM_OLD_PATH=$PATH
 export PYCUSTOM_CUR_ENV=""
@@ -84,22 +83,24 @@ activate_custom_python_environment() {
     return
   fi
 
-  __deactivate_current_custom_python_env
-
   case $1 in
     $PYCUSTOM_SYSPY2_ENV)
+      __deactivate_current_custom_python_env
       echo "Activate system Python 2 environment"
       activate_syspy2
       ;;
     $PYCUSTOM_SYSPY3_ENV)
+      __deactivate_current_custom_python_env
       echo "Activate system Python 3 environment"
       activate_syspy3
       ;;
     $PYCUSTOM_CONDA_ENV)
+      __deactivate_current_custom_python_env
       echo "Activate Miniconda environment"
       activate_conda
       ;;
     $PYCUSTOM_PYENV_ENV)
+      __deactivate_current_custom_python_env
       echo "Activate PyEnv environment"
       activate_pyenv
       ;;
@@ -185,8 +186,7 @@ deactivate_pyenv() {
   unset PYENV_VERSION
 }
 
-
 alias pyact=activate_custom_python_environment
 
 # activate the default environment
-pyact $PYCUSTOM_DEFAULT_ENV
+pyact ${PYCUSTOM_ENVS[-1]} 2>&1 > /dev/null
