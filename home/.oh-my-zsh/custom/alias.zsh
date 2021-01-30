@@ -5,6 +5,11 @@ if [ -x /usr/bin/pygmentize ]; then
    alias ccat='pygmentize -g -O style=$STYLE,linenos=1'
 fi
 
+function _du_depth() {
+   # du --human-readable --one-file-system --total --max-depth $1 "$2" | sort --reverse --human-numeric-sort
+   du -hxcd $1 "$2" | sort -rh
+}
+
 # chmod
 alias chmox='chmod +x'
 # grep process
@@ -23,16 +28,15 @@ alias standby-sde="sudo hdparm -y /dev/sde"
 alias standby-sdf="sudo hdparm -y /dev/sdf"
 alias standby-sdg="sudo hdparm -y /dev/sdg"
 
-alias du-size="du --max-depth=1 --human-readable --one-file-system"
-alias du-size-2="du --max-depth=2 --human-readable --one-file-system"
-alias du-size-3="du --max-depth=3 --human-readable --one-file-system"
+alias du1="_du_depth 1"
+alias du2="_du_depth 2"
+alias du3="_du_depth 3"
 
 alias c="clear"
 alias p="python"
 
 # reload zsh
 alias rlz="source ~/.zshrc"
-
 
 # set good defaults for cp
 alias cp="cp --interactive --recursive --archive"
@@ -42,5 +46,5 @@ alias rm="rm --recursive --interactive=once"
 alias mkdir="mkdir --parents --verbose"
 # set good defaults for mv
 alias mv="mv --interactive --verbose"
-#
+# set good defaults for tree
 alias tree="tree -a -I .git"
