@@ -13,6 +13,11 @@ ZSH_THEME="robbyrussell"
 # ZSH_THEME="refined"
 # ZSH_THEME="bureau"
 # ZSH_THEME="spaceship"
+# ZSH_THEME="pure"
+# ZSH_THEME="aussiegeek"
+# ZSH_THEME="bira"
+# ZSH_THEME="powerlevel10k/powerlevel10k"
+
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -101,7 +106,12 @@ source $ZSH/oh-my-zsh.sh
 
 # add user@host to prompt for robbyrussel theme
 if [[ "$ZSH_THEME" == "robbyrussell" ]] ; then
-  export PROMPT="%{$fg_bold[white]%}%n@%{$fg_bold[green]%}%m%{$reset_color%} ${PROMPT}"
+  if [[ $(id -u) == 0 ]]; then
+    export PROMPT="%{$fg_bold[red]%}%n%{$fg_bold[white]%}@%{$fg_bold[red]%}%m%{$reset_color%} ${PROMPT}\n# "
+  else
+    export PROMPT="%{$fg_bold[white]%}%n@%{$fg_bold[green]%}%m%{$reset_color%} ${PROMPT}"$'\n'"%{$fg_bold[blue]%}$%{$reset_color%} "
+  fi
+
   if command -v task &> /dev/null; then
     # export PROMPT="$(task +PENDING +in count) inbox ${PROMPT}"
   fi

@@ -187,6 +187,7 @@ deactivate_pyenv() {
 }
 
 alias pyact=activate_custom_python_environment
+alias a="source venv/bin/activate"
 
 # activate the default environment
 pyact ${PYCUSTOM_ENVS[-1]} 2>&1 > /dev/null
