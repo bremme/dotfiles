@@ -1,8 +1,8 @@
-if [[ -x /usr/bin/neofetch ]]; then
+if command -v neofetch > /dev/null 2>&1; then
   neofetch
 fi
 
 # If keychain is installed use it
-if [[ -x $(which keychain) ]]; then
-  eval `keychain --eval --agent ssh id_rsa`
-if
+if command -v keychain > /dev/null 2>&1; then
+  eval `keychain --eval --agents ssh id_rsa`
+fi

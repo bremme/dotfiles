@@ -1,10 +1,10 @@
-if [ -x /usr/bin/pygmentize ]; then
+if command -v pygmentize > /dev/null 2>&1; then
    # STYLE="colorful"
    STYLE="solarized-dark"
    alias ccat='pygmentize -g -O style=$STYLE,linenos=1'
 fi
 
-if [ -x $(which code) ]; then
+if command -v code > /dev/null 2>&1; then
    alias c="code"
 fi
 
