@@ -1,8 +1,11 @@
-
 if [ -x /usr/bin/pygmentize ]; then
    # STYLE="colorful"
    STYLE="solarized-dark"
    alias ccat='pygmentize -g -O style=$STYLE,linenos=1'
+fi
+
+if [ -x $(which code) ]; then
+   alias c="code"
 fi
 
 function _du_depth() {
@@ -40,8 +43,6 @@ alias dc="docker-compose"
 alias dcu="docker-compose up"
 alias dcd="docker-compose down"
 
-alias c="clear"
-alias p="python"
 
 # reload zsh
 alias rlz="source ~/.zshrc"

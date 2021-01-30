@@ -1,3 +1,8 @@
+PYTHONBREAKPOINT=ipdb.set_trace
+
+alias p="python"
+alias a="source venv/bin/activate"
+
 
 PYCUSTOM_SYSPY2_ENV="py2"
 PYCUSTOM_SYSPY3_ENV="py3"
@@ -152,7 +157,6 @@ deactivate_conda() {
   unset CONDA_DEFAULT_ENV
   unset CONDA_PROMPT_MODIFIER
   unset CONDA_PYTHONBREAKPOINT
-  unset PYTHONBREAKPOINT
 }
 
 
@@ -187,7 +191,6 @@ deactivate_pyenv() {
 }
 
 alias pyact=activate_custom_python_environment
-alias a="source venv/bin/activate"
 
 # activate the default environment
 pyact ${PYCUSTOM_ENVS[-1]} 2>&1 > /dev/null
