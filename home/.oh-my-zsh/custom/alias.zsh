@@ -32,6 +32,14 @@ alias du1="_du_depth 1"
 alias du2="_du_depth 2"
 alias du3="_du_depth 3"
 
+# docker
+alias doc="docker"
+
+# docker compose
+alias dc="docker-compose"
+alias dcu="docker-compose up"
+alias dcd="docker-compose down"
+
 alias c="clear"
 alias p="python"
 
