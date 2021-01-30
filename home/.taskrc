@@ -32,32 +32,34 @@ include /usr/share/taskwarrior/dark-violets-256.theme
 # Use: task show report.<report_name> to get default values
 
 # custom INBOX report: task in
-report.in.columns		= id,project,tags,description
-report.in.description		= Inbox
-report.in.filter		= status:pending limit:page (+in)
-# report.in.lables		= ID, Description
-report.in.sort			= project+,tags+
+report.in.columns           = id,project,tags,description
+report.in.description       = Inbox
+report.in.filter            = status:pending +in
+# report.in.lables          = ID, Description
+report.in.sort              = project+,tags+
 
 # custom NEXT report: task next
-# report.next.columns     id,start.age,entry.age,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description,urgency
-# report.next.columns		= id,description
-# report.next.description	= Next
-report.next.filter		= status:pending and +next
-# report.next.lables		= ID, Description
-report.next.sort		= urgency-
+# report.next.columns       = id,start.age,entry.age,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description,urgency
+report.next.description     = Next
+report.next.filter          = status:pending +next
+# report.next.lables        = ID, Description
+report.next.sort            = urgency-
 
 # custom SOMEDAY report: task someday
-report.someday.columns		= id,project,tags,description
-report.someday.description	= Someday
-report.someday.filter		= status:pending +someday -BLOCKED
-# report.someday.lables		= ID, Description
-report.someday.sort		= project+,tags+
+report.someday.columns      = id,project,description,tags
+report.someday.description  = Someday
+report.someday.filter       = status:pending +someday -BLOCKED
+# report.someday.lables     = ID, Description
+report.someday.sort         = project+,tags+
 
-search.case.sensitive=no
+# custom WAITING report: task waiting
+# report.wait.columns       = id,project,description,tags
+# report.wait.description   = Waiting
+# report.wait.filter        = status:pending +wait -BLOCKED
+# report.wait.lables        = ID, Description
+# report.wait.sort          = project+,tags+
 
-# Connect to remote server
-# taskd.server=:port
-# taskd.credentials=taskd/taskd/ed224156-e893-407a-8fbc-cf746382dc57
-# taskd.certificate=~/.task/username.cert.pem
-# taskd.key=~/.task/username.key.pem
-# taskd.ca=~/.task/ca.cert.pem
+search.case.sensitive       = no
+
+# Store taskd server secrets in a seperate file
+include ~/.task/.taskdrc
