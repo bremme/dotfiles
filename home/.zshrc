@@ -116,3 +116,8 @@ if [[ "$ZSH_THEME" == "robbyrussell" ]] ; then
     # export PROMPT="$(task +PENDING +in count) inbox ${PROMPT}"
   fi
 fi
+
+if command -v starship > /dev/null 2>&1; then 
+  eval "$(starship init zsh)"
+fi
+

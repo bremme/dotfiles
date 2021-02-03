@@ -11,18 +11,48 @@ function _inbook() {
     done
 }
 
-function _tos() {
-    task $@ modify -in -next +someday
+function _task_to_someday() {
+    task $@ modify -in +someday -next
 }
 
-function _ton() {
+function _task_to_next() {
     task $@ modify -in -someday +next
 }
 
-alias t="task"          # run taskwarrior
-alias in="task add +in" # add to in list
-alias inread="_inread"  # add book to in list
+function _task_search() {
+    task "$@" ls
+}
+
+function _task_search_project() {
+    task project:"$@" ls
+}
+
+function _task_search_tag() {
+    task "+$1" ls
+}
+
+function _task_mod_description() {
+    task "$1" mod description:"$2"
+}
+
+function _task_mod_depends() {
+    task "$1" mod depends:"$2"
+}
+
+alias t="task"                      # run taskwarrior
+
+alias in="task add +in"             # add to inbox
+alias inread="_inread"              # add book to in list
 alias inbook="_inbook"
 
-alias tos="_tos"        # move to someday list
-alias ton="_ton"        # move to next list
+alias tin="task in"                 # show inbox
+
+alias tmd="_task_mod_description"   # Modify description
+alias tmdep="_task_mod_depends"     # Modify depends
+
+alias tos="_task_to_someday"        # move to someday list
+alias ton="_task_to_next"           # move to next list
+
+alias ts="_task_search"             # search for tasks
+alias tsp="_task_search_project"    # search for projects
+alias tst="_task_search_tag"        # search for tags
