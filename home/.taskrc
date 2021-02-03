@@ -41,7 +41,7 @@ report.in.sort              = project+,tags+
 # custom NEXT report: task next
 # report.next.columns       = id,start.age,entry.age,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description,urgency
 report.next.description     = Next
-report.next.filter          = status:pending +next
+report.next.filter          = status:pending +next +READY
 # report.next.lables        = ID, Description
 report.next.sort            = urgency-
 
