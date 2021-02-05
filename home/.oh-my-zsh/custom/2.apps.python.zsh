@@ -1,8 +1,6 @@
-PYTHONBREAKPOINT=ipdb.set_trace
+export PYTHONBREAKPOINT=ipdb.set_trace
 
 alias p="python"
-alias a="source venv/bin/activate"
-
 
 PYCUSTOM_SYSPY2_ENV="py2"
 PYCUSTOM_SYSPY3_ENV="py3"
@@ -162,7 +160,8 @@ deactivate_conda() {
 
 # use system python 2
 activate_syspy2() {
-
+  alias a="source venv/bin/activate"
+  alias da="deactivate"
 }
 deactivate_syspy2() {
 
@@ -172,22 +171,71 @@ deactivate_syspy2() {
 activate_syspy3() {
   alias python=python3
   alias pip=pip3
+  alias a="source venv/bin/activate"
+  alias da="deactivate"
 }
 deactivate_syspy3() {
   unalias python
   unalias pip
 }
 
+# Activate pyenv virtual env with name of current directory
+__activate_pyenv_virtualenv() {
+  if [ "$#" -eq 0 ]; then
+    pyenv activate "${PWD##*/}"
+  else
+    pyenv activate "$@"
+  fi
+
+}
+# Uninstall pyenv virtual env with name of current directory
+__remove_pyenv_virtualenv() {
+  if [ "$#" -eq 0 ]; then
+    	pyenv uninstall "${PWD##*/}"
+  else
+      pyenv uninstall "$@"
+  fi
+}
+# create pyenv virtual env with name of current directory and current interperter
+__make_pyenv_virtualenv() {
+  # pyenv virtualenv [-f|--force] [VIRTUALENV_OPTIONS] [version] <virtualenv-name>
+  venv_options="--upgrade-deps"
+
+  if [ "$#" -eq 0 ]; then
+    venv_name="${PWD##*/}"
+    pyenv virtualenv "$venv_options" "$venv_name"
+  else
+    pyenv virtualenv "$venv_options" "$@"
+  fi
+}
+
 # user pyenv
 activate_pyenv() {
   export PYENV_ROOT="$HOME/.pyenv"
   export PATH="$PYENV_ROOT/bin:$PATH"
+  export PYENV_VIRTUALENV_DISABLE_PROMPT=1
   eval "$(pyenv init -)"
+
+  alias pyvenv="pyenv virtualenv"
+  alias pls="pyenv versions"
+  alias pgl="pyenv global"
+  alias plo="pyenv local"
+  alias pac="pyenv activate"
+  alias pda="pyenv decativate"
+
+  alias a="__activate_pyenv_virtualenv"     # activate pyenv venv
+  alias da="pyenv deactivate"               # deactivate pyenv venv
+
+  alias els="pyenv virtualenvs"             # list pyen venv's
+  alias erm="__remove_pyenv_virtualenv"     # remove pyenv venv
+  alias emk="__make_pyenv_virtualenv"       # make pyenv venv
 }
 deactivate_pyenv() {
   unset PYENV_ROOT
   unset PYENV_SHELL
   unset PYENV_VERSION
+  unset PYENV_VIRTUALENV_DISABLE_PROMPT
+  unalias pyvenv pls pgl plo pac pda els erm emk
 }
 
 alias pyact=activate_custom_python_environment
