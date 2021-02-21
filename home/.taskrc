@@ -32,7 +32,7 @@ include /usr/share/taskwarrior/dark-violets-256.theme
 # Use: task show report.<report_name> to get default values
 
 # custom INBOX report: task in
-report.in.columns           = id,project,tags,description
+report.in.columns           = project,tags,id,description
 report.in.description       = Inbox
 report.in.filter            = status:pending +in
 # report.in.lables          = ID, Description
