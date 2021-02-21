@@ -57,3 +57,8 @@ alias mkdir="mkdir --parents --verbose"
 alias mv="mv --interactive --verbose"
 # set good defaults for tree
 alias tree="tree -a -I .git"
+
+# Grep from alias
+alias grepa="alias | grep -i"
+# Grep from env
+alias grepe="env | grep -i"

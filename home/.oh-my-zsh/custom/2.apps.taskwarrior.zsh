@@ -46,6 +46,7 @@ alias inread="_inread"              # add book to in list
 alias inbook="_inbook"
 
 alias tin="task in"                 # show inbox
+alias tsom="task +someday ls"       # show someday
 
 alias tmd="_task_mod_description"   # Modify description
 alias tmdep="_task_mod_depends"     # Modify depends
