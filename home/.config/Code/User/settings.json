@@ -12,5 +12,12 @@
     "workbench.iconTheme": "material-icon-theme",
     "files.associations": {
         "*.desktop": "ini"
-    }
+    },
+    "workbench.editorAssociations": [
+        {
+            "viewType": "jupyter.notebook.ipynb",
+            "filenamePattern": "*.ipynb"
+        }
+    ],
+    "vsicons.dontShowNewVersionMessage": true
 }
