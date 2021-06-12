@@ -214,8 +214,14 @@ __make_pyenv_virtualenv() {
 activate_pyenv() {
   export PYENV_ROOT="$HOME/.pyenv"
   export PATH="$PYENV_ROOT/bin:$PATH"
-  export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+  eval "$(pyenv init --path)"
+
   eval "$(pyenv init -)"
+
+  if [ -d "$HOME/.pyenv/plugins/pyenv-virtualenv" ]; then
+    export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+    eval "$(pyenv virtualenv-init -)"
+  fi
 
   alias pyvenv="pyenv virtualenv"
   alias pls="pyenv versions"
@@ -241,5 +247,7 @@ deactivate_pyenv() {
 
 alias pyact=activate_custom_python_environment
 
+
 # activate the default environment
 pyact ${PYCUSTOM_ENVS[-1]} 2>&1 > /dev/null
+# pyact ${PYCUSTOM_ENVS[-1]}
