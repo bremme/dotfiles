@@ -1,6 +1,7 @@
 export PYTHONBREAKPOINT=ipdb.set_trace
 
 alias p="python"
+alias pl="pip list"
 
 PYCUSTOM_SYSPY2_ENV="py2"
 PYCUSTOM_SYSPY3_ENV="py3"
