@@ -9,7 +9,14 @@ gsettings set org.gnome.shell.extensions.dash-to-dock dock-position "'BOTTOM'"
 # autohide the dock
 gsettings set org.gnome.shell.extensions.dash-to-dock autohide true
 # disable the dock completely
-# gnome-extensions disable ubuntu-dock@ubuntu.com
+gnome-extensions disable ubuntu-dock@ubuntu.com
+
+# org.gnome.desktop.interface
+gsettings set org.gnome.desktop.interface clock-show-weekday "true"
+gsettings set org.gnome.desktop.interface show-battery-percentage "true"
+
+# org.gnome.desktop.calendar
+gsettings set org.gnome.desktop.calendar show-weekdate "true"
 
 
 # use alt tab to switch application AND use alt+super tab to switch windows
