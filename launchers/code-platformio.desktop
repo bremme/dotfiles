@@ -1,0 +1,18 @@
+[Desktop Entry]
+Name=PlatformIO
+Comment=Code Editing. Redefined.
+GenericName=Text Editor
+Exec=code --force-user-env --no-sandbox --unity-launch --user-data-dir "$HOME/.config/Code_PlatformIO" --extensions-dir "$HOME/.vscode-platformio/extensions" %F
+Icon=$HOME/Apps/icons/platformio.png
+Type=Application
+StartupNotify=false
+StartupWMClass=Code
+Categories=Utility;TextEditor;Development;IDE;
+MimeType=text/plain;inode/directory;application/x-code-workspace;
+Actions=new-empty-window;
+Keywords=vscode;
+
+[Desktop Action new-empty-window]
+Name=New Empty Window
+Exec=code --force-user-env --no-sandbox --new-window --user-data-dir "$HOME/.config/Code_PlatformIO" --extensions-dir "$HOME/.vscode-platformio/extensions" %F
+Icon=$HOME/Apps/icons/platformio.png
