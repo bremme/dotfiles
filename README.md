@@ -24,3 +24,8 @@ $ ./scripts/install/install_<name-of-application>.sh
 ## Link accounts
 
 **sign in to Firefox sync**
+
+
+# TODO
+
+Gnome Themes (Yaru-Colors)
