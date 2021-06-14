@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 source $(dirname "$0")/../utils.sh
-source $(dirname "$0")/../../config.sh
 
 TERMINAL_FONT="FiraCode Nerd Font Mono Medium"
 TERMINAL_FONT_SIZE="11"
@@ -29,7 +28,7 @@ function install_starship() {
     log_info "Download and install Nerd font"
     wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip -O /tmp/FiraCode.zip
     unzip -o /tmp/FiraCode.zip -d ~/.local/share/fonts
-    # Set font on terminal    
+    # Set font on terminal
     log_info "Set Terminal Nerd font"
     DEFAULT_UUID=$(gsettings get org.gnome.Terminal.ProfilesList default | awk -F \' '{print $2}')
     DEFAULT_SCHEMA="org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$DEFAULT_UUID/"
