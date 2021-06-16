@@ -39,4 +39,9 @@ elif [[ $1 == "3" ]]; then
   xrandr --output "$middle" --auto --primary
   xrandr --output "$left" --auto --left-of "$middle"
   xrandr --output "$right" --auto --right-of "$middle"
+elif [[ $1 == "1L1R" ]]; then
+  turn_all_monitors_off
+  xrandr --output "$left" --auto
+  xrandr --output "$middle" --off
+  xrandr --output "$right" --auto --primary --right-of "$left"
 fi
