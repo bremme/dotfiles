@@ -24,6 +24,11 @@ fi
 
 if [ -d "$HOME/.pyenv" ]; then
   PYCUSTOM_ENVS+=( $PYCUSTOM_PYENV_ENV )
+  # run pyenv init --path only once
+  export PYENV_ROOT="$HOME/.pyenv"
+  export PATH_BEFORE_PYENV="$PATH"
+  export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init --path)"
 fi
 
 export PYCUSTOM_OLD_PATH=$PATH
@@ -212,8 +217,8 @@ __make_pyenv_virtualenv() {
 
 # user pyenv
 activate_pyenv() {
-  export PYENV_ROOT="$HOME/.pyenv"
-  export PATH="$PYENV_ROOT/bin:$PATH"
+  # TODO this should only run once!
+  export PATH_BEFORE_PYENV="$PATH"
   export PYENV_VIRTUALENV_DISABLE_PROMPT=1
   eval "$(pyenv init -)"
 
@@ -232,6 +237,7 @@ activate_pyenv() {
   alias emk="__make_pyenv_virtualenv"       # make pyenv venv
 }
 deactivate_pyenv() {
+  export PATH="$PATH_BEFORE_PYENV"
   unset PYENV_ROOT
   unset PYENV_SHELL
   unset PYENV_VERSION
@@ -242,4 +248,5 @@ deactivate_pyenv() {
 alias pyact=activate_custom_python_environment
 
 # activate the default environment
-pyact ${PYCUSTOM_ENVS[-1]} 2>&1 > /dev/null
+# pyact ${PYCUSTOM_ENVS[-1]} 2>&1 > /dev/null
+pyact ${PYCUSTOM_ENVS[-1]}
