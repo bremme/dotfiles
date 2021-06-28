@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# user dirs:    .config/user-dirs.dirs
+# bookmarks:    .config/gtk-3.0/bookmarks
+
 source $(dirname "$0")/utils.sh
 
 function install_nemo() {
