@@ -3,7 +3,7 @@
 source $(dirname "$0")/../utils.sh
 
 DOCKER_COMPOSE_VERSION="1.29.2"
-declare -a DEPENDENCIES=(apt-get install apt-transport-https ca-certificates curl gnupg lsb-release)
+declare -a DEPENDENCIES=(apt-transport-https ca-certificates curl gnupg lsb-release)
 
 function install_docker() {
     local name="Docker (deb)"
@@ -11,9 +11,6 @@ function install_docker() {
     log_info "Install dependencies for '$name'"
     sudo apt install ${DEPENDENCIES[*]}
     # 1. Set up the repository
-    sudo apt update
-    sudo apt install ${DEPENDENCIES[*]}
-
     log_info "Install '$name'"
     log_info "Add Docker GPG key"
     # 2. Add Docker’s official GPG key:
@@ -34,6 +31,9 @@ function install_docker() {
 
         sudo chmod +x /usr/local/bin/docker-compose
         # TODO check if docker-compose is on PATH
+        if [[ ! "$PATH" =~ "/usr/local/bin" ]]; then
+            log_warning "Please add /usr/local/bin to your PATH to use the 'docker-compose' command"
+        if
     fi
 }
 
