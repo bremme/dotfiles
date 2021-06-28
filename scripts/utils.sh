@@ -49,6 +49,12 @@ function confirm() {
     esac
 }
 
+function choose_number() {
+    read -r -p "Chose a number: " number
+    echo "$number"
+}
+
+
 function install_deb() {
     name="$1"
 
