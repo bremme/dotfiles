@@ -40,7 +40,7 @@ declare -a ESSENTIAL_PACKAGES=(
     # development
     mosquitto-clients android-tools-adb android-tools-fastboot avrdude
     # network tools
-    arp-scan nmap
+    arp-scan nmap net-tools
     # hardware tools: disk, sensors
     smartmontools udisks2 lm-sensors
     # productivity
