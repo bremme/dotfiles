@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 source $(dirname "$0")/../utils.sh
-source $(dirname "$0")/../../config.sh
 
 function install_ohmyzsh() {
     local name="Oh My Zsh"
@@ -13,7 +12,7 @@ function install_ohmyzsh() {
     sudo ap intstall curl zsh
     log_info "Install '$name' Type 'exit' after changing shell to continue"
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    log_info "Changing default shell to zsh for $USER"    
+    log_info "Changing default shell to zsh for $USER"
     sudo chsh -s $(which zsh) "$USER"
     log_info "Logout or restart to start using '$name'"
     log_info "Finished installing '$name'"

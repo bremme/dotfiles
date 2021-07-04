@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 source $(dirname "$0")/../utils.sh
-source $(dirname "$0")/../../config.sh
 
 function install_telegram() {
     local name="Telegram"
