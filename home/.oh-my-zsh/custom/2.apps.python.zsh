@@ -2,6 +2,8 @@ export PYTHONBREAKPOINT=ipdb.set_trace
 
 alias p="python"
 alias pl="pip list"
+# python install default
+alias pid="pip install -U pip wheel ipython ipdb pytest flake8 black isort"
 
 PYCUSTOM_SYSPY2_ENV="py2"
 PYCUSTOM_SYSPY3_ENV="py3"
@@ -213,6 +215,12 @@ __make_pyenv_virtualenv() {
   else
     pyenv virtualenv "$venv_options" "$@"
   fi
+
+  # activate environment
+  __activate_pyenv_virtualenv
+  # install/upgrade base pacakges
+  pip install -U pip wheel
+
 }
 
 # user pyenv
