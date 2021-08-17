@@ -1,29 +1,41 @@
 {
-    "workbench.colorTheme": "One Dark Pro",
-    "editor.renderWhitespace": "all",
-    "files.trimTrailingWhitespace": true,
-    "window.zoomLevel": 0,
-    "workbench.preferredDarkColorTheme": "One Dark Pro",
     "editor.rulers": [
         88,
         120
     ],
+    "editor.renderWhitespace": "all",
+
     "explorer.confirmDragAndDrop": false,
+
+    "workbench.colorTheme": "One Dark Pro",
+    "workbench.preferredDarkColorTheme": "One Dark Pro",
     "workbench.iconTheme": "material-icon-theme",
+
+    "window.zoomLevel": 0,
+
     "files.associations": {
-        "*.desktop": "ini"
+        "*.desktop": "ini",
+        "flake8": "ini"
     },
-    "workbench.editorAssociations": {
-        "*.ipynb": "jupyter-notebook"
-    },
-    "vsicons.dontShowNewVersionMessage": true,
+    "files.trimTrailingWhitespace": true,
+
     "terminal.integrated.fontFamily": "FiraCode Nerd Font Mono",
     "terminal.integrated.fontSize": 14,
-    "notebook.cellToolbarLocation": {
-        "default": "right",
-        "jupyter-notebook": "left"
-    },
+
+    // Python settings /////////////////////////////////////////////////////////////////
     "[python]": {
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        },
         "editor.defaultFormatter": "ms-python.python"
-    }
+    },
+
+    "python.formatting.provider": "black",
+
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
+    "python.linting.pylintUseMinimalCheckers": false,
+    "python.linting.flake8Enabled": true,
+
 }
