@@ -2,6 +2,8 @@ export PYTHONBREAKPOINT=ipdb.set_trace
 
 alias p="python"
 alias pl="pip list"
+# python install default
+alias pid="pip install -U pip wheel ipython ipdb pytest flake8 black isort"
 
 PYCUSTOM_SYSPY2_ENV="py2"
 PYCUSTOM_SYSPY3_ENV="py3"
@@ -24,6 +26,11 @@ fi
 
 if [ -d "$HOME/.pyenv" ]; then
   PYCUSTOM_ENVS+=( $PYCUSTOM_PYENV_ENV )
+  # run pyenv init --path only once
+  export PYENV_ROOT="$HOME/.pyenv"
+  export PATH_BEFORE_PYENV="$PATH"
+  export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init --path)"
 fi
 
 export PYCUSTOM_OLD_PATH=$PATH
@@ -208,14 +215,19 @@ __make_pyenv_virtualenv() {
   else
     pyenv virtualenv "$venv_options" "$@"
   fi
+
+  # activate environment
+  __activate_pyenv_virtualenv
+  # install/upgrade base pacakges
+  pip install -U pip wheel
+
 }
 
 # user pyenv
 activate_pyenv() {
-  export PYENV_ROOT="$HOME/.pyenv"
-  export PATH="$PYENV_ROOT/bin:$PATH"
-  eval "$(pyenv init --path)"
-
+  # TODO this should only run once!
+  export PATH_BEFORE_PYENV="$PATH"
+  export PYENV_VIRTUALENV_DISABLE_PROMPT=1
   eval "$(pyenv init -)"
 
   if [ -d "$HOME/.pyenv/plugins/pyenv-virtualenv" ]; then
@@ -238,6 +250,7 @@ activate_pyenv() {
   alias emk="__make_pyenv_virtualenv"       # make pyenv venv
 }
 deactivate_pyenv() {
+  export PATH="$PATH_BEFORE_PYENV"
   unset PYENV_ROOT
   unset PYENV_SHELL
   unset PYENV_VERSION
@@ -249,5 +262,10 @@ alias pyact=activate_custom_python_environment
 
 
 # activate the default environment
+<<<<<<< HEAD
 pyact ${PYCUSTOM_ENVS[-1]} 2>&1 > /dev/null
 # pyact ${PYCUSTOM_ENVS[-1]}
+=======
+# pyact ${PYCUSTOM_ENVS[-1]} 2>&1 > /dev/null
+pyact ${PYCUSTOM_ENVS[-1]}
+>>>>>>> 0150705ad80220d15a8e6ed50bd7e780d92ff540
