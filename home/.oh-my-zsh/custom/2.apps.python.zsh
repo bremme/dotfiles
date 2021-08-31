@@ -262,10 +262,5 @@ alias pyact=activate_custom_python_environment
 
 
 # activate the default environment
-<<<<<<< HEAD
-pyact ${PYCUSTOM_ENVS[-1]} 2>&1 > /dev/null
-# pyact ${PYCUSTOM_ENVS[-1]}
-=======
 # pyact ${PYCUSTOM_ENVS[-1]} 2>&1 > /dev/null
 pyact ${PYCUSTOM_ENVS[-1]}
->>>>>>> 0150705ad80220d15a8e6ed50bd7e780d92ff540
