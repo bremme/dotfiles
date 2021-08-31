@@ -15,6 +15,5 @@
     },
     "workbench.editorAssociations": {
         "*.ipynb": "jupyter.notebook.ipynb"
-    },
-    "vsicons.dontShowNewVersionMessage": true
+    }
 }
