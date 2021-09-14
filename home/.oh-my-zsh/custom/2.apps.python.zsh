@@ -1,7 +1,15 @@
 export PYTHONBREAKPOINT=ipdb.set_trace
 
+_pl() {
+  if [ $# -eq 0 ]; then
+    pip list
+  else
+    pip list | grep -i "$1"
+  fi
+}
+
 alias p="python"
-alias pl="pip list"
+alias pl=_pl
 
 PYCUSTOM_SYSPY2_ENV="py2"
 PYCUSTOM_SYSPY3_ENV="py3"
