@@ -27,11 +27,12 @@
         "editor.formatOnSave": true,
         "editor.codeActionsOnSave": {
             "source.organizeImports": true
-        },
-        "editor.defaultFormatter": "ms-python.python"
+        }
     },
-
     "python.formatting.provider": "black",
+    "python.sortImports.args": [
+        "--profile", "black"
+    ],
 
     "python.linting.enabled": true,
     "python.linting.pylintEnabled": true,
