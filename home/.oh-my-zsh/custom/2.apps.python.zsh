@@ -1,7 +1,15 @@
 export PYTHONBREAKPOINT=ipdb.set_trace
 
+_pl() {
+  if [ $# -eq 0 ]; then
+    pip list
+  else
+    pip list | grep -i "$1"
+  fi
+}
+
 alias p="python"
-alias pl="pip list"
+alias pl=_pl
 # python install default
 alias pid="pip install -U pip wheel ipython ipdb pytest flake8 flake8-isort pep8-naming flake8-docstrings flake8-bugbear pylint black isort"
 
@@ -230,6 +238,11 @@ activate_pyenv() {
   export PYENV_VIRTUALENV_DISABLE_PROMPT=1
   eval "$(pyenv init -)"
 
+  if [ -d "$HOME/.pyenv/plugins/pyenv-virtualenv" ]; then
+    export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+    eval "$(pyenv virtualenv-init -)"
+  fi
+
   alias pyvenv="pyenv virtualenv"
   alias pls="pyenv versions"
   alias pgl="pyenv global"
@@ -254,6 +267,7 @@ deactivate_pyenv() {
 }
 
 alias pyact=activate_custom_python_environment
+
 
 # activate the default environment
 # pyact ${PYCUSTOM_ENVS[-1]} 2>&1 > /dev/null
