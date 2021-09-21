@@ -3,7 +3,7 @@ export PYTHONBREAKPOINT=ipdb.set_trace
 alias p="python"
 alias pl="pip list"
 # python install default
-alias pid="pip install -U pip wheel ipython ipdb pytest flake8 black isort"
+alias pid="pip install -U pip wheel ipython ipdb pytest flake8 flake8-isort pep8-naming flake8-docstrings flake8-bugbear pylint black isort"
 
 PYCUSTOM_SYSPY2_ENV="py2"
 PYCUSTOM_SYSPY3_ENV="py3"
