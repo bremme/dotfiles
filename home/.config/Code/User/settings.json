@@ -38,5 +38,10 @@
     "python.linting.pylintEnabled": true,
     "python.linting.pylintUseMinimalCheckers": false,
     "python.linting.flake8Enabled": true,
+    "cSpell.language": "en,nl",
+    "cSpell.userWords": [
+        "sasl",
+        "structlog"
+    ],
 
 }
