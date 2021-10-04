@@ -115,9 +115,11 @@ activate_custom_python_environment() {
       ;;
     "list")
       __list_envs
+      return
       ;;
     "help")
       __display_help
+      return
       ;;
     *)
       echo "Unknown custom Python environment: '$1'"
@@ -218,7 +220,7 @@ __make_pyenv_virtualenv() {
 # user pyenv
 activate_pyenv() {
   # TODO this should only run once!
-  export PATH_BEFORE_PYENV="$PATH"
+  # export PATH_BEFORE_PYENV="$PATH"
   export PYENV_VIRTUALENV_DISABLE_PROMPT=1
   eval "$(pyenv init -)"
 
