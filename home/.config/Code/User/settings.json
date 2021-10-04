@@ -1,36 +1,68 @@
 {
     "workbench.colorTheme": "One Dark Pro",
     "editor.renderWhitespace": "all",
-    "files.trimTrailingWhitespace": true,
+
     "workbench.preferredDarkColorTheme": "One Dark Pro",
     "editor.rulers": [
         88,
         120
     ],
+
     "explorer.confirmDragAndDrop": false,
+
     "workbench.iconTheme": "material-icon-theme",
+
+    "window.zoomLevel": 0,
+
     "files.associations": {
-        "*.desktop": "ini"
+        "*.desktop": "ini",
+        "flake8": "ini"
     },
     "workbench.editorAssociations": {
         "*.ipynb": "jupyter-notebook"
     },
-    "vsicons.dontShowNewVersionMessage": true,
     "editor.suggestSelection": "first",
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "tabnine.experimentalAutoImports": true,
-    "notebook.cellToolbarLocation": {
-        "default": "right",
-        "jupyter-notebook": "left"
-    },
+
     "arduino.path": "/snap/bin/arduino",
+
+    "files.trimTrailingWhitespace": true,
+
+    // Java settings
+    "redhat.telemetry.enabled": false,
+    "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx1G -Xms100m -javaagent:\"/home/bremme/.vscode/extensions/gabrielbb.vscode-lombok-1.0.1/server/lombok.jar\""
     "files.exclude": {
         "**/.classpath": true,
         "**/.project": true,
         "**/.settings": true,
         "**/.factorypath": true
     },
+
+    // Terminal settings ///////////////////////////////////////////////////////////////
     "terminal.integrated.fontSize": 16,
-    "redhat.telemetry.enabled": false,
-    "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx1G -Xms100m -javaagent:\"/home/bremme/.vscode/extensions/gabrielbb.vscode-lombok-1.0.1/server/lombok.jar\""
+    "terminal.integrated.fontFamily": "FiraCode Nerd Font Mono",
+
+    // Python settings /////////////////////////////////////////////////////////////////
+    "[python]": {
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        }
+    },
+    "python.formatting.provider": "black",
+    "python.sortImports.args": [
+        "--profile", "black"
+    ],
+
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
+    "python.linting.pylintUseMinimalCheckers": false,
+    "python.linting.flake8Enabled": true,
+
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
+
 }
