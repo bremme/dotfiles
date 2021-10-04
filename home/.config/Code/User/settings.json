@@ -2,7 +2,6 @@
     "workbench.colorTheme": "One Dark Pro",
     "editor.renderWhitespace": "all",
     "files.trimTrailingWhitespace": true,
-    "window.zoomLevel": 0,
     "workbench.preferredDarkColorTheme": "One Dark Pro",
     "editor.rulers": [
         88,
@@ -13,11 +12,25 @@
     "files.associations": {
         "*.desktop": "ini"
     },
-    "workbench.editorAssociations": [
-        {
-            "viewType": "jupyter.notebook.ipynb",
-            "filenamePattern": "*.ipynb"
-        }
-    ],
-    "vsicons.dontShowNewVersionMessage": true
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+    "vsicons.dontShowNewVersionMessage": true,
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "tabnine.experimentalAutoImports": true,
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
+    "arduino.path": "/snap/bin/arduino",
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
+    },
+    "terminal.integrated.fontSize": 16,
+    "redhat.telemetry.enabled": false,
+    "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx1G -Xms100m -javaagent:\"/home/bremme/.vscode/extensions/gabrielbb.vscode-lombok-1.0.1/server/lombok.jar\""
 }
