@@ -8,10 +8,15 @@ if command -v code > /dev/null 2>&1; then
    alias c="code"
 fi
 
-if command -v oc > /dev/null 2>&1; then
-   # Use separate OpenShift configuration
-   alias oc="oc --kubeconfig ~/.kube/config.oc"
-fi
+# if command -v oc > /dev/null 2>&1; then
+#    # Use separate OpenShift configuration
+#    alias oc="oc --kubeconfig ~/.kube/config.oc"
+# fi
+
+# if command -v tkn > /dev/null 2>&1; then
+#    # Use separate OpenShift configuration
+#    alias tkn="tkn --kubeconfig ~/.kube/config.oc"
+# fi
 
 function _du_depth() {
    # du --human-readable --one-file-system --total --max-depth $1 "$2" | sort --reverse --human-numeric-sort
