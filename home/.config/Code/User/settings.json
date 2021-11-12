@@ -1,14 +1,15 @@
 {
+    "workbench.colorTheme": "One Dark Pro",
+    "editor.renderWhitespace": "all",
+
+    "workbench.preferredDarkColorTheme": "One Dark Pro",
     "editor.rulers": [
         88,
         120
     ],
-    "editor.renderWhitespace": "all",
 
     "explorer.confirmDragAndDrop": false,
 
-    "workbench.colorTheme": "One Dark Pro",
-    "workbench.preferredDarkColorTheme": "One Dark Pro",
     "workbench.iconTheme": "material-icon-theme",
 
     "files.associations": {
@@ -16,10 +17,31 @@
         "flake8": "ini",
         "*.avsc": "json"
     },
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "tabnine.experimentalAutoImports": true,
+
+    "arduino.path": "/snap/bin/arduino",
+
     "files.trimTrailingWhitespace": true,
 
+    // Java settings
+    "redhat.telemetry.enabled": false,
+    "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx1G -Xms100m -javaagent:\"/home/alliander/.vscode/extensions/gabrielbb.vscode-lombok-1.0.1/server/lombok.jar\"",
+
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
+    },
+
+    // Terminal settings ///////////////////////////////////////////////////////////////
+    "terminal.integrated.fontSize": 16,
     "terminal.integrated.fontFamily": "FiraCode Nerd Font Mono",
-    "terminal.integrated.fontSize": 14,
 
     // Python settings /////////////////////////////////////////////////////////////////
     "[python]": {
@@ -44,14 +66,12 @@
         "sasl",
         "structlog"
     ],
-    "editor.suggestSelection": "first",
-    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-    "files.exclude": {
-        "**/.classpath": true,
-        "**/.project": true,
-        "**/.settings": true,
-        "**/.factorypath": true
+
+
+
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
     },
-    "redhat.telemetry.enabled": false,
-    "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx1G -Xms100m -javaagent:\"/home/alliander/.vscode/extensions/gabrielbb.vscode-lombok-1.0.1/server/lombok.jar\"",
+
 }

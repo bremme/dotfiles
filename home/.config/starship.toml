@@ -87,6 +87,13 @@ disabled = false
 format = '[$symbol\($namespace\)]($style) in '
 style = "green bold"
 
+[env_var]
+variable = "PYCUSTOM_CUR_ENV"
+default = "unknown env"
+format = "[$env_value]($style) "
+style = "yellow bold dimmed"
+
+
 # [character]
 # success_symbol = "[➜](bold green) "
 # error_symbol = "[✗](bold red) "
