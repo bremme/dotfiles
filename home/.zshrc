@@ -71,7 +71,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git pip docker docker-compose z fzf)
+plugins=(git pip docker docker-compose z fzf gradle)
 
 source "$ZSH/oh-my-zsh.sh"
 
@@ -120,4 +120,3 @@ fi
 if command -v starship > /dev/null 2>&1; then
   eval "$(starship init zsh)"
 fi
-
