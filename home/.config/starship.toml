@@ -82,11 +82,16 @@ read_only_style = "red"     # The style for the read only symbol.
 truncation_symbol = "../"   # The symbol to prefix to truncated paths. eg: "…/"
 home_symbol = "~"           # The symbol indicating home directory.
 
+[kubernetes]
+disabled = false
+format = '[$symbol\($namespace\)]($style) in '
+style = "green bold"
+
 # [character]
 # success_symbol = "[➜](bold green) "
 # error_symbol = "[✗](bold red) "
 
-[custom.taskwarrior]
-when = "echo 0"
-command = "task +in count"
-format = "[$symbol($output)]($style) inbox"
+# [custom.taskwarrior]
+# when = "echo 0"
+# command = "task +in count"
+# format = "[$symbol($output)]($style) inbox"
