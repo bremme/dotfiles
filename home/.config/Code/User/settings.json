@@ -1,47 +1,35 @@
 {
     "workbench.colorTheme": "One Dark Pro",
-    "editor.renderWhitespace": "all",
-
+    "workbench.iconTheme": "material-icon-theme",
     "workbench.preferredDarkColorTheme": "One Dark Pro",
-    "editor.rulers": [
-        88,
-        120
-    ],
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+
+    "editor.renderWhitespace": "all",
+    "editor.rulers": [88, 100, 120],
+    "editor.suggestSelection": "first",
 
     "explorer.confirmDragAndDrop": false,
-
-    "workbench.iconTheme": "material-icon-theme",
 
     "files.associations": {
         "*.desktop": "ini",
         "flake8": "ini",
         "*.avsc": "json"
     },
-    "workbench.editorAssociations": {
-        "*.ipynb": "jupyter-notebook"
-    },
-    "editor.suggestSelection": "first",
-    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-    "tabnine.experimentalAutoImports": true,
-
-    "arduino.path": "/snap/bin/arduino",
-
     "files.trimTrailingWhitespace": true,
 
-    // Java settings
-    "redhat.telemetry.enabled": false,
-    "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx1G -Xms100m -javaagent:\"/home/alliander/.vscode/extensions/gabrielbb.vscode-lombok-1.0.1/server/lombok.jar\"",
-
-    "files.exclude": {
-        "**/.classpath": true,
-        "**/.project": true,
-        "**/.settings": true,
-        "**/.factorypath": true
-    },
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
 
     // Terminal settings ///////////////////////////////////////////////////////////////
     "terminal.integrated.fontSize": 16,
     "terminal.integrated.fontFamily": "FiraCode Nerd Font Mono",
+
+    // Proofing and language //////////////////////////////////////////////////////////
+    "cSpell.language": "en,nl",
+    "cSpell.userWords": [
+        "dtap", "gitops", "sasl", "structlog"
+    ],
 
     // Python settings /////////////////////////////////////////////////////////////////
     "[python]": {
@@ -57,21 +45,34 @@
 
     "python.linting.enabled": true,
     "python.linting.pylintEnabled": true,
-    "python.linting.pylintUseMinimalCheckers": false,
     "python.linting.flake8Enabled": true,
-    "cSpell.language": "en,nl",
-    "cSpell.userWords": [
-        "dtap",
-        "gitops",
-        "sasl",
-        "structlog"
-    ],
 
-
-
+    // Jupyter notebook ////////////////////////////////////////////////////////////////
     "notebook.cellToolbarLocation": {
         "default": "right",
         "jupyter-notebook": "left"
     },
 
+    // Java settings ///////////////////////////////////////////////////////////////////
+    "[java]": {
+        "editor.defaultFormatter": "richardwillis.vscode-spotless-gradle",
+        "spotlessGradle.format.enable": true,
+        "spotlessGradle.diagnostics.enable": true,
+        "editor.codeActionsOnSave": {
+            "source.fixAll.spotlessGradle": true
+          },
+        "files.trimTrailingWhitespace": false
+    },
+
+    "redhat.telemetry.enabled": false,
+    "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx1G -Xms100m -javaagent:\"/home/alliander/.vscode/extensions/gabrielbb.vscode-lombok-1.0.1/server/lombok.jar\"",
+
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
+    },
+
+    // "java.format.settings.url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
 }
