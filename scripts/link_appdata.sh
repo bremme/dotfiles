@@ -14,11 +14,10 @@ SAVEIFS=$IFS
 IFS=$(echo -ne "\n\b")
 
 
-
 for dir in ${APPDATA_DIRS[@]}; do
     log_info "Create directory (if not exist)"
     mkdir -p "$APPDATA_HOME/$dir"
-    
+
     log_info "Linking directories in '$APPDATA_HOME/$dir' to '$HOME/$dir'"
     # for appdir in $(ls -a $APPDATA_HOME/$dir); do
     for appdir in $(ls -1a $APPDATA_HOME/$dir); do

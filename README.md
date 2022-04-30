@@ -28,4 +28,4 @@ $ ./scripts/install/install_<name-of-application>.sh
 
 # TODO
 
-Gnome Themes (Yaru-Colors)
+* Gnome themes, icons, wallpaper

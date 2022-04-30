@@ -54,6 +54,11 @@ function choose_number() {
     echo "$number"
 }
 
+function read_answer() {
+    read -r -p "$1: " answer
+    echo $answer
+}
+
 
 function install_deb() {
     name="$1"
