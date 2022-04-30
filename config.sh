@@ -58,6 +58,8 @@ declare -a ESSENTIAL_GUI_PACKAGES=(
     flatpak flameshot
     # gnome shell extension system-monitor dependencies
     gir1.2-gtop-2.0 gir1.2-nm-1.0 gir1.2-clutter-1.0
+    # nautilus extensions
+    nautilus-admin nautilus-extension-gnome-terminal
 )
 declare -a ESSENTIAL_GUI_SNAP_PACKAGES=(
     mqtt-explorer drawio
