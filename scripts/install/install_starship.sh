@@ -4,7 +4,7 @@ source $(dirname "$0")/../utils.sh
 
 TERMINAL_FONT="FiraCode Nerd Font Mono Medium"
 TERMINAL_FONT_SIZE="11"
-declare -a DEPENDENCIES=(curl unzip awk)
+declare -a DEPENDENCIES=(curl unzip)
 
 function install_starship() {
     local name="Starship"
@@ -14,7 +14,7 @@ function install_starship() {
         log_info "Install dependencies for '$name'"
         sudo apt install ${DEPENDENCIES[*]}
         log_info "Install '$name'"
-        curl -fsSL https://starship.rs/install.sh | bashQ
+        curl -sS https://starship.rs/install.sh | sh
     fi
 
 
@@ -28,6 +28,7 @@ function install_starship() {
     log_info "Download and install Nerd font"
     wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip -O /tmp/FiraCode.zip
     unzip -o /tmp/FiraCode.zip -d ~/.local/share/fonts
+    sudo fc-cache -f -v
     # Set font on terminal
     log_info "Set Terminal Nerd font"
     DEFAULT_UUID=$(gsettings get org.gnome.Terminal.ProfilesList default | awk -F \' '{print $2}')
