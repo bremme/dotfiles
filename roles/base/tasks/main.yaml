@@ -1,6 +1,40 @@
-- name: Install packages
+- name: Install base packages
   ansible.builtin.package:
     name:
-      - htop
       - zsh
+      - git
       - wget
+      - curl
+      - command-not-found
+      - htop
+      - jq
+      - neofetch
+      - tree
+      - fzf
+      - apt-transport-https
+      - rsync
+      - tar
+      - bzip2
+      - build-essential
+
+- name: Install snap packages
+  community.general.snap:
+    name:
+      - yq
+      - starship
+
+- name: Install Homeshick
+  ansible.builtin.git:
+    repo: git@github.com:andsens/homeshick.git
+    dest: $HOME/.homesick/repos/homeshick
+
+- name: Clone Homeshick dotfiles repo
+  ansible.builtin.git:
+    repo: git@github.com:bremme/dotfiles.git
+    dest: $HOME/.homesick/repos/dotfiles
+
+- name: Link Homeshick dotfiles
+  ansible.builtin.shell: >-
+    $HOME/.homesick/repos/homeshick/bin/homeshick
+    link dotfiles
+

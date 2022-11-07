@@ -1,4 +1,21 @@
-- name: Install packages
+- name: Install workstation packages
   ansible.builtin.package:
     name:
       - gedit
+
+- name: Install workstation snap packages
+  community.general.snap:
+    name:
+      - mqtt-explorer
+      - drawio
+      - keepassxc
+      - bitwarden
+      - helm
+      - poedit
+
+# - name: Install GNOME extensions
+# - name:
+
+
+# kubectl
+# os
