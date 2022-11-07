@@ -6,5 +6,6 @@ all:
       barabas.bremme.nl:
       bee.bremme.nl:
     workstation:
+      carbon:
       carbon.bremme.nl:
       oxygen.bremme.nl:
