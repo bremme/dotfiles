@@ -10,13 +10,13 @@
   hosts: server
   become: true
   roles:
-    server
+    - server
 
 - name: Run workstation role
   hosts: workstation
   become: true
   roles:
-    workstation
+    - workstation
 
 # - hosts: localhost
 #   connection: local   # default is ssh
