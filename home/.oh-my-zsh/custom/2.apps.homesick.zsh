@@ -10,4 +10,6 @@ if [ -f "$HOME/.homesick/repos/homeshick/homeshick.sh" ] ; then
     alias hsp="homeshick pull"
     alias hsl="homeshick link"
     alias hst="homeshick track"
+
+    homeshick refresh --quiet
 fi
