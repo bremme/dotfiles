@@ -6,6 +6,18 @@
   roles:
     - base
 
+- name: Run server role
+  hosts: server
+  become: true
+  roles:
+    server
+
+- name: Run workstation role
+  hosts: workstation
+  become: true
+  roles:
+    workstation
+
 # - hosts: localhost
 #   connection: local   # default is ssh
 #   become: true
