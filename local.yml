@@ -6,4 +6,7 @@
   tasks:
   - name: Install htop
     ansible.builtin.package:
-      name: htop
+      name:
+        - htop
+        - zsh
+        - wget
