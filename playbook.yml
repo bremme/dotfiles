@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  connection: local   # default is ssh
+  become: true
+
+  tasks:
+  - name: Install htop
+    ansible.builtin.package:
+      name: htop
