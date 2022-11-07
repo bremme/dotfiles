@@ -1,0 +1,31 @@
+---
+# Playbook
+- name: Run base role
+  hosts: all
+  become: true
+  roles:
+    - base
+
+# - hosts: localhost
+#   connection: local   # default is ssh
+#   become: true
+
+#   tasks:
+#   - name: Install htop
+#     ansible.builtin.package:
+#       name:
+#         - htop
+#         - zsh
+#         - wget
+#   - name: Install Snap packages
+#     community.general.snap:
+#       name:
+#         - starship
+
+#   - name: Copy wallpaper file
+#     ansible.builtin.copy:
+#       src: files/wallpaper.png
+#       dest: /usr/share/backgrounds/ansible-wallpaper.png
+#       owner: root
+#       group: root
+#       mode: 0644
