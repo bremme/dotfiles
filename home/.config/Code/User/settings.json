@@ -33,7 +33,7 @@
 
     // Python settings /////////////////////////////////////////////////////////////////
     "[python]": {
-        "editor.formatOnSave": true,
+        "editor.formatOnSave": false,
         "editor.codeActionsOnSave": {
             "source.organizeImports": true
         }
@@ -45,7 +45,13 @@
 
     "python.linting.enabled": true,
     "python.linting.pylintEnabled": true,
+    "python.linting.pylintArgs": [
+        "--disable missing-function-docstring"
+    ],
     "python.linting.flake8Enabled": true,
+    "python.linting.flake8Args": [
+        "--max-line-length 88"
+    ],
 
     // Jupyter notebook ////////////////////////////////////////////////////////////////
     "notebook.cellToolbarLocation": {
@@ -56,8 +62,6 @@
     // Java settings ///////////////////////////////////////////////////////////////////
     "[java]": {
         "editor.defaultFormatter": "richardwillis.vscode-spotless-gradle",
-        "spotlessGradle.format.enable": true,
-        "spotlessGradle.diagnostics.enable": true,
         "editor.codeActionsOnSave": {
             "source.fixAll.spotlessGradle": true
           },
@@ -65,7 +69,10 @@
     },
 
     "redhat.telemetry.enabled": false,
-    "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx1G -Xms100m -javaagent:\"/home/alliander/.vscode/extensions/gabrielbb.vscode-lombok-1.0.1/server/lombok.jar\"",
+    "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx1G -Xms100m -javaagent:\"/home/bremme/.vscode/extensions/gabrielbb.vscode-lombok-1.0.1/server/lombok.jar\"",
+
+    "spotlessGradle.format.enable": true,
+    "spotlessGradle.diagnostics.enable": true,
 
     "files.exclude": {
         "**/.classpath": true,
@@ -73,6 +80,8 @@
         "**/.settings": true,
         "**/.factorypath": true
     },
+    "vsicons.dontShowNewVersionMessage": true,
+    "explorer.confirmDelete": false,
 
     // "java.format.settings.url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
 }
