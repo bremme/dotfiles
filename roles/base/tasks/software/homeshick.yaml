@@ -2,11 +2,13 @@
   ansible.builtin.git:
     repo: git@github.com:andsens/homeshick.git
     dest: $HOME/.homesick/repos/homeshick
+    accept_hostkey: yes
 
 - name: Clone Homeshick dotfiles repo
   ansible.builtin.git:
     repo: git@github.com:bremme/dotfiles.git
     dest: $HOME/.homesick/repos/dotfiles
+    accept_hostkey: yes
 
 - name: Link Homeshick dotfiles
   ansible.builtin.shell: >-
