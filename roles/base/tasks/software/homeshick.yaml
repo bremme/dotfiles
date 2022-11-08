@@ -1,8 +1,7 @@
 - name: Install Homeshick
   ansible.builtin.git:
-    repo: git@github.com:andsens/homeshick.git
+    repo: https://github.com/andsens/homeshick.git
     dest: $HOME/.homesick/repos/homeshick
-    accept_hostkey: yes
 
 - name: Clone Homeshick dotfiles repo
   ansible.builtin.git:
