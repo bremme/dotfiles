@@ -1,0 +1,13 @@
+- name: Install Homeshick
+  ansible.builtin.git:
+    repo: git@github.com:andsens/homeshick.git
+    dest: $HOME/.homesick/repos/homeshick
+
+- name: Clone Homeshick dotfiles repo
+  ansible.builtin.git:
+    repo: git@github.com:bremme/dotfiles.git
+    dest: $HOME/.homesick/repos/dotfiles
+
+- name: Link Homeshick dotfiles
+  ansible.builtin.shell: >-
+    $HOME/.homesick/repos/homeshick/bin/homeshick link dotfiles
