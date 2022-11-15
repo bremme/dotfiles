@@ -49,9 +49,15 @@ alias du3="_du_depth 3"
 alias doc="docker"
 
 # docker compose
-alias dc="docker-compose"
-alias dcu="docker-compose up"
-alias dcd="docker-compose down"
+if command -v docker-compose > /dev/null 2>&1; then
+   alias dc="docker-compose"
+   alias dcu="docker-compose up"
+   alias dcd="docker-compose down"
+else
+   alias dc="docker compose"
+   alias dcu="docker compose up"
+   alias dcd="docker compose down"
+fi
 
 
 # reload zsh
