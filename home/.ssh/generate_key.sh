@@ -1,16 +1,21 @@
 #!/usr/bin/env bash
 
-echo -n "Enter the username of the remote machine: "
-read remote_user
-echo -n "Enter the hostname of the remote machine: "
-read remote_host
+default_alg="ed25519"
+rounds="64"
 
-key_name="id_rsa-$remote_user@$remote_host"
+read -p "Enter the username of the remote machine: " remote_user
+read -p "Enter the hostname of the remote machine: " remote_host
+
+read -p "Enter algorithm to use ($default_alg): " alg
+
+alg=${alg:-$default_alg}
+
+key_name="id_$alg-$remote_user@$remote_host"
 key_comment="$remote_user@$remote_host from $USER@$(hostname)"
 
 echo "Will create a key with filename: $key_name"
 echo "Will create a key with comment: $key_comment"
 
-# ssh-keygen -t rsa -b 4096 -f "$HOME/.ssh/$key_name" -a 100 -C "$key_comment"
-ssh-keygen -t ed25519 -f "$HOME/.ssh/$key_name" -a 64 -C "$key_comment"
+echo "ssh-keygen -t "$alg" -f "$HOME/.ssh/$key_name" -a "$rounds" -C "$key_comment""
+ssh-keygen -t "$alg" -f "$HOME/.ssh/$key_name" -a "$rounds" -C "$key_comment"
 

@@ -78,3 +78,5 @@ alias tree="tree -a -I .git"
 alias grepa="alias | grep -i"
 # Grep from env
 alias grepe="env | grep -i"
+
+alias whatsmyip="curl ifconfig.me"
