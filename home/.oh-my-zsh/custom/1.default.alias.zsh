@@ -74,6 +74,13 @@ alias mv="mv --interactive --verbose"
 # set good defaults for tree
 alias tree="tree -a -I .git"
 
+# rust alternatives
+if command -v exa > /dev/null 2>&1; then
+   alias l="exa -lg --group-directories-first --icons"
+   alias la="exa -lag --group-directories-first --icons"
+   alias ll="exa -g --group-directories-first --icons"
+fi
+
 # Grep from alias
 alias grepa="alias | grep -i"
 # Grep from env
