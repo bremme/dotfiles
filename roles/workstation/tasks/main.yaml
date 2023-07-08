@@ -13,9 +13,9 @@
 #       - helm
 #       - poedit
 
-# - name: Install GNOME extensions
-# - name:
-
-
 # kubectl
 # os
+
+## desktop environments
+- include_tasks: desktop_environments/gnome/media_keys.yml
+  when: gnome is defined and gnome == true
