@@ -6,6 +6,7 @@
       - wget
       - curl
       - command-not-found
+      - bash-completion
       - htop
       - jq
       - neofetch
@@ -17,13 +18,13 @@
       - bzip2
       - build-essential
 
-- name: Install snap packages
-  community.general.snap:
-    name:
-      - yq
-      - starship
+# - name: Install snap packages
+#   community.general.snap:
+#     name:
+#       - yq
+#       - starship
 
-- import_tasks: software/homeshick.yaml
+# - import_tasks: software/homeshick.yaml
 
 
 
