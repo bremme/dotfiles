@@ -7,7 +7,9 @@ https://github.com/LearnLinuxTV/personal_ansible_desktop_configs
 # serves one bash script
 curl deploy/boostrap | sudo bash
 
-install ansible
+## install ansible
+sudo apt install python3-pip
+pip3 install ansible
 
 run ansible-pull -i pop-os, --vault-password-file /etc/ansible_vault_key -U https://gitlab+deploy-xxxxxxxxx@gitlab.com/xxxxxx/ansible.git
 
