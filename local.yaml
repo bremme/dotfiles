@@ -18,6 +18,15 @@
   roles:
     - workstation
 
+
+# - name: Run base and workstation role on localhost
+#   hosts: localhost
+#   connection: local
+#   become: true
+#   roles:
+#     - base
+#     - workstation
+
 # - hosts: localhost
 #   connection: local   # default is ssh
 #   become: true
