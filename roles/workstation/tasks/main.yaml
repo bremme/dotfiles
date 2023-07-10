@@ -17,7 +17,7 @@
 # os
 
 ## desktop environments
-- include_tasks: desktop_environments/gnome/media_keys.yml
+- include_tasks: desktop_environments/gnome/main.yaml
   when: ansible_facts['env']['XDG_CURRENT_DESKTOP'] == 'GNOME'
 
 - name: Print all available facts

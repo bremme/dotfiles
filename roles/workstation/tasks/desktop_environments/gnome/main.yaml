@@ -1,0 +1,1 @@
+- include_tasks: desktop_environments/gnome/tasks/media_keys.yaml
