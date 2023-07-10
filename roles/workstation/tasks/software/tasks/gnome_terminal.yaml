@@ -22,6 +22,12 @@
 - name: Install a Gogh GNOME terminal theme
   block:
 
+    - name: Install Gogh dependencies
+      ansible.builtin.package:
+        name:
+        - dconf-cli
+        - uuid-runtime
+
     - name: Clone Gogh repository
       ansible.builtin.git:
         repo: 'https://github.com/Gogh-Co/Gogh.git'
