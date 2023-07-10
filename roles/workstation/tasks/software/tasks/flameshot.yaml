@@ -10,11 +10,11 @@
     key: "{{ item.key }}"
     value: "{{ item.value }}"
   with_items:
-    - key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/{{ custom_keybinding.flameshot }}/name"
+    - key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/{{ custom_keybindings.flameshot }}/name"
       value: "'Take screenshot with Flameshot'"
-    - key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/{{ custom_keybinding.flameshot }}/command"
+    - key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/{{ custom_keybindings.flameshot }}/command"
       value: "'flameshot gui'"
-    - key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/{{ custom_keybinding.flameshot }}/binding"
+    - key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/{{ custom_keybindings.flameshot }}/binding"
       value: "'<Shift><Super>s'"
 
     # - key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/{{ flameshot_binding }}/name"
