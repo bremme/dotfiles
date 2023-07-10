@@ -1,9 +1,10 @@
-- name: gnome | keybindings | set home shortcut
+- name: GNOME | keybindings | set home shortcut
   become_user: bremme
   dconf:
     key: "/org/gnome/settings-daemon/plugins/media-keys/home"
     value:  "['<Super>e']"
-- name: gnome | keybindings | set terminal shortcut
+
+- name: GNOME | keybindings | set terminal shortcut
   become_user: bremme
   dconf:
     key: "/org/gnome/settings-daemon/plugins/media-keys/terminal"

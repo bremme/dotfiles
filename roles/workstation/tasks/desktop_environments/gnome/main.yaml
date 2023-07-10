@@ -1,1 +1,3 @@
-- include_tasks: desktop_environments/gnome/tasks/media_keys.yaml
+
+- name: GNOME desktop environment tasks
+  include_tasks: desktop_environments/gnome/tasks/media_keys.yaml

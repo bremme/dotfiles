@@ -13,6 +13,17 @@
       - vlc
     state: present
 
+
+- include_tasks: system/flatpak.yaml
+
+## desktop environments
+- name: Included GNOME desktop environment tasks
+  ansible.builtin.include_tasks:
+    file: desktop_environments/gnome/main.yaml
+  when: ansible_facts['env']['XDG_CURRENT_DESKTOP'] == 'GNOME'
+
+
+
 # - name: Install workstation snap packages
 #   community.general.snap:
 #     name:
@@ -25,10 +36,6 @@
 
 # kubectl
 # os
-
-## desktop environments
-- include_tasks: desktop_environments/gnome/main.yaml
-  when: ansible_facts['env']['XDG_CURRENT_DESKTOP'] == 'GNOME'
 
 # - name: Print all available facts for debugging
 #   ansible.builtin.debug:
