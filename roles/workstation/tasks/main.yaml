@@ -11,6 +11,7 @@
       - meld
       - sqlitebrowser
       - vlc
+    state: present
 
 # - name: Install workstation snap packages
 #   community.general.snap:
