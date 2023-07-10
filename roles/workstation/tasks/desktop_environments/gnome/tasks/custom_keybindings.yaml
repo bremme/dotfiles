@@ -2,4 +2,4 @@
   become_user: "{{ ansible_env.SUDO_USER }}"
   dconf:
     key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings"
-    value: "{{ custom_keybindings | dict2items | map(attribute='value') | list }}"
+    value: "{{ custom_keybindings | dict2items | map(attribute='value') | map('regex_replace', '^(.*)$', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/\\1/') | list }}"

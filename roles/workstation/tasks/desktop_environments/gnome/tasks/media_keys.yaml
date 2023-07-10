@@ -4,6 +4,9 @@
     key: "/org/gnome/settings-daemon/plugins/media-keys/home"
     value:  "['<Super>e']"
 
+
+
+# Does not exist in recent GNOME anymore
 # - name: GNOME | keybindings | set terminal shortcut
 #   become_user: "{{ ansible_env.SUDO_USER }}"
 #   dconf:
