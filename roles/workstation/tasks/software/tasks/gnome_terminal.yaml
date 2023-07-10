@@ -20,5 +20,5 @@
 
 # customize terminal
 
-- name: Install Gogh theme
-  command: git clone https://github.com/Mayccoll/Gogh.git /tmp/gogh
+# - name: Install Gogh theme
+#   command: git clone https://github.com/Mayccoll/Gogh.git /tmp/gogh

@@ -11,3 +11,8 @@
 - name: Software include Flameshot
   ansible.builtin.include_tasks:
     file: software/tasks/flameshot.yaml
+
+# packages which need additional configuration
+- name: Software include GNOME terminal
+  ansible.builtin.include_tasks:
+    file: software/tasks/gnome_terminal.yaml
