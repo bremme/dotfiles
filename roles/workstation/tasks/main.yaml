@@ -3,7 +3,7 @@
 #   include_vars: "{{ ansible_distribution }}.yaml"
 
 - name: Load custom keybindings names
-  include_vars: custom_keybindings.yaml
+  ansible.builtin.include_vars: custom_keybindings.yaml
   when: ansible_env.XDG_CURRENT_DESKTOP in ['GNOME', 'Unity']
 
 # setup system
