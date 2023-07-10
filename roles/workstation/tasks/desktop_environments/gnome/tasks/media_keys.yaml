@@ -2,7 +2,7 @@
   become_user: "{{ ansible_env.SUDO_USER }}"
   dconf:
     key: "/org/gnome/settings-daemon/plugins/media-keys/home"
-    value:  "['<Super>e']"
+    value:  "['<Super>k']"
 
 - name: GNOME | keybindings | set terminal shortcut
   become_user: "{{ ansible_env.SUDO_USER }}"
