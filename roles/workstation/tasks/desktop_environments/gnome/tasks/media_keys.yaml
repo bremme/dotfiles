@@ -1,11 +1,11 @@
 - name: GNOME | keybindings | set home shortcut
-  become_user: bremme
+  become_user: "{{ ansible_user }}"
   dconf:
     key: "/org/gnome/settings-daemon/plugins/media-keys/home"
     value:  "['<Super>e']"
 
 - name: GNOME | keybindings | set terminal shortcut
-  become_user: bremme
+  become_user: "{{ ansible_user }}"
   dconf:
     key: "/org/gnome/settings-daemon/plugins/media-keys/terminal"
     value:  "['<Primary><Alt>t']"
