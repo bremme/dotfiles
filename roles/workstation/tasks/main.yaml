@@ -17,9 +17,8 @@
 # os
 
 ## desktop environments
-# - include_tasks: desktop_environments/gnome/media_keys.yml
-  # Does not work, gives an error
-  # when: ansible_facts['ansible_env']['XDG_CURRENT_DESKTOP'] == 'GNOME'
+- include_tasks: desktop_environments/gnome/media_keys.yml
+  when: ansible_facts['env']['XDG_CURRENT_DESKTOP'] == 'GNOME'
 
 - name: Print all available facts
   ansible.builtin.debug:
