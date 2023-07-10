@@ -1,7 +1,5 @@
 {
-    "workbench.colorTheme": "One Dark Pro",
     "workbench.iconTheme": "material-icon-theme",
-    "workbench.preferredDarkColorTheme": "One Dark Pro",
     "workbench.editorAssociations": {
         "*.ipynb": "jupyter-notebook"
     },
@@ -33,25 +31,34 @@
 
     // Python settings /////////////////////////////////////////////////////////////////
     "[python]": {
-        "editor.formatOnSave": false,
+        "editor.formatOnSave": true,
         "editor.codeActionsOnSave": {
             "source.organizeImports": true
-        }
+        },
+        "editor.defaultFormatter": "ms-python.python",
+        "editor.formatOnType": true
     },
     "python.formatting.provider": "black",
-    "python.sortImports.args": [
+    "isort.args": [
         "--profile", "black"
     ],
 
     "python.linting.enabled": true,
+
     "python.linting.pylintEnabled": true,
     "python.linting.pylintArgs": [
         "--disable missing-function-docstring"
     ],
     "python.linting.flake8Enabled": true,
     "python.linting.flake8Args": [
-        "--max-line-length 88"
+        "--max-line-length", "88"
     ],
+
+    "python.linting.mypyEnabled": true,
+
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.autoImportUserSymbols": true,
+
 
     // Jupyter notebook ////////////////////////////////////////////////////////////////
     "notebook.cellToolbarLocation": {
@@ -60,19 +67,19 @@
     },
 
     // Java settings ///////////////////////////////////////////////////////////////////
-    "[java]": {
-        "editor.defaultFormatter": "richardwillis.vscode-spotless-gradle",
-        "editor.codeActionsOnSave": {
-            "source.fixAll.spotlessGradle": true
-          },
-        "files.trimTrailingWhitespace": false
-    },
+    // "[java]": {
+    //     "editor.defaultFormatter": "richardwillis.vscode-spotless-gradle",
+    //     "editor.codeActionsOnSave": {
+    //         "source.fixAll.spotlessGradle": true
+    //       },
+    //     "files.trimTrailingWhitespace": false
+    // },
 
-    "redhat.telemetry.enabled": false,
-    "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx1G -Xms100m -javaagent:\"/home/bremme/.vscode/extensions/gabrielbb.vscode-lombok-1.0.1/server/lombok.jar\"",
+    // "redhat.telemetry.enabled": false,
+    // "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx1G -Xms100m -javaagent:\"/home/bremme/.vscode/extensions/gabrielbb.vscode-lombok-1.0.1/server/lombok.jar\"",
 
-    "spotlessGradle.format.enable": true,
-    "spotlessGradle.diagnostics.enable": true,
+    // "spotlessGradle.format.enable": true,
+    // "spotlessGradle.diagnostics.enable": true,
 
     "files.exclude": {
         "**/.classpath": true,
@@ -82,6 +89,9 @@
     },
     "vsicons.dontShowNewVersionMessage": true,
     "explorer.confirmDelete": false,
+    "workbench.experimental.settingsProfiles.enabled": true,
+    "redhat.telemetry.enabled": false,
+    "files.autoSave": "afterDelay",
 
     // "java.format.settings.url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
 }
