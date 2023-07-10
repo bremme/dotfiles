@@ -11,9 +11,9 @@
     value: "{{ item.value }}"
   with_items:
     - key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/flameshot/name"
-      value: "Take screenshot with Flameshot"
+      value: "'Take screenshot with Flameshot'"
     - key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/flameshot/command"
-      value: "flameshot gui"
+      value: "'flameshot gui'"
     - key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/flameshot/binding"
       value: "['<Shift><Super>s']"
 

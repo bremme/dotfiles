@@ -2,9 +2,9 @@
 # - name: Load distro specific variables
 #   include_vars: "{{ ansible_distribution }}.yaml"
 
-- name: Load custom keybindings names
-  ansible.builtin.include_vars: custom_keybindings.yaml
-  when: ansible_env.XDG_CURRENT_DESKTOP in ['GNOME', 'Unity']
+# - name: Load custom keybindings names
+#   ansible.builtin.include_vars: custom_keybindings.yaml
+#   when: ansible_env.XDG_CURRENT_DESKTOP in ['GNOME', 'Unity']
 
 # setup system
 - name: Include setup Flatpak tasks
