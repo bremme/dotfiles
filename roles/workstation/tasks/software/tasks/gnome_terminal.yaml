@@ -11,11 +11,11 @@
     key: "{{ item.key }}"
     value: "{{ item.value }}"
   with_items:
-    - key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/{{ custom_keybinding.terminal }}/name"
+    - key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/{{ custom_keybindings.terminal }}/name"
       value: "'Open terminal'"
-    - key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/{{ custom_keybinding.terminal }}/command"
+    - key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/{{ custom_keybindings.terminal }}/command"
       value: "'gnome-terminal'"
-    - key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/{{ custom_keybinding.terminal }}/binding"
+    - key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/{{ custom_keybindings.terminal }}/binding"
       value: "'<Primary><Alt>t'"
 
 # customize terminal
