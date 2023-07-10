@@ -15,6 +15,7 @@
 - name: Run workstation role
   hosts: workstation
   become: true
+  gather_facts: yes
   roles:
     - workstation
 

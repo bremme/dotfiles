@@ -19,7 +19,7 @@ ansible-pull \
     --inventory inventory.ini \
     --url ssh://git@gitea.bremme.nl:30023/bremme/ansible-machines.git \
     --ask-become-pass \
-    local.yaml
+    local.yml
 
 # Run local
 
@@ -28,7 +28,7 @@ ansible-playbook \
     --limit carbon.bremme.nl \
     --ask-become-pass \
     --connection local \
-    local.yaml
+    local.yml
 
 # Run remote
 
