@@ -1,7 +1,16 @@
 - name: Install workstation packages
   ansible.builtin.package:
     name:
+      - dconf-editor
+      - flameshot
       - gedit
+      - gimp
+      - gparted
+      - jstest-gtk
+      - libreoffice
+      - meld
+      - sqlitebrowser
+      - vlc
 
 # - name: Install workstation snap packages
 #   community.general.snap:
@@ -20,6 +29,6 @@
 - include_tasks: desktop_environments/gnome/main.yaml
   when: ansible_facts['env']['XDG_CURRENT_DESKTOP'] == 'GNOME'
 
-- name: Print all available facts
-  ansible.builtin.debug:
-    var: ansible_facts
+# - name: Print all available facts for debugging
+#   ansible.builtin.debug:
+#     var: ansible_facts

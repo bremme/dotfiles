@@ -1,22 +1,22 @@
 - name: Install base packages
   ansible.builtin.package:
     name:
-      - zsh
-      - git
-      - wget
-      - curl
-      - command-not-found
+      - apt-transport-https
       - bash-completion
+      - build-essential
+      - bzip2
+      - command-not-found
+      - curl
+      - fzf
+      - git
       - htop
       - jq
       - neofetch
-      - tree
-      - fzf
-      - apt-transport-https
       - rsync
       - tar
-      - bzip2
-      - build-essential
+      - tree
+      - wget
+      - zsh
 
 # - name: Install snap packages
 #   community.general.snap:
