@@ -77,3 +77,8 @@ custom
 Starship! (snap, homebrew)
 yq (snap, homebrew)
 keep precense (only snap? )
+
+bluetooth devices
+accesspoints
+
+remove all custom keybings
