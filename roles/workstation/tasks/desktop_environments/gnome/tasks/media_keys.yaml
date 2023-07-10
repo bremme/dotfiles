@@ -22,4 +22,4 @@
     - key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/terminal/command"
       value: "'gnome-terminal'"
     - key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/terminal/binding"
-      value: "@as ['<Primary><Alt>t']"
+      value: "'<Primary><Alt>t'"
