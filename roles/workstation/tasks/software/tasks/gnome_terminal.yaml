@@ -21,8 +21,12 @@
 # customize terminal
 - name: Install a Gogh GNOME terminal theme
   block:
+
     - name: Clone Gogh repository
-      command: git clone https://github.com/Gogh-Co/Gogh.git /tmp/gogh
+      ansible.builtin.git:
+        repo: 'https://github.com/Gogh-Co/Gogh.git'
+        dest: /tmp/gogh
+
 
     - name: Install the desired theme
       become_user: "{{ ansible_env.SUDO_USER }}"
@@ -33,8 +37,13 @@
         TERMINAL: gnome-terminal
 
     - name: Remove Gogh repository
-      command: rm -rf /tmp/gogh
+      ansible.builtin.file:
+        path: /tmp/gogh
+        state: absent
+
   rescue:
-    - name: Cleanup on failure
-      command: rm -rf /tmp/gogh
+    - name: Remove Gogh repository
+      ansible.builtin.file:
+        path: /tmp/gogh
+        state: absent
 
