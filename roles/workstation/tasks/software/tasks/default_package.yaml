@@ -1,0 +1,13 @@
+- name: Install workstation packages
+  ansible.builtin.package:
+    name:
+      - dconf-editor
+      - gedit
+      - gimp
+      - gparted
+      - jstest-gtk
+      - libreoffice
+      - meld
+      - sqlitebrowser
+      - vlc
+    state: present

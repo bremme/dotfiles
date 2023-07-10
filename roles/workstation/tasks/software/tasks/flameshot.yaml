@@ -1,0 +1,19 @@
+- name: Install Flameshot
+  ansible.builtin.package:
+    name:
+      - flameshot
+    state: present
+
+- name: Set flameshot shortcut
+  become_user: "{{ ansible_env.SUDO_USER }}"
+  dconf:
+    key: {{ item.key }}
+    value: {{item.value}}
+  with_items:
+    - key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/flameshot/name "
+      value: "Take screenshot with Flameshot"
+    - key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/flameshot/command "
+      value: "flameshot gui"
+    - key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/flameshot/binding"
+      value: "['<Shift><Super>s']"
+

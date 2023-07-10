@@ -1,0 +1,14 @@
+# install as user??
+- name: Install multiple packages
+  community.general.flatpak:
+    name:
+      - org.mozilla.firefox
+      - com.bitwarden.desktop
+      - org.keepassxc.KeePassXC
+      - com.jgraph.drawio.desktop
+      - com.emqx.MQTTX
+      - net.poedit.Poedit
+      - org.telegram.desktop
+      - org.signal.Signal
+      - com.github.IsmaelMartinez.teams_for_linux
+    state: present

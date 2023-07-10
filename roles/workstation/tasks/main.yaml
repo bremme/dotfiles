@@ -1,26 +1,20 @@
-- name: Install workstation packages
-  ansible.builtin.package:
-    name:
-      - dconf-editor
-      - flameshot
-      - gedit
-      - gimp
-      - gparted
-      - jstest-gtk
-      - libreoffice
-      - meld
-      - sqlitebrowser
-      - vlc
-    state: present
 
+# setup system
+- name: Include setup Flatpak tasks
+  ansible.builtin.include_tasks:
+    file: system/flatpak.yaml
 
-- include_tasks: system/flatpak.yaml
-
-## desktop environments
 - name: Included GNOME desktop environment tasks
   ansible.builtin.include_tasks:
     file: desktop_environments/gnome/main.yaml
-  when: ansible_facts['env']['XDG_CURRENT_DESKTOP'] == 'GNOME'
+  when: ansible_env.XDG_CURRENT_DESKTOP in ['GNOME', 'Unity']
+
+# install software
+- name: Install software
+  ansible.builtin.include_tasks:
+    file: software/main.yaml
+
+
 
 
 

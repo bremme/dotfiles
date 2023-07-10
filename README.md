@@ -70,3 +70,10 @@ flatpack
 appimage
 
 custom
+
+
+# TODO
+
+Starship! (snap, homebrew)
+yq (snap, homebrew)
+keep precense (only snap? )
