@@ -15,7 +15,7 @@
     - key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/flameshot/command"
       value: "'flameshot gui'"
     - key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/flameshot/binding"
-      value: "['<Shift><Super>s']"
+      value: "@as ['<Shift><Super>s']"
 
     # - key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/{{ flameshot_binding }}/name"
     #   value: "Take screenshot with Flameshot"
