@@ -7,7 +7,7 @@
 # Recent GNOME does not have a default terminal shortcut anymore
 - name: Set GNOME terminal shortcut
   become_user: "{{ ansible_env.SUDO_USER }}"
-  dconf:
+  community.general.dconf:
     key: "{{ item.key }}"
     value: "{{ item.value }}"
   with_items:

@@ -1,3 +1,7 @@
 - name: GNOME desktop environment media keys
   ansible.builtin.include_tasks:
     file: desktop_environments/gnome/tasks/media_keys.yaml
+
+- name: GNOME desktop environment custom keybindings
+  ansible.builtin.include_tasks:
+    file: desktop_environments/gnome/tasks/custom_keybindings.yaml
