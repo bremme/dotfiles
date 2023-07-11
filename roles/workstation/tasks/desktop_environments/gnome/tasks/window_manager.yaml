@@ -1,0 +1,11 @@
+
+- name: GNOME | window manager keybindings | set wm keys
+  become_user: "{{ ansible_env.SUDO_USER }}"
+  dconf:
+    key: "{{ item.key }}"
+    value:  "{{ item.value }}"
+  with_items:
+    - key: "/org/gnome/desktop/wm/keybindings/show-desktop"
+      value: ['<Super>d']
+    - key: "/org/gnome/desktop/wm/preferences/button-layout"
+      value: "':minimize,maximize,close'"
