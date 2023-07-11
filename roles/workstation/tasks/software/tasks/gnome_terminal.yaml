@@ -29,28 +29,28 @@
 
 # customize terminal
 # FIXME on Debian I had to rename the default unnamed profile to Default and then this profile got overwritten ??
-- name: Install a Gogh GNOME terminal theme
-  block:
+# - name: Install a Gogh GNOME terminal theme
+#   block:
 
-    - name: Install Gogh dependencies
-      ansible.builtin.package:
-        name:
-        - dconf-cli
-        - uuid-runtime
+#     - name: Install Gogh dependencies
+#       ansible.builtin.package:
+#         name:
+#         - dconf-cli
+#         - uuid-runtime
 
-    - name: Clone Gogh repository
-      ansible.builtin.git:
-        repo: 'https://github.com/Gogh-Co/Gogh.git'
-        dest: $HOME/src/gogh
-        depth: 1
+#     - name: Clone Gogh repository
+#       ansible.builtin.git:
+#         repo: 'https://github.com/Gogh-Co/Gogh.git'
+#         dest: $HOME/src/gogh
+#         depth: 1
 
-    - name: Install the desired theme
-      become_user: "{{ ansible_env.SUDO_USER }}"
-      ansible.builtin.shell:
-        cmd:  ./{{ gogh_theme_name | lower | replace(' ', '-') }}.sh
-        chdir: $HOME/src/gogh/installs
-      args:
-        executable: /bin/bash
-      environment:
-        TERMINAL: gnome-terminal
+#     - name: Install the desired theme
+#       become_user: "{{ ansible_env.SUDO_USER }}"
+#       ansible.builtin.shell:
+#         cmd:  ./{{ gogh_theme_name | lower | replace(' ', '-') }}.sh
+#         chdir: $HOME/src/gogh/installs
+#       args:
+#         executable: /bin/bash
+#       environment:
+#         TERMINAL: gnome-terminal
 

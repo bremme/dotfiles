@@ -1,5 +1,5 @@
 # install as user??
-- name: Install multiple packages
+- name: Install multiple Flatpak packages
   community.general.flatpak:
     name:
       - org.mozilla.firefox
