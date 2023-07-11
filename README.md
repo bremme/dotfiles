@@ -85,6 +85,26 @@ bluetooth devices
 accesspoints
 
 remove all custom keybings
+touchpad click
+
+maybe not use the flatpak VS Code?? (Flatpak warning ??)
+
+
+* firefox
+    * configuration
+    * setup sync
+* keepass
+    * autotype shortcut
+    * configuration
+* syncthing
+* nextcloud
+* gnome
+    * dark theme
+    * show desktop Super+d
+    * nautilus
+        * folder before files
+* mkdir git, src
+
 
 
 difference between work and private use
