@@ -18,7 +18,17 @@
     - key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/{{ custom_keybindings.terminal }}/binding"
       value: "'<Primary><Alt>t'"
 
+- name: Set GNOME terminal legacy keybindings
+  become_user: "{{ ansible_env.SUDO_USER }}"
+  community.general.dconf:
+    key: "{{ item.key }}"
+    value: "{{ item.value }}"
+  with_items:
+    - key: "/org/gnome/terminal/legacy/keybindings/zoom-in"
+      value: "'<Ctrl>equal'"
+
 # customize terminal
+# FIXME on Debian I had to rename the default unnamed profile to Default and then this profile got overwritten ??
 - name: Install a Gogh GNOME terminal theme
   block:
 
@@ -31,27 +41,16 @@
     - name: Clone Gogh repository
       ansible.builtin.git:
         repo: 'https://github.com/Gogh-Co/Gogh.git'
-        dest: /tmp/gogh
-
+        dest: $HOME/src/gogh
+        depth: 1
 
     - name: Install the desired theme
       become_user: "{{ ansible_env.SUDO_USER }}"
       ansible.builtin.shell:
         cmd:  ./{{ gogh_theme_name | lower | replace(' ', '-') }}.sh
-        chdir: /tmp/gogh/installs
+        chdir: $HOME/src/gogh/installs
       args:
         executable: /bin/bash
       environment:
         TERMINAL: gnome-terminal
-
-    - name: Remove Gogh repository
-      ansible.builtin.file:
-        path: /tmp/gogh
-        state: absent
-
-  rescue:
-    - name: Remove Gogh repository
-      ansible.builtin.file:
-        path: /tmp/gogh
-        state: absent
 

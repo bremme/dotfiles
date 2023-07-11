@@ -11,4 +11,7 @@
       - org.telegram.desktop
       - org.signal.Signal
       - com.github.IsmaelMartinez.teams_for_linux
+      - com.jetbrains.IntelliJ-IDEA-Community
+      - com.visualstudio.code
+
     state: present

@@ -78,7 +78,15 @@ Starship! (snap, homebrew)
 yq (snap, homebrew)
 keep precense (only snap? )
 
+Citrix receiver
+Displaylink driver
+
 bluetooth devices
 accesspoints
 
 remove all custom keybings
+
+
+difference between work and private use
+work:       teams, citrix
+private:    cura, arduino
