@@ -5,3 +5,7 @@
 - name: GNOME desktop environment custom keybindings
   ansible.builtin.include_tasks:
     file: desktop_environments/gnome/tasks/custom_keybindings.yaml
+
+- name: GNOME desktop environment window manager
+  ansible.builtin.include_tasks:
+    file: desktop_environments/gnome/tasks/window_manager.yaml

@@ -103,7 +103,10 @@ maybe not use the flatpak VS Code?? (Flatpak warning ??)
     * show desktop Super+d
     * nautilus
         * folder before files
-* mkdir git, src
+        * create links
+        * delete permanently
+        
+* mkdir git, src, mnt
 
 
 
