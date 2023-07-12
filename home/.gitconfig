@@ -4,4 +4,4 @@
 [init]
 	# use this when git >= 2.28
 	# defaultBranch = main
-	templateDir = ~/.git-template
+	# templateDir = ~/.git-template
