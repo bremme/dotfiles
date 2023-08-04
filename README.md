@@ -119,4 +119,7 @@ dconf   gnome   add weekday to clock
 
 dconf   nautilus
             folders before files
-            
+
+
+FIX git dotfiles from https to ssh
+FIX keepassxc shortcut??
