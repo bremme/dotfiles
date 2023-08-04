@@ -25,7 +25,7 @@ ansible-pull \
 
 ansible-playbook \
     --inventory inventory.ini \
-    --limit carbon.bremme.nl \
+    --limit oxygen.bremme.nl \
     --ask-become-pass \
     --connection local \
     local.yml
@@ -105,7 +105,7 @@ maybe not use the flatpak VS Code?? (Flatpak warning ??)
         * folder before files
         * create links
         * delete permanently
-        
+
 * mkdir git, src, mnt
 
 
@@ -113,3 +113,10 @@ maybe not use the flatpak VS Code?? (Flatpak warning ??)
 difference between work and private use
 work:       teams, citrix
 private:    cura, arduino
+
+
+dconf   gnome   add weekday to clock
+
+dconf   nautilus
+            folders before files
+            

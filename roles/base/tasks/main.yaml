@@ -1,3 +1,8 @@
+# setup packages managers
+# snap
+# brew
+# flatpak?
+
 - name: Install base packages
   ansible.builtin.package:
     name:
@@ -26,7 +31,37 @@
 
 # - import_tasks: software/homeshick.yaml
 
+- name: Create some default user folders
+  become_user: "{{ ansible_env.SUDO_USER }}"
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    recurse: yes
+    mode: "0755"
+  loop:
+    - "/home/{{ ansible_env.SUDO_USER }}/src"
+    - "/home/{{ ansible_env.SUDO_USER }}/git"
+    - "/home/{{ ansible_env.SUDO_USER }}/tmp"
+    - "/home/{{ ansible_env.SUDO_USER }}/mnt"
+    - "/home/{{ ansible_env.SUDO_USER }}/bin"
+    - "/home/{{ ansible_env.SUDO_USER }}/src"
 
+- name: Install Homeshick
+  become_user: "{{ ansible_env.SUDO_USER }}"
+  ansible.builtin.git:
+    repo: https://github.com/andsens/homeshick.git
+    dest: $HOME/.homesick/repos/homeshick
+
+- name: Clone Homeshick dotfiles repo
+  become_user: "{{ ansible_env.SUDO_USER }}"
+  ansible.builtin.git:
+    repo: https://github.com/bremme/dotfiles.git
+    dest: $HOME/.homesick/repos/dotfiles
+
+- name: Link Homeshick dotfiles
+  become_user: "{{ ansible_env.SUDO_USER }}"
+  ansible.builtin.shell: >-
+    $HOME/.homesick/repos/homeshick/bin/homeshick link dotfiles
 
 
 
