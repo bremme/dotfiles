@@ -34,7 +34,6 @@
   ansible.builtin.file:
     path: "{{ item }}"
     state: directory
-    recurse: yes
     mode: "0755"
   loop:
     - "/home/{{ ansible_env.SUDO_USER }}/src"
