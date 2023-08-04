@@ -28,7 +28,7 @@
     key: "{{ item.key }}"
     value:  "{{ item.value }}"
   with_items:
-    - key: "/org/gnome/nautilus/preferences/default-fodler-viewer"
+    - key: "/org/gnome/nautilus/preferences/default-folder-viewer"
       value: "'list-view'"
     - key: "/org/gnome/nautilus/list-view/use-tree-view"
       value: true
