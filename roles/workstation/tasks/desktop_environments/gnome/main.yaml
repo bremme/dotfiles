@@ -38,3 +38,5 @@
       value: "true"
     - key: "/org/gnome/nautilus/preferences/show-delete-permanently"
       value: "true"
+    - key: "/org/gnome/nautilus/icon-view/captions"
+      value: "['size', 'none', 'none']"
