@@ -12,7 +12,7 @@
 
 
 # org/gnome/desktop/interface
-- name: 
+- name:
   become_user: "{{ ansible_env.SUDO_USER }}"
   dconf:
     key: "{{ item.key }}"
@@ -20,3 +20,15 @@
   with_items:
     - key: "/org/gnome/desktop/interface/color-scheme"
       value: "'prefer-dark'"
+
+# Nautilus
+- name:
+  become_user: "{{ ansible_env.SUDO_USER }}"
+  dconf:
+    key: "{{ item.key }}"
+    value:  "{{ item.value }}"
+  with_items:
+    - key: "/org/gnome/nautilus/preferences/default-fodler-viewer"
+      value: "'list-view'"
+    - key: "/org/gnome/nautilus/list-view/use-tree-view"
+      value: true
