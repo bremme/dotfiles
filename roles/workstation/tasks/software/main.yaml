@@ -1,11 +1,7 @@
 
-- name: Software include default package manager packages
+- name: Software include packages
   ansible.builtin.include_tasks:
     file: software/tasks/default_package.yaml
-
-- name: Software include default Flatpak packages
-  ansible.builtin.include_tasks:
-    file: software/tasks/default_flatpak.yaml
 
 # packages which need additional configuration
 - name: Software include Flameshot

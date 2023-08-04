@@ -1,4 +1,4 @@
-- name: Install workstation packages
+- name: Install multiple packages
   ansible.builtin.package:
     name:
       - dconf-editor
@@ -10,4 +10,24 @@
       - meld
       - sqlitebrowser
       - vlc
+
+# install as user??
+- name: Install multiple Flatpak packages
+  community.general.flatpak:
+    name:
+      - org.mozilla.firefox
+      - com.bitwarden.desktop
+      - org.keepassxc.KeePassXC
+      - com.jgraph.drawio.desktop
+      - com.emqx.MQTTX
+      - net.poedit.Poedit
+      - org.telegram.desktop
+      - org.signal.Signal
+      - com.github.IsmaelMartinez.teams_for_linux
+      - com.jetbrains.IntelliJ-IDEA-Community
     state: present
+
+- name: Install multiple snap packages
+  community.general.snap:
+    name:
+      - keep-presence

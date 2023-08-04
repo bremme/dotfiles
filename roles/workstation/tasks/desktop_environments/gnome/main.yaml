@@ -31,4 +31,10 @@
     - key: "/org/gnome/nautilus/preferences/default-folder-viewer"
       value: "'list-view'"
     - key: "/org/gnome/nautilus/list-view/use-tree-view"
-      value: true
+      value: "true"
+    - key: "/org/gtk/gtk4/settings/file-chooser/sort-directories-first"
+      value: "true"
+    - key: "/org/gnome/nautilus/preferences/show-create-link"
+      value: "true"
+    - key: "/org/gnome/nautilus/preferences/show-delete-permanently"
+      value: "true"

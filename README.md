@@ -120,6 +120,11 @@ dconf   gnome   add weekday to clock
 dconf   nautilus
             folders before files
 
-
-FIX git dotfiles from https to ssh
 FIX keepassxc shortcut??
+
+
+# Manual actions
+
+sign in to Firefox sync
+    customize toolbar -> remove white spaces
+    remove imported bookmarks etc.
