@@ -12,7 +12,7 @@
 
 
 # org/gnome/desktop/interface
-- name:
+- name: Set general GNOME dconf settings
   become_user: "{{ ansible_env.SUDO_USER }}"
   dconf:
     key: "{{ item.key }}"
@@ -20,9 +20,17 @@
   with_items:
     - key: "/org/gnome/desktop/interface/color-scheme"
       value: "'prefer-dark'"
+    - key: "/org/gnome/desktop/sound/allow-volume-above-100-percent"
+      value: "true"
+    - key: "/org/gnome/desktop/calendar/show-weekdate"
+      value: "true"
+    - key: "/org/gnome/desktop/interface/gtk-theme"
+      value: "'Adwaita-dark'"
+    - key: "/org/gnome/desktop/interface/show-battery-percentage"
+      value: "true"
 
 # Nautilus
-- name:
+- name: Set general Nautilus settings
   become_user: "{{ ansible_env.SUDO_USER }}"
   dconf:
     key: "{{ item.key }}"
@@ -40,3 +48,24 @@
       value: "true"
     - key: "/org/gnome/nautilus/icon-view/captions"
       value: "['size', 'none', 'none']"
+
+# GNOME extensions
+- name: Install GNOME extension packages
+  ansible.builtin.package:
+    name:
+      - gnome-tweaks
+      - gnome-shell-extensions
+      - gnome-shell-extension-prefs
+      - gnome-shell-extension-manager
+      - gir1.2-gtop-2.0
+      - lm-sensors
+      - nvme-cli
+      - udisks2
+
+# lookinto https://pypi.org/project/gnome-extensions-cli/
+# User installed / third party
+# Freon or Vitals
+# cpufreq
+# System Extensinos
+# Ubuntu AppIndicators (ubuntu-appindicators@ubuntu.com)
+# User Themes (user-theme@gnome-shell-extensions.gcampax.github.com)
