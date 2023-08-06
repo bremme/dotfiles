@@ -5,4 +5,5 @@ ansible-playbook \
     --limit "$(hostname -f)" \
     --ask-become-pass \
     --connection local \
+    --verbose \
     local.yml
