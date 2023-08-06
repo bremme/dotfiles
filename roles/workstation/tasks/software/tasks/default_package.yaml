@@ -10,6 +10,22 @@
       - meld
       - sqlitebrowser
       - vlc
+      - filezilla
+
+- name: Install restricted extra's on Debian
+  ansible.builtin.package:
+    name:
+    # Install restricted-extras
+    - ttf-mscorefonts-installer
+    - rar
+    - unrar
+    - libavcodec-extra
+    - gstreamer1.0-libav
+    - gstreamer1.0-plugins-ugly
+    - gstreamer1.0-vaapi
+    # Microsoft Fonts Compatibility
+    - fonts-crosextra-carlito
+    - fonts-crosextra-caladea
 
 # install as user??
 - name: Install multiple Flatpak packages
@@ -23,11 +39,19 @@
       - net.poedit.Poedit
       - org.telegram.desktop
       - org.signal.Signal
+      - com.discordapp.Discord
       - com.github.IsmaelMartinez.teams_for_linux
-      - com.jetbrains.IntelliJ-IDEA-Community
     state: present
 
 - name: Install multiple snap packages
   community.general.snap:
     name:
       - keep-presence
+
+
+# Install dowloadable .deb
+# Install AppImage' s
+# Cura
+
+# Install tar.gz
+# Camunda modeller
