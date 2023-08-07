@@ -25,7 +25,7 @@ ansible-pull \
 
 ansible-playbook \
     --inventory inventory.ini \
-    --limit carbon.bremme.nl \
+    --limit oxygen.bremme.nl \
     --ask-become-pass \
     --connection local \
     local.yml
@@ -74,9 +74,8 @@ custom
 
 # TODO
 
-Starship! (snap, homebrew)
-yq (snap, homebrew)
-keep precense (only snap? )
+
+Teamviewer / Rustdesk
 
 Citrix receiver
 Displaylink driver
@@ -86,8 +85,6 @@ accesspoints
 
 remove all custom keybings
 touchpad click
-
-maybe not use the flatpak VS Code?? (Flatpak warning ??)
 
 
 * firefox
@@ -116,7 +113,41 @@ maybe not use the flatpak VS Code?? (Flatpak warning ??)
 
 nextcloud configuration ?
 
+* mkdir git, src, mnt
+
+
+swapiness lower
+
+CTRL+ALT+X -> xkill
+
+GNOME extension UserThemese
+
+sudo ln -s /usr/share/fontconfig/conf.avail/70-no-bitmaps.conf /etc/fonts/conf.d/
+
 
 difference between work and private use
 work:       teams, citrix
 private:    cura, arduino
+
+
+dconf   gnome   add weekday to clock
+
+dconf   nautilus
+            folders before files
+
+FIX keepassxc shortcut??
+
+New files templates?
+
+
+
+# Manual actions
+
+sign in to Firefox sync
+    customize toolbar -> remove white spaces
+    remove imported bookmarks etc.
+    Open about:config and set browser.tabs.insertAfterCurrent to true.
+
+    services.sync.prefs.sync.browser.tabs.insertAfterCurrent
+    It is probably possible to sync about:config settings https://support.mozilla.org/en-US/kb/sync-custom-preferences#
+    Maybe this services.sync.prefs.dangerously_allow_arbitrary is also required?

@@ -9,3 +9,63 @@
 - name: GNOME desktop environment window manager
   ansible.builtin.include_tasks:
     file: desktop_environments/gnome/tasks/window_manager.yaml
+
+
+# org/gnome/desktop/interface
+- name: Set general GNOME dconf settings
+  become_user: "{{ ansible_env.SUDO_USER }}"
+  dconf:
+    key: "{{ item.key }}"
+    value:  "{{ item.value }}"
+  with_items:
+    - key: "/org/gnome/desktop/interface/color-scheme"
+      value: "'prefer-dark'"
+    - key: "/org/gnome/desktop/sound/allow-volume-above-100-percent"
+      value: "true"
+    - key: "/org/gnome/desktop/calendar/show-weekdate"
+      value: "true"
+    - key: "/org/gnome/desktop/interface/gtk-theme"
+      value: "'Adwaita-dark'"
+    - key: "/org/gnome/desktop/interface/show-battery-percentage"
+      value: "true"
+
+# Nautilus
+- name: Set general Nautilus settings
+  become_user: "{{ ansible_env.SUDO_USER }}"
+  dconf:
+    key: "{{ item.key }}"
+    value:  "{{ item.value }}"
+  with_items:
+    - key: "/org/gnome/nautilus/preferences/default-folder-viewer"
+      value: "'list-view'"
+    - key: "/org/gnome/nautilus/list-view/use-tree-view"
+      value: "true"
+    - key: "/org/gtk/gtk4/settings/file-chooser/sort-directories-first"
+      value: "true"
+    - key: "/org/gnome/nautilus/preferences/show-create-link"
+      value: "true"
+    - key: "/org/gnome/nautilus/preferences/show-delete-permanently"
+      value: "true"
+    - key: "/org/gnome/nautilus/icon-view/captions"
+      value: "['size', 'none', 'none']"
+
+# GNOME extensions
+- name: Install GNOME extension packages
+  ansible.builtin.package:
+    name:
+      - gnome-tweaks
+      - gnome-shell-extensions
+      - gnome-shell-extension-prefs
+      - gnome-shell-extension-manager
+      - gir1.2-gtop-2.0
+      - lm-sensors
+      - nvme-cli
+      - udisks2
+
+# lookinto https://pypi.org/project/gnome-extensions-cli/
+# User installed / third party
+# Freon or Vitals
+# cpufreq
+# System Extensinos
+# Ubuntu AppIndicators (ubuntu-appindicators@ubuntu.com)
+# User Themes (user-theme@gnome-shell-extensions.gcampax.github.com)

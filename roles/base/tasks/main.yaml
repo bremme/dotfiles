@@ -1,3 +1,8 @@
+# setup packages managers
+# snap
+# brew
+# flatpak?
+
 - name: Install base packages
   ansible.builtin.package:
     name:
@@ -16,16 +21,83 @@
       - tar
       - tree
       - wget
-      - zsh
+      - snapd
+      - gpg
+      - apt-transport-https
 
-# - name: Install snap packages
+
+- name: Install snap packages
+  community.general.snap:
+    name:
+      - yq
+
+- name: Create some default user folders
+  become_user: "{{ ansible_env.SUDO_USER }}"
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: "0755"
+  loop:
+    - "/home/{{ ansible_env.SUDO_USER }}/src"
+    - "/home/{{ ansible_env.SUDO_USER }}/git"
+    - "/home/{{ ansible_env.SUDO_USER }}/tmp"
+    - "/home/{{ ansible_env.SUDO_USER }}/mnt"
+    - "/home/{{ ansible_env.SUDO_USER }}/bin"
+    - "/home/{{ ansible_env.SUDO_USER }}/src"
+
+# Oh-my-zsh
+# install zsh
+- name: Install base packages
+  ansible.builtin.package:
+    name: zsh
+# change default shell to zsh
+- name: Change default shell to zsh
+  ansible.builtin.user:
+    name: "{{ ansible_env.SUDO_USER }}"
+    shell: /usr/bin/zsh
+# install oh-my-zsh (before homeshick!)
+- name: Install oh-my-zsh!!
+  become_user: "{{ ansible_env.SUDO_USER }}"
+  ansible.builtin.shell:
+    cmd: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+    creates: $HOME/.oh-my-zsh
+
+# Starship
+# font, config (dotfiles), binary (snap?)
+- name: Install Starship
+  ansible.builtin.shell:
+    cmd: "curl -sS https://starship.rs/install.sh | sh -s -- --yes"
+    creates: /usr/local/bin/starship
+
+# - name: Install Starship snap package
+#   become_user: "{{ ansible_env.SUDO_USER }}"
 #   community.general.snap:
-#     name:
-#       - yq
-#       - starship
+#     name: starship
+#     channel: latest/edge
 
+- name: Install FiraCode font
+  ansible.builtin.package:
+    name: fonts-firacode
+
+# Homeshick
 # - import_tasks: software/homeshick.yaml
+- name: Install Homeshick
+  become_user: "{{ ansible_env.SUDO_USER }}"
+  ansible.builtin.git:
+    repo: https://github.com/andsens/homeshick.git
+    dest: $HOME/.homesick/repos/homeshick
 
+- name: Clone Homeshick dotfiles repo
+  become_user: "{{ ansible_env.SUDO_USER }}"
+  ansible.builtin.git:
+    repo: git@github.com:bremme/dotfiles.git
+    dest: $HOME/.homesick/repos/dotfiles
+
+- name: Link Homeshick dotfiles
+  become_user: "{{ ansible_env.SUDO_USER }}"
+  ansible.builtin.shell:
+    cmd: $HOME/.homesick/repos/homeshick/bin/homeshick link dotfiles --batch --force
+    creates: $HOME/.link-dotfiles-has-run
 
 
 
