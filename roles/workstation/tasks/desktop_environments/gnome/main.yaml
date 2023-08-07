@@ -64,8 +64,24 @@
 
 # lookinto https://pypi.org/project/gnome-extensions-cli/
 # User installed / third party
-# Freon or Vitals
-# cpufreq
+  # Freon or Vitals
+  # cpufreq
 # System Extensinos
-# Ubuntu AppIndicators (ubuntu-appindicators@ubuntu.com)
-# User Themes (user-theme@gnome-shell-extensions.gcampax.github.com)
+  # Ubuntu AppIndicators (ubuntu-appindicators@ubuntu.com)
+  # User Themes (user-theme@gnome-shell-extensions.gcampax.github.com)
+
+
+- name: Configure GNOME extensions
+  become_user: "{{ ansible_env.SUDO_USER }}"
+  dconf:
+    key: "{{ item.key }}"
+    value:  "{{ item.value }}"
+  with_items:
+    - key: "/org/gnome/shell/enabled-extensions"
+      value: "['ubuntu-appindicators@ubuntu.com', 'user-theme@gnome-shell-extensions.gcampax.github.com']"
+    - key: "/org/gnome/shell/extensions/appindicator/tray-pos"
+      value: "'center'"
+
+# Weather location
+# /org/gnome/shell/weather/automatic-location
+# "true"
