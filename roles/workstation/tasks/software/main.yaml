@@ -8,6 +8,10 @@
   ansible.builtin.include_tasks:
     file: software/tasks/flameshot.yaml
 
+- name: Software include KeepassXC
+  ansible.builtin.include_tasks:
+    file: software/tasks/keepassxc.yaml
+
 - name: Software include GNOME terminal
   ansible.builtin.include_tasks:
     file: software/tasks/gnome_terminal.yaml

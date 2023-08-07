@@ -1,0 +1,16 @@
+# download https://www.synaptics.com/sites/default/files/Ubuntu/pool/stable/main/all/synaptics-repository-keyring.deb
+
+# sudo apt install ./Downloads/synaptics-repository-keyring.deb
+
+# sudo apt update
+
+# sudo apt install displaylink-driver
+
+# DID NOT WORK ON DEBIAN
+
+# MANUAL WORKS BETTTER
+
+# download https://www.synaptics.com/sites/default/files/exe_files/2023-04/DisplayLink%20USB%20Graphics%20Software%20for%20Ubuntu5.7-EXE.zip
+# unzip
+# chmod +x displaylink-driver-5.7.0-61.129.run
+# sudo ./displaylink-driver-5.7.0-61.129.run --quiet --accept
