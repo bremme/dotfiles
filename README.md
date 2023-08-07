@@ -96,18 +96,25 @@ maybe not use the flatpak VS Code?? (Flatpak warning ??)
 * keepass
     * autotype shortcut
     * configuration
+    * keepassxc -platform xcb
 * syncthing
 * nextcloud
 * gnome
     * dark theme
     * show desktop Super+d
+    * nightlight
     * nautilus
         * folder before files
         * create links
         * delete permanently
-        
-* mkdir git, src, mnt
+* vs code Faltpak fixes
+    * shell config
+* mkdir git, src, mnt, tmp
+* IntelliJ flatpak
+    * /app/share/jetbrains-flatpak-wrapper
 
+
+nextcloud configuration ?
 
 
 difference between work and private use
