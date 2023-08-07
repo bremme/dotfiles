@@ -21,7 +21,9 @@
 
     // Terminal settings ///////////////////////////////////////////////////////////////
     "terminal.integrated.fontSize": 16,
-    "terminal.integrated.fontFamily": "FiraCode Nerd Font Mono",
+    "terminal.integrated.fontFamily": "Fira Code, Medium",
+
+
 
     // Proofing and language //////////////////////////////////////////////////////////
     "cSpell.language": "en,nl",
