@@ -21,7 +21,7 @@
 
     // Terminal settings ///////////////////////////////////////////////////////////////
     "terminal.integrated.fontSize": 16,
-    "terminal.integrated.fontFamily": "Fira Code, Medium",
+    "terminal.integrated.fontFamily": "Fira Code",
 
 
 
