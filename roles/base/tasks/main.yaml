@@ -102,3 +102,12 @@
 
 
 
+# More font fixes (fixes ugly Flatpak Firefox fonts)
+# https://github.com/flatpak/flatpak/issues/4571
+- name: Remove ugly X fonts
+  ansible.builtin.package:
+    name:
+      - xfonts-base
+      - xfonts-100dp
+      - xfonts-75dpi
+    state: absent
