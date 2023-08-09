@@ -2,4 +2,8 @@
 PATH=$HOME/.local/bin:$HOME/bin:$HOME/bin/openapitools:/sbin:$PATH
 
 # Add Homebrew to PATH
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+if [[ -x "/home/linuxbrew/.linuxbrew/bin/brew" ]]; then
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+else
+
+
