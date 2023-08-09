@@ -24,6 +24,7 @@
       - snapd
       - gpg
       - apt-transport-https
+      - nmap
 
 
 - name: Install snap packages
