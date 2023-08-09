@@ -1,5 +1,10 @@
 {
     "workbench.iconTheme": "material-icon-theme",
+    "workbench.colorTheme": "Atom One Dark",
+    "editor.fontFamily": "'Fira Code','Droid Sans Mono', 'monospace', monospace",
+    "editor.fontSize": 16,
+    "editor.fontWeight": "500",
+
     "workbench.editorAssociations": {
         "*.ipynb": "jupyter-notebook"
     },
@@ -94,7 +99,7 @@
     "workbench.experimental.settingsProfiles.enabled": true,
     "redhat.telemetry.enabled": false,
     "files.autoSave": "afterDelay",
-    "workbench.colorTheme": "Default Dark Modern",
+
 
     // "java.format.settings.url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
 }
