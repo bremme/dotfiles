@@ -77,7 +77,7 @@ custom
 
 Teamviewer / Rustdesk
 
-Citrix receiver
+
 Displaylink driver
 
 bluetooth devices
