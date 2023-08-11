@@ -85,3 +85,9 @@
 # Weather location
 # /org/gnome/shell/weather/automatic-location
 # "true"
+
+# Nightlight settings
+# /org/gnome/settings-daemon/plugins/color/night-light-enabled
+# "'true'"
+# /org/gnome/settings-daemon/plugins/color/night-light-temperature
+# "3700"
