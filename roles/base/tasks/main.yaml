@@ -9,6 +9,9 @@
       - curl
       - fzf
       - git
+      - cowsay
+      - toilet
+      - fortune
       - htop
       - jq
       - neofetch
@@ -62,7 +65,7 @@
   become_user: "{{ ansible_env.SUDO_USER }}"
   ansible.builtin.shell:
     cmd: git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-    creates: $HOME/.oh-my-zsh/plugins/zsh-autosuggestions
+    creates: $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 
 # Starship
 # font, config (dotfiles), binary (snap?)
