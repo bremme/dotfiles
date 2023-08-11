@@ -10,6 +10,16 @@
       - sqlitebrowser
       - vlc
       - filezilla
+      - darktable
+      - gdmap
+      - android-sdk-platform-tools
+
+- name: Remove unnessecary packages
+  ansible.builtin.package:
+    name:
+      - shotwell
+      - xterm
+    state: absent
 
 - name: Install restricted extra's on Debian
   ansible.builtin.package:
