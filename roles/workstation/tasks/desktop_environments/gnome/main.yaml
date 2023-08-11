@@ -59,6 +59,37 @@
     - key: "/org/gnome/nautilus/icon-view/captions"
       value: "['size', 'none', 'none']"
 
+# Nemo
+- name: Install Nemo
+  ansible.builtin.package:
+    name: nemo
+
+- name: Get default filemanager
+  become_user: "{{ ansible_env.SUDO_USER }}"
+  ansible.builtin.shell: xdg-mime query default inode/directory
+  register: default_filemanager
+
+- name: Set Nemo as the default filemanager
+  become_user: "{{ ansible_env.SUDO_USER }}"
+  ansible.builtin.shell: xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search
+  when: "'nautilus' in default_filemanager.stdout.lower()"
+
+- name: Configure Nemo
+  become_user: "{{ ansible_env.SUDO_USER }}"
+  community.general.dconf:
+    key: "{{ item.key }}"
+    value: "{{ item.value }}"
+  with_items:
+    - key: "/org/gnome/desktop/background/show-desktop-icons"
+      value: "false"
+    - key: "/org/nemo/desktop/show-desktop-icons"
+      value: "true"
+    - key: "/org/nemo/preferences/default-folder-viewer"
+      value: "'list-view'"
+    - key: "/org/nemo/preferences/inherit-folder-viewer"
+      value: "true"
+
+
 # GNOME extensions
 - name: Install GNOME extension packages
   ansible.builtin.package:
