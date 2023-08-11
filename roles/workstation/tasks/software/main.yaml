@@ -15,3 +15,7 @@
 - name: Software include GNOME terminal
   ansible.builtin.include_tasks:
     file: software/tasks/gnome_terminal.yaml
+
+- name: Software include Gedit
+  ansible.builtin.include_tasks:
+    file: software/tasks/gedit.yaml

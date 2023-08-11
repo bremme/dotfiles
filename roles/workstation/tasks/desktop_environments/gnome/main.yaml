@@ -6,18 +6,13 @@
   ansible.builtin.include_tasks:
     file: desktop_environments/gnome/tasks/custom_keybindings.yaml
 
-- name: GNOME desktop environment window manager
-  ansible.builtin.include_tasks:
-    file: desktop_environments/gnome/tasks/window_manager.yaml
-
-
-# org/gnome/desktop/interface
 - name: Set general GNOME dconf settings
   become_user: "{{ ansible_env.SUDO_USER }}"
   dconf:
     key: "{{ item.key }}"
     value:  "{{ item.value }}"
   with_items:
+    # GNOME desktop
     - key: "/org/gnome/desktop/interface/color-scheme"
       value: "'prefer-dark'"
     - key: "/org/gnome/desktop/sound/allow-volume-above-100-percent"
@@ -28,6 +23,21 @@
       value: "'Adwaita-dark'"
     - key: "/org/gnome/desktop/interface/show-battery-percentage"
       value: "true"
+    - key: "/org/gnome/desktop/peripherals/touchpad/tap-to-click"
+      value: "true"
+    # GNOME shell
+    - key: "/org/gnome/shell/weather/automatic-location"
+      value: "true"
+    # GNOME window manager
+    - key: "/org/gnome/desktop/wm/keybindings/show-desktop"
+      value: ['<Super>d']
+    - key: "/org/gnome/desktop/wm/preferences/button-layout"
+      value: "':minimize,maximize,close'"
+    # GNOME settings-daemon
+    - key: "/org/gnome/settings-daemon/plugins/color/night-light-enabled"
+      value: "true"
+    - key: "/org/gnome/settings-daemon/plugins/color/night-light-temperature"
+      value: "3700"
 
 # Nautilus
 - name: Set general Nautilus settings
@@ -81,13 +91,3 @@
       value: "['ubuntu-appindicators@ubuntu.com', 'user-theme@gnome-shell-extensions.gcampax.github.com']"
     - key: "/org/gnome/shell/extensions/appindicator/tray-pos"
       value: "'center'"
-
-# Weather location
-# /org/gnome/shell/weather/automatic-location
-# "true"
-
-# Nightlight settings
-# /org/gnome/settings-daemon/plugins/color/night-light-enabled
-# "'true'"
-# /org/gnome/settings-daemon/plugins/color/night-light-temperature
-# "3700"

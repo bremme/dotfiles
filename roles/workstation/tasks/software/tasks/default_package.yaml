@@ -2,7 +2,6 @@
   ansible.builtin.package:
     name:
       - dconf-editor
-      - gedit
       - gimp
       - gparted
       - jstest-gtk

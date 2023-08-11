@@ -2,13 +2,7 @@
   ansible.builtin.package:
     name:
       - flatpak
-    state: present
-
-- name: Install the GNOME Software Flatpak plugin
-  ansible.builtin.package:
-    name:
       - gnome-software-plugin-flatpak
-    state: present
 
 - name: Add Flathub  repository
   community.general.flatpak_remote:

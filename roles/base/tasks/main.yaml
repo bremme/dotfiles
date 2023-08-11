@@ -1,8 +1,3 @@
-# setup packages managers
-# snap
-# brew
-# flatpak?
-
 - name: Install base packages
   ansible.builtin.package:
     name:
@@ -24,12 +19,14 @@
       - snapd
       - gpg
       - apt-transport-https
+      - nmap
 
 
 - name: Install snap packages
   community.general.snap:
     name:
       - yq
+      - helm
 
 - name: Create some default user folders
   become_user: "{{ ansible_env.SUDO_USER }}"
@@ -61,6 +58,11 @@
   ansible.builtin.shell:
     cmd: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
     creates: $HOME/.oh-my-zsh
+- name: Install zsh-autosuggestions
+  become_user: "{{ ansible_env.SUDO_USER }}"
+  ansible.builtin.shell:
+    cmd: git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+    creates: $HOME/.oh-my-zsh/plugins/zsh-autosuggestions
 
 # Starship
 # font, config (dotfiles), binary (snap?)
