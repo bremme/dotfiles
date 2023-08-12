@@ -23,7 +23,7 @@
       - gpg
       - apt-transport-https
       - nmap
-
+      - ca-certificates
 
 - name: Install snap packages
   community.general.snap:

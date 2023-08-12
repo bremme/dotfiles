@@ -24,10 +24,16 @@
     file: software/main.yaml
 
 - name: Copy Template files
+  become_user: "{{ ansible_env.SUDO_USER }}"
   ansible.builtin.copy:
-    src: Templates/*
-    dest: $HOME/Templates
-
+    src: "Templates/{{ item }}"
+    dest: "$HOME/Templates/{{ item }}"
+  with_items:
+    - "Excel Sheet.xlsx"
+    - "NOTES.md"
+    - "README.md"
+    - "Powerpoint Presentation.pptx"
+    - "Word Document.docx"
 
 # - name: Install workstation snap packages
 #   community.general.snap:
