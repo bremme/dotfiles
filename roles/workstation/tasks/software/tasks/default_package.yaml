@@ -51,13 +51,20 @@
       - com.github.IsmaelMartinez.teams_for_linux
     state: present
 
-- name: Install multiple snap packages
+- name: Install snap packages
   community.general.snap:
-    name:
-      - keep-presence
+    name: keep-presence
+
+- name: Install snap pacakges in classic mode
+  community.general.snap:
+    name: kubectl
+    classic: yes
 
 
 # Install dowloadable .deb
+# VS Code
+# Syncthing
+
 # Install AppImage' s
 # Cura
 
