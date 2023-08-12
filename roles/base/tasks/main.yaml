@@ -24,12 +24,15 @@
       - apt-transport-https
       - nmap
       - ca-certificates
+      - python3-pip
+
 
 - name: Install snap packages
   community.general.snap:
     name:
       - yq
       - helm
+      - kubectl
 
 - name: Create some default user folders
   become_user: "{{ ansible_env.SUDO_USER }}"
@@ -103,16 +106,3 @@
   ansible.builtin.shell:
     cmd: $HOME/.homesick/repos/homeshick/bin/homeshick link dotfiles --batch --force
     creates: $HOME/.link-dotfiles-has-run
-
-
-
-
-# More font fixes (fixes ugly Flatpak Firefox fonts)
-# https://github.com/flatpak/flatpak/issues/4571
-- name: Remove ugly X fonts
-  ansible.builtin.package:
-    name:
-      - xfonts-base
-      - xfonts-100dp
-      - xfonts-75dpi
-    state: absent

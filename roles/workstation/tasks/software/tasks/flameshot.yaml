@@ -16,11 +16,5 @@
       value: "'flameshot gui'"
     - key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/{{ custom_keybindings.flameshot }}/binding"
       value: "'<Shift><Super>s'"
-
-    # - key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/{{ flameshot_binding }}/name"
-    #   value: "Take screenshot with Flameshot"
-    # - key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/{{ flameshot_binding }}/command"
-    #   value: "flameshot gui"
-    # - key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/{{ flameshot_binding }}/binding"
-    #   value: "['<Shift><Super>s']"
+  when: ansible_env.XDG_CURRENT_DESKTOP in ['GNOME', 'Unity']
 

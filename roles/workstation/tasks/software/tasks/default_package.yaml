@@ -55,12 +55,6 @@
   community.general.snap:
     name: keep-presence
 
-- name: Install snap pacakges in classic mode
-  community.general.snap:
-    name: kubectl
-    classic: yes
-
-
 # Install dowloadable .deb
 # VS Code
 # Syncthing

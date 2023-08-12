@@ -6,6 +6,14 @@
   ansible.builtin.include_tasks:
     file: desktop_environments/gnome/tasks/custom_keybindings.yaml
 
+- name: GNOME desktop environment GNOME terminal
+  ansible.builtin.include_tasks:
+    file: desktop_environments/gnome/tasks/gnome_terminal.yaml
+
+- name: GNOME desktop environment Gedit
+  ansible.builtin.include_tasks:
+    file: desktop_environments/gnome/tasks/gedit.yaml
+
 - name: Set general GNOME dconf settings
   become_user: "{{ ansible_env.SUDO_USER }}"
   dconf:
@@ -124,3 +132,11 @@
       value: "['ubuntu-appindicators@ubuntu.com', 'user-theme@gnome-shell-extensions.gcampax.github.com']"
     - key: "/org/gnome/shell/extensions/appindicator/tray-pos"
       value: "'center'"
+
+- name: Install GNOME extensions CLI
+  become_user: "{{ ansible_env.SUDO_USER }}"
+  community.general.pipx:
+    name: gnome-extensions-cli
+    system_site_packages: true
+
+  # add to path

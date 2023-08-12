@@ -12,10 +12,7 @@
   ansible.builtin.include_tasks:
     file: software/tasks/keepassxc.yaml
 
-- name: Software include GNOME terminal
-  ansible.builtin.include_tasks:
-    file: software/tasks/gnome_terminal.yaml
+# Virtualbox
+# echo "deb [arch=amd64 signed-by=/usr/share/keyrings/oracle-virtualbox-2016.gpg] https://download.virtualbox.org/virtualbox/debian $(lsb_release --codename --short 2>/dev/null) contrib" > /etc/apt/sources.list.d/virtualbox.list
 
-- name: Software include Gedit
-  ansible.builtin.include_tasks:
-    file: software/tasks/gedit.yaml
+# wget -O- https://www.virtualbox.org/download/oracle_vbox_2016.asc | gpg --dearmor --yes --output /usr/share/keyrings/oracle-virtualbox-2016.gpg

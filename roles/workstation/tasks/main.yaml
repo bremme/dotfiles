@@ -13,6 +13,10 @@
   ansible.builtin.include_tasks:
     file: system/flatpak.yaml
 
+- name: Install pipx
+  ansible.builtin.package:
+    name: pipx
+
 - name: Included GNOME desktop environment tasks
   ansible.builtin.include_tasks:
     file: desktop_environments/gnome/main.yaml
@@ -22,6 +26,16 @@
 - name: Install software
   ansible.builtin.include_tasks:
     file: software/main.yaml
+
+# More font fixes (fixes ugly Flatpak Firefox fonts)
+# https://github.com/flatpak/flatpak/issues/4571
+- name: Remove ugly X fonts
+  ansible.builtin.package:
+    name:
+      - xfonts-base
+      - xfonts-100dp
+      - xfonts-75dpi
+    state: absent
 
 - name: Copy Template files
   become_user: "{{ ansible_env.SUDO_USER }}"
@@ -34,19 +48,6 @@
     - "README.md"
     - "Powerpoint Presentation.pptx"
     - "Word Document.docx"
-
-# - name: Install workstation snap packages
-#   community.general.snap:
-#     name:
-#       - mqtt-explorer
-#       - drawio
-#       - keepassxc
-#       - bitwarden
-#       - helm
-#       - poedit
-
-# kubectl
-# os
 
 # - name: Print all available facts for debugging
 #   ansible.builtin.debug:
