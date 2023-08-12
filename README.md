@@ -11,6 +11,8 @@ curl deploy/boostrap | sudo bash
 sudo apt install python3-pip
 pip3 install ansible
 
+sudo apt install ansible ansible-lint
+
 run ansible-pull -i pop-os, --vault-password-file /etc/ansible_vault_key -U https://gitlab+deploy-xxxxxxxxx@gitlab.com/xxxxxx/ansible.git
 
 # Run pull

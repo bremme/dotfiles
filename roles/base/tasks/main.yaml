@@ -71,24 +71,16 @@
     creates: $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 
 # Starship
-# font, config (dotfiles), binary (snap?)
 - name: Install Starship
   ansible.builtin.shell:
     cmd: "curl -sS https://starship.rs/install.sh | sh -s -- --yes"
     creates: /usr/local/bin/starship
-
-# - name: Install Starship snap package
-#   become_user: "{{ ansible_env.SUDO_USER }}"
-#   community.general.snap:
-#     name: starship
-#     channel: latest/edge
 
 - name: Install FiraCode font
   ansible.builtin.package:
     name: fonts-firacode
 
 # Homeshick
-# - import_tasks: software/homeshick.yaml
 - name: Install Homeshick
   become_user: "{{ ansible_env.SUDO_USER }}"
   ansible.builtin.git:

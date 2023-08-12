@@ -6,4 +6,5 @@ ansible-playbook \
     --ask-become-pass \
     --connection local \
     --verbose \
+    --tags "new" \
     local.yml

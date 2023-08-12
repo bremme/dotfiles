@@ -2,12 +2,6 @@
 # - name: Load distro specific variables
 #   include_vars: "{{ ansible_distribution }}.yaml"
 
-- name: Load custom keybindings names
-  ansible.builtin.include_vars:
-    file: custom_keybindings.yaml
-    name: custom_keybindings
-  when: ansible_env.XDG_CURRENT_DESKTOP in ['GNOME', 'Unity']
-
 # setup system
 - name: Include setup Flatpak tasks
   ansible.builtin.include_tasks:
@@ -23,6 +17,15 @@
   when: ansible_env.XDG_CURRENT_DESKTOP in ['GNOME', 'Unity']
 
 # install software
+- name: Software include Virtualbox
+  tags: new
+  ansible.builtin.include_tasks:
+    file: software/tasks/virtualbox.yaml
+    apply:
+      tags:
+        - new
+
+
 - name: Install software
   ansible.builtin.include_tasks:
     file: software/main.yaml
@@ -49,6 +52,6 @@
     - "Powerpoint Presentation.pptx"
     - "Word Document.docx"
 
-# - name: Print all available facts for debugging
-#   ansible.builtin.debug:
-#     var: ansible_facts
+- name: Print all available facts for debugging
+  ansible.builtin.debug:
+    var: ansible_facts

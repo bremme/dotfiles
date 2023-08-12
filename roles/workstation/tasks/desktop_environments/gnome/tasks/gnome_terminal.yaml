@@ -4,20 +4,6 @@
       - gnome-terminal
     state: present
 
-# Recent GNOME does not have a default terminal shortcut anymore
-- name: Set GNOME terminal shortcut
-  become_user: "{{ ansible_env.SUDO_USER }}"
-  community.general.dconf:
-    key: "{{ item.key }}"
-    value: "{{ item.value }}"
-  with_items:
-    - key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/{{ custom_keybindings.terminal }}/name"
-      value: "'Open terminal'"
-    - key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/{{ custom_keybindings.terminal }}/command"
-      value: "'gnome-terminal'"
-    - key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/{{ custom_keybindings.terminal }}/binding"
-      value: "'<Primary><Alt>t'"
-
 - name: Set GNOME terminal legacy keybindings
   become_user: "{{ ansible_env.SUDO_USER }}"
   community.general.dconf:
