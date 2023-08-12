@@ -61,39 +61,22 @@ add ssh key to gitea, gogs, github
 
 # application preference
 
-deb if kept up-to-date
 
-snap
-
-flatpack
-
-appimage
-
-custom
+* deb if kept up-to-date
+* flatpack
+* snap
+* appimage
+* tar.gz / binairy etc.
 
 
 # TODO
 
 
-Teamviewer / Rustdesk
-
-
-Displaylink driver
-
-bluetooth devices
-accesspoints
-
-remove all custom keybings
-touchpad click
-
-
+* Teamviewer / Rustdesk
+* Displaylink driver
 * firefox
     * configuration
     * setup sync
-* keepass
-    * autotype shortcut
-    * configuration
-    * keepassxc -platform xcb
 * syncthing
 * nextcloud
 * gnome
@@ -104,40 +87,20 @@ touchpad click
         * folder before files
         * create links
         * delete permanently
-* vs code Faltpak fixes
-    * shell config
-* mkdir git, src, mnt, tmp
-* IntelliJ flatpak
-    * /app/share/jetbrains-flatpak-wrapper
+* New files templates
 
 
-nextcloud configuration ?
-
-* mkdir git, src, mnt
-
-
+bluetooth devices
+accesspoints
 swapiness lower
-
-CTRL+ALT+X -> xkill
-
-GNOME extension UserThemese
-
-sudo ln -s /usr/share/fontconfig/conf.avail/70-no-bitmaps.conf /etc/fonts/conf.d/
-
+hibernation
+hybrid sleep
 
 difference between work and private use
 work:       teams, citrix
 private:    cura, arduino
 
 
-dconf   gnome   add weekday to clock
-
-dconf   nautilus
-            folders before files
-
-FIX keepassxc shortcut??
-
-New files templates?
 
 
 
