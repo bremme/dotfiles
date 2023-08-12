@@ -23,8 +23,10 @@
   ansible.builtin.include_tasks:
     file: software/main.yaml
 
-
-
+- name: Copy Template files
+  ansible.builtin.copy:
+    src: Templates/*
+    dest: $HOME/Templates
 
 
 # - name: Install workstation snap packages
