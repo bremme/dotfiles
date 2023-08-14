@@ -74,37 +74,27 @@ add ssh key to gitea, gogs, github
 # TODO
 
 
-* Teamviewer / Rustdesk
-* Displaylink driver
-* firefox
-    * configuration
-    * setup sync
-* syncthing
-* nextcloud
-* gnome
-    * dark theme
-    * show desktop Super+d
-    * nightlight
-    * nautilus
-        * folder before files
-        * create links
-        * delete permanently
-* New files templates
+* software
+    * syncthing
+    * nextcloud
+    * Teamviewer / Rustdesk
+    * Displaylink driver
+    * Citrix workspace
+    * Cura
+    * IntelliJ
+    * VS Code
+* system
+    * swapiness lower
+    * hibernation
+    * hybrid sleep
+* restore backup
+    * bluetooth devices
+    * accesspoints
 
-
-bluetooth devices
-accesspoints
-swapiness lower
-hibernation
-hybrid sleep
 
 difference between work and private use
 work:       teams, citrix
 private:    cura, arduino
-
-
-
-
 
 # Manual actions
 

@@ -17,3 +17,5 @@
     desktop-file-edit $HOME/.local/share/applications/org.keepassxc.KeePassXC.desktop --set-key=Exec --set-value="keepassxc -platform xcb %f" &&
     update-desktop-database $HOME/.local/share/applications
   when: not desktop_file_exists.stat.exists
+
+  # TODO KeepassXC config (theme, hotkey etc.)

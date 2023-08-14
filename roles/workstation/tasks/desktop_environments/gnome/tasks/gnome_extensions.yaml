@@ -1,0 +1,38 @@
+- name: Install GNOME extension packages
+  ansible.builtin.package:
+    name:
+      - gnome-tweaks
+      - gnome-shell-extensions
+      - gnome-shell-extension-prefs
+      - gnome-shell-extension-manager
+      - gir1.2-gtop-2.0
+      - lm-sensors
+      - nvme-cli
+      - udisks2
+
+- name: Configure GNOME system extensions
+  become_user: "{{ ansible_env.SUDO_USER }}"
+  community.general.dconf:
+    key: "{{ item.key }}"
+    value: "{{ item.value }}"
+  with_items:
+    - key: "/org/gnome/shell/enabled-extensions"
+      value: "['ubuntu-appindicators@ubuntu.com', 'user-theme@gnome-shell-extensions.gcampax.github.com']"
+    - key: "/org/gnome/shell/extensions/appindicator/tray-pos"
+      value: "'center'"
+
+- name: Install GNOME extensions CLI
+  become_user: "{{ ansible_env.SUDO_USER }}"
+  community.general.pipx:
+    name: gnome-extensions-cli
+    system_site_packages: true
+
+- name: Install GNOME user extensions if not installed
+  become_user: "{{ ansible_env.SUDO_USER }}"
+  ansible.builtin.command:
+    cmd: "/home/{{ ansible_env.SUDO_USER }}/.local/bin/gext install {{ item }}"
+    creates: "$HOME/.local/share/gnome-shell/extensions/{{ item }}"
+  loop:
+    - cpufreq@konkor
+    - freon@UshakovVasilii_Github.yahoo.com
+    # - Vitals@CoreCoding.com

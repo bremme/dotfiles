@@ -17,15 +17,6 @@
   when: ansible_env.XDG_CURRENT_DESKTOP in ['GNOME', 'Unity']
 
 # install software
-- name: Software include Virtualbox
-  tags: new
-  ansible.builtin.include_tasks:
-    file: software/tasks/virtualbox.yaml
-    apply:
-      tags:
-        - new
-
-
 - name: Install software
   ansible.builtin.include_tasks:
     file: software/main.yaml
@@ -55,3 +46,11 @@
 - name: Print all available facts for debugging
   ansible.builtin.debug:
     var: ansible_facts
+
+# TEMP only run new stuff
+- name: GNOME extensions
+  tags: new
+  ansible.builtin.include_tasks:
+    file: desktop_environments/gnome/tasks/gnome_extensions.yaml
+    apply:
+      tags: new
