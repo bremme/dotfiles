@@ -18,3 +18,8 @@
     name: virtualbox-7.0
     update_cache: true
   when: ansible_distribution in ["Debian", "Pop!_OS", "Ubuntu"]
+
+- name: Add user to a vboxusers group
+  ansible.builtin.user:
+    name: "{{ ansible_env.SUDO_USER }}"
+    groups: vboxusers
