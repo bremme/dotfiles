@@ -5,6 +5,6 @@ ansible-playbook \
     --limit "$(hostname -f)" \
     --ask-become-pass \
     --connection local \
-    --verbose \
-    --tags "new" \
+    -vvv \
+    "$*" \
     local.yml
