@@ -23,10 +23,13 @@
     - "akamud.vscode-theme-onedark"
     - "PKief.material-icon-theme"
     - "redhat.vscode-yaml"
+    # Markdown
+    - "yzhang.markdown-all-in-one"
+    - "DavidAnson.vscode-markdownlint"
     # Python
     - "ms-python.python"
     - "ms-python.isort"
-    # # Java
+    # Java
     # - "redhat.java"
 
 # ms-python.python
