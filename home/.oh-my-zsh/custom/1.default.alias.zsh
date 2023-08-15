@@ -82,7 +82,7 @@ if command -v exa > /dev/null 2>&1; then
 fi
 
 if command -v batcat > /dev/null 2>&1; then
-   alias cat=batcat
+   alias bat=batcat --plain --paging never
 fi
 
 # Grep from alias
