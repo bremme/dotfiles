@@ -18,4 +18,11 @@
 
 - name: Software include VS Code
   ansible.builtin.include_tasks:
-    file: software/tasks/vs_code.yaml
+    file: software/tasks/ms_vs_code.yaml
+
+- name: Software include MS Edge
+  tags: edge
+  ansible.builtin.include_tasks:
+    file: software/tasks/ms_edge.yaml
+    apply:
+      tags: edge

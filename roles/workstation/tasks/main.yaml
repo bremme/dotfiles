@@ -3,54 +3,50 @@
 #   include_vars: "{{ ansible_distribution }}.yaml"
 
 # setup system
-- name: Include setup Flatpak tasks
-  ansible.builtin.include_tasks:
-    file: system/flatpak.yaml
+- ansible.builtin.include_tasks: system/flatpak.yaml
+- ansible.builtin.include_tasks: system/templates.yaml
+- ansible.builtin.include_tasks: system/pipx.yaml
+- ansible.builtin.include_tasks: system/fonts.yaml
 
-- name: Install pipx
-  ansible.builtin.package:
-    name: pipx
-
+# setup desktop environment
 - name: Included GNOME desktop environment tasks
   ansible.builtin.include_tasks:
     file: desktop_environments/gnome/main.yaml
   when: ansible_env.XDG_CURRENT_DESKTOP in ['GNOME', 'Unity']
 
 # install software
-- name: Install software
-  ansible.builtin.include_tasks:
-    file: software/main.yaml
+# - name: Install software
+#   ansible.builtin.include_tasks:
+#     file: software/main.yaml
+- ansible.builtin.include_tasks: software/tasks/default_package.yaml
+- ansible.builtin.include_tasks: software/tasks/virtualbox.yaml
+- ansible.builtin.include_tasks: software/tasks/flameshot.yaml
+- ansible.builtin.include_tasks: software/tasks/keepassxc.yaml
+- ansible.builtin.include_tasks: software/tasks/ms_vs_code.yaml
+- ansible.builtin.include_tasks: software/tasks/ms_edge.yaml
+- ansible.builtin.include_tasks:
+    file: software/tasks/firefox.yaml
+    apply:
+      tags: firefox
+  tags: firefox
 
-# More font fixes (fixes ugly Flatpak Firefox fonts)
-# https://github.com/flatpak/flatpak/issues/4571
-- name: Remove ugly X fonts
-  ansible.builtin.package:
-    name:
-      - xfonts-base
-      - xfonts-100dp
-      - xfonts-75dpi
-    state: absent
 
-- name: Copy Template files
-  become_user: "{{ ansible_env.SUDO_USER }}"
-  ansible.builtin.copy:
-    src: "Templates/{{ item }}"
-    dest: "$HOME/Templates/{{ item }}"
-  with_items:
-    - "Excel Sheet.xlsx"
-    - "NOTES.md"
-    - "README.md"
-    - "Powerpoint Presentation.pptx"
-    - "Word Document.docx"
-
+# Other
 - name: Print all available facts for debugging
   ansible.builtin.debug:
     var: ansible_facts
 
 # TEMP only run new stuff
-- name: GNOME extensions
-  tags: new
-  ansible.builtin.include_tasks:
-    file: desktop_environments/gnome/tasks/gnome_extensions.yaml
-    apply:
-      tags: new
+# - name: Software include MS Edge
+#   tags: edge
+#   ansible.builtin.include_tasks:
+#     file: software/tasks/ms_edge.yaml
+#     apply:
+#       tags: edge
+
+# - name: GNOME extensions
+#   tags: new
+#   ansible.builtin.include_tasks:
+#     file: desktop_environments/gnome/tasks/gnome_extensions.yaml
+#     apply:
+#       tags: new
