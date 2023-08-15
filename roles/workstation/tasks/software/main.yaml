@@ -15,3 +15,7 @@
 - name: Software include KeepassXC
   ansible.builtin.include_tasks:
     file: software/tasks/keepassxc.yaml
+
+- name: Software include VS Code
+  ansible.builtin.include_tasks:
+    file: software/tasks/vs_code.yaml
