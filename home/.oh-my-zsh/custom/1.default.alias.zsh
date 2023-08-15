@@ -81,6 +81,10 @@ if command -v exa > /dev/null 2>&1; then
    alias ll="exa -g --group-directories-first --icons"
 fi
 
+if command -v batcat > /dev/null 2>&1; then
+   alias cat=batcat
+fi
+
 # Grep from alias
 alias grepa="alias | grep -i"
 # Grep from env
