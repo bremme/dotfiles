@@ -24,11 +24,9 @@
 - ansible.builtin.include_tasks: software/tasks/keepassxc.yaml
 - ansible.builtin.include_tasks: software/tasks/ms_vs_code.yaml
 - ansible.builtin.include_tasks: software/tasks/ms_edge.yaml
-- ansible.builtin.include_tasks:
-    file: software/tasks/firefox.yaml
-    apply:
-      tags: firefox
-  tags: firefox
+- ansible.builtin.include_tasks: software/tasks/firefox.yaml
+- ansible.builtin.include_tasks: software/tasks/python.yaml
+- ansible.builtin.import_tasks: software/tasks/node.yaml
 
 
 # Other
