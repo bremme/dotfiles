@@ -26,4 +26,13 @@ if [ -d "$HOME/.nvm" ]; then
     load_nvm
     npm "$@"
   }
+
+  uninstall_nvm() {
+    rm -r $NVM_DIR
+    unset -f nvm
+    unset -f node
+    unset -f npm
+    unset -f load_nvm
+    unset NVM_DIR
+  }
 fi
