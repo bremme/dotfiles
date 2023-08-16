@@ -22,7 +22,7 @@
     state: absent
 
 - name: Install restricted extra's on Debian
-  ansible.builtin.package:
+  ansible.builtin.apt:
     name:
     # Install restricted-extras
     - ttf-mscorefonts-installer
@@ -40,7 +40,6 @@
 - name: Install multiple Flatpak packages
   community.general.flatpak:
     name:
-      - org.mozilla.firefox
       - com.bitwarden.desktop
       - com.jgraph.drawio.desktop
       - com.emqx.MQTTX

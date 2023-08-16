@@ -1,6 +1,11 @@
 # https://support.mozilla.org/en-US/kb/install-firefox-linux
 # https://wiki.debian.org/Firefox
 
+# - name: Install Firefox Flatpak
+#   community.general.flatpak:
+#     name:
+#       - org.mozilla.firefox
+
 - name: Install firefox dependencies
   ansible.builtin.package:
     name: libdbus-glib-1-2
@@ -34,7 +39,7 @@
 
 # TODO add systemd env variables -> should be loaded for all Wayland sessions
 # ~/.config/environment.d/envvars.conf
-# 
+#
 
 # Set as default browser
 # https://wiki.debian.org/DefaultWebBrowser

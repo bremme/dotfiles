@@ -15,6 +15,12 @@ sudo apt install ansible ansible-lint
 
 run ansible-pull -i pop-os, --vault-password-file /etc/ansible_vault_key -U https://gitlab+deploy-xxxxxxxxx@gitlab.com/xxxxxx/ansible.git
 
+# Install dependencies
+
+```shell
+ansible-galaxy collection install -r requirements.yaml
+``````
+
 # Run pull
 
 ansible-pull \
