@@ -99,6 +99,7 @@
     "workbench.experimental.settingsProfiles.enabled": true,
     "redhat.telemetry.enabled": false,
     "files.autoSave": "afterDelay",
+    "git.confirmSync": false,
 
 
     // "java.format.settings.url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
