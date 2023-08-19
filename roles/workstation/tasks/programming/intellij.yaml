@@ -1,2 +1,17 @@
 # remove flatpak and use the jetbrains toolbox I guess
 # https://download.jetbrains.com/toolbox/jetbrains-toolbox-1.28.1.15219.tar.gz
+
+# plugins
+Lombok
+
+Cucumber for Java
+Markdown
+Ini
+
+SonarLint
+
+One Dark theme
+
+# plugins optional
+Docker
+Protocol Buffers

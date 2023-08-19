@@ -100,3 +100,9 @@
   ansible.builtin.shell:
     cmd: $HOME/.homesick/repos/homeshick/bin/homeshick link dotfiles --batch --force
     creates: $HOME/.link-dotfiles-has-run
+
+
+# TODO docker
+
+# permission denied while trying to connect to the Docker daemon socket
+# sudo usermod -aG docker $USER
