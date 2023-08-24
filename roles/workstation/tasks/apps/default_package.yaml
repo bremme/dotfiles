@@ -48,6 +48,7 @@
       - org.signal.Signal
       - com.discordapp.Discord
       - com.github.IsmaelMartinez.teams_for_linux
+      - io.missioncenter.MissionCenter
     state: present
 
 - name: Install snap packages

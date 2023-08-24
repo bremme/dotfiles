@@ -89,6 +89,7 @@ add ssh key to gitea, gogs, github
   * Cura
   * IntelliJ
   * VS Code
+  * kubeseal
 * system
   * swapiness lower
   * hibernation
