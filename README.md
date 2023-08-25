@@ -94,6 +94,9 @@ add ssh key to gitea, gogs, github
     * fix links
     * fix plugin links
     * run xdg_register
+  * sdkman ?
+  * angular ?
+  * mongo client / compas
 * system
   * swapiness lower
   * hibernation
