@@ -1,0 +1,45 @@
+# Install pyenv
+- name: Install pyenv build dependencies
+  ansible.builtin.apt:
+    name:
+      - build-essential
+      - libssl-dev
+      - zlib1g-dev
+      - libbz2-dev
+      - libreadline-dev
+      - libsqlite3-dev
+      - curl
+      - libncursesw5-dev
+      - xz-utils
+      - tk-dev
+      - libxml2-dev
+      - libxmlsec1-dev
+      - libffi-dev
+      - liblzma-dev
+  when: ansible_distribution in ["Debian", "Pop!_OS", "Ubuntu"]
+
+# TODO Arch depenencies
+# pacman -S --needed base-devel openssl zlib xz tk
+
+- name: Install pyenv
+  become_user: "{{ ansible_env.SUDO_USER }}"
+  ansible.builtin.shell:
+    cmd: curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
+    creates: $HOME/.pyenv
+
+- name: Install latest Python 2
+  become_user: "{{ ansible_env.SUDO_USER }}"
+  ansible.builtin.shell:
+    cmd: pyenv install --skip-existing 2
+    creates: $HOME/.pyenv/versions/2.*
+
+- name: Install latest Python 3
+  become_user: "{{ ansible_env.SUDO_USER }}"
+  ansible.builtin.shell:
+    cmd: |
+      pyenv install --skip-existing 3
+      pyenv global 3
+    creates: $HOME/.pyenv/versions/3.*
+
+# TODO install some default packages
+# pip install -U pip wheel ipython ipdb pytest flake8 flake8-isort pep8-naming flake8-docstrings flake8-bugbear pylint black isort

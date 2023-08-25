@@ -18,4 +18,12 @@
     update-desktop-database $HOME/.local/share/applications
   when: not desktop_file_exists.stat.exists
 
-  # TODO KeepassXC config (theme, hotkey etc.)
+- name: Add autostart KeePassXC link
+  become_user: "{{ ansible_env.SUDO_USER }}"
+  ansible.builtin.file:
+    src: $HOME/.local/share/applications/org.keepassxc.KeePassXC.desktop
+    dest: $HOME/.config/autostart/org.keepassxc.KeePassXC.desktop
+    state: link
+
+# TODO KeepassXC config (theme, hotkey etc.)
+

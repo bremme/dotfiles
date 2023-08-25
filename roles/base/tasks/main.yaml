@@ -2,10 +2,14 @@
   ansible.builtin.package:
     name:
       - apt-transport-https
-      - bash-completion
       - build-essential
-      - bzip2
       - command-not-found
+      - snapd
+      - gpg
+      - apt-transport-https
+      - ca-certificates
+      - python3-pip
+      # cli tools
       - curl
       - fzf
       - git
@@ -14,18 +18,16 @@
       - fortune
       - htop
       - jq
+      - tree
+      - wget
+      - nmap
+      - bat
+      - exa
+      - bash-completion
       - neofetch
       - rsync
       - tar
-      - tree
-      - wget
-      - snapd
-      - gpg
-      - apt-transport-https
-      - nmap
-      - ca-certificates
-      - python3-pip
-
+      - bzip2
 
 - name: Install snap packages
   community.general.snap:
@@ -125,3 +127,9 @@
           - docker-compose-plugin
         update_cache: true
   when: ansible_distribution == "Debian"
+
+- name: Add user to a docker group
+  ansible.builtin.user:
+    name: "{{ ansible_env.SUDO_USER }}"
+    groups: docker
+    append: true

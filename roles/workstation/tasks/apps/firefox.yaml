@@ -1,0 +1,66 @@
+# https://support.mozilla.org/en-US/kb/install-firefox-linux
+# https://wiki.debian.org/Firefox
+
+# - name: Install Firefox Flatpak
+#   community.general.flatpak:
+#     name:
+#       - org.mozilla.firefox
+
+- name: Install firefox dependencies
+  ansible.builtin.package:
+    name: libdbus-glib-1-2
+
+- name: Download and install firefox
+  ansible.builtin.shell:
+    chdir: /tmp
+    cmd: |
+      #!/bin/bash
+
+      # Download and install firefox
+      wget \
+        --content-disposition \
+        'https://download.mozilla.org/?product=firefox-latest-ssl&os=linux64&lang=en-US'
+      tar xjf firefox-*.tar.bz2
+      mv firefox /opt
+      ln -sf /opt/firefox/firefox /usr/local/bin/firefox
+    creates: /opt/firefox
+
+- name: Add firefox desktop shortcut
+  ansible.builtin.shell:
+    cmd: |
+      #!/bin/bash
+      wget --quit https://raw.githubusercontent.com/mozilla/sumo-kb/main/install-firefox-linux/firefox.desktop -P /usr/share/applications
+      desktop-file-edit /usr/share/applications/firefox.desktop --set-key=Name --set-value="Firefox (Mozilla build)"
+      # TODO untested
+      if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
+        desktop-file-edit /usr/share/applications/firefox.desktop --set-key=Exec --set-value="env MOZ_ENABLE_WAYLAND=1 firefox %u"
+      fi
+    creates: /usr/share/applications/firefox.desktop
+
+# TODO add systemd env variables -> should be loaded for all Wayland sessions
+# ~/.config/environment.d/envvars.conf
+#
+
+# Set as default browser
+# https://wiki.debian.org/DefaultWebBrowser
+# update-alternatives --install /usr/bin/x-www-browser x-www-browser /opt/firefox/firefox 200
+# update-alternatives --set x-www-browser /opt/firefox/firefox
+
+# about:config
+# media.ffmpeg.vaapi.enabled = true
+# browser.tabs.insertAfterCurrent = true
+
+
+# Firefox PWA
+# # Install required packages for third-party repositories
+# sudo apt update
+# sudo apt install debian-archive-keyring # Debian-only
+# sudo apt install curl gpg apt-transport-https
+
+# # Import GPG key and enable the repository
+# curl -fsSL https://packagecloud.io/filips/FirefoxPWA/gpgkey | gpg --dearmor | sudo tee /usr/share/keyrings/firefoxpwa-keyring.gpg > /dev/null
+# echo "deb [signed-by=/usr/share/keyrings/firefoxpwa-keyring.gpg] https://packagecloud.io/filips/FirefoxPWA/any any main" | sudo tee /etc/apt/sources.list.d/firefoxpwa.list > /dev/null
+
+# # Refresh repositories and install the package
+# sudo apt update
+# sudo apt install firefoxpwa

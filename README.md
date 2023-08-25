@@ -11,9 +11,15 @@ curl deploy/boostrap | sudo bash
 sudo apt install python3-pip
 pip3 install ansible
 
-sudo apt install ansible ansible-lint
+sudo apt install ansible ansible-lint cowsay
 
 run ansible-pull -i pop-os, --vault-password-file /etc/ansible_vault_key -U https://gitlab+deploy-xxxxxxxxx@gitlab.com/xxxxxx/ansible.git
+
+# Install dependencies
+
+```shell
+ansible-galaxy collection install -r requirements.yaml
+``````
 
 # Run pull
 
@@ -75,21 +81,36 @@ add ssh key to gitea, gogs, github
 
 
 * software
-    * syncthing
-    * nextcloud
-    * Teamviewer / Rustdesk
-    * Displaylink driver
-    * Citrix workspace
-    * Cura
-    * IntelliJ
-    * VS Code
+  * syncthing
+  * nextcloud
+  * Teamviewer / Rustdesk
+  * Displaylink driver
+  * Citrix workspace
+  * Cura
+  * IntelliJ
+  * VS Code
+  * kubeseal
+  * Camunda
+    * fix links
+    * fix plugin links
+    * run xdg_register
+  * sdkman ?
+  * angular ?
+  * mongo client / compas
 * system
-    * swapiness lower
-    * hibernation
-    * hybrid sleep
+  * swapiness lower
+  * hibernation
+  * hybrid sleep
 * restore backup
-    * bluetooth devices
-    * accesspoints
+  * bluetooth devices
+  * accesspoints
+
+kubeseal
+oc
+netscaler-proxy
+netscaler-proxy-manual
+
+github signed commits
 
 
 difference between work and private use

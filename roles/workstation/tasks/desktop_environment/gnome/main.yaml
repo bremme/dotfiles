@@ -3,25 +3,26 @@
     file: custom_keybindings.yaml
     name: custom_keybindings
 
+
 - name: GNOME desktop environment media keys
   ansible.builtin.include_tasks:
-    file: desktop_environments/gnome/tasks/media_keys.yaml
+    file: desktop_environment/gnome/tasks/media_keys.yaml
 
 - name: GNOME desktop environment custom keybindings
   ansible.builtin.include_tasks:
-    file: desktop_environments/gnome/tasks/custom_keybindings.yaml
+    file: desktop_environment/gnome/tasks/custom_keybindings.yaml
 
 - name: GNOME desktop environment GNOME terminal
   ansible.builtin.include_tasks:
-    file: desktop_environments/gnome/tasks/gnome_terminal.yaml
+    file: desktop_environment/gnome/tasks/gnome_terminal.yaml
 
 - name: GNOME desktop environment Gedit
   ansible.builtin.include_tasks:
-    file: desktop_environments/gnome/tasks/gedit.yaml
+    file: desktop_environment/gnome/tasks/gedit.yaml
 
 - name: GNOME filemanager
   ansible.builtin.include_tasks:
-    file: desktop_environments/gnome/tasks/filemanager.yaml
+    file: desktop_environment/gnome/tasks/filemanager.yaml
 
 - name: Set general GNOME dconf settings
   become_user: "{{ ansible_env.SUDO_USER }}"
@@ -47,6 +48,8 @@
     # GNOME shell
     - key: "/org/gnome/shell/weather/automatic-location"
       value: "true"
+    - key: "/org/gnome/shell/overrides/attach-modal-dialogs"
+      value: "false"
     # GNOME window manager
     - key: "/org/gnome/desktop/wm/keybindings/show-desktop"
       value: ['<Super>d']
@@ -57,8 +60,11 @@
       value: "true"
     - key: "/org/gnome/settings-daemon/plugins/color/night-light-temperature"
       value: "3700"
+    # GNOME mutter
+    - key: "/org/gnome/mutter/attach-modal-dialogs"
+      value: "false"
 
 # GNOME extensions
 - name: GNOME extensions
   ansible.builtin.include_tasks:
-    file: desktop_environments/gnome/tasks/gnome_extensions.yaml
+    file: desktop_environment/gnome/tasks/gnome_extensions.yaml
