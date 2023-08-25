@@ -90,6 +90,10 @@ add ssh key to gitea, gogs, github
   * IntelliJ
   * VS Code
   * kubeseal
+  * Camunda
+    * fix links
+    * fix plugin links
+    * run xdg_register
 * system
   * swapiness lower
   * hibernation
