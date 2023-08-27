@@ -1,6 +1,5 @@
 {
     "workbench.iconTheme": "material-icon-theme",
-    "workbench.colorTheme": "Atom One Dark",
     "editor.fontFamily": "'Fira Code','Droid Sans Mono', 'monospace', monospace",
     "editor.fontSize": 16,
     "editor.fontWeight": "500",
