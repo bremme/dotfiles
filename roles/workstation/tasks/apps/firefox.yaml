@@ -6,11 +6,13 @@
 #     name:
 #       - org.mozilla.firefox
 
+# Install firefox from mozilla.org #####################################################
 - name: Install firefox dependencies
   ansible.builtin.package:
     name: libdbus-glib-1-2
 
 - name: Download and install firefox
+  become_user: "{{ ansible_env.SUDO_USER }}"
   ansible.builtin.shell:
     chdir: /tmp
     cmd: |
@@ -21,21 +23,27 @@
         --content-disposition \
         'https://download.mozilla.org/?product=firefox-latest-ssl&os=linux64&lang=en-US'
       tar xjf firefox-*.tar.bz2
-      mv firefox /opt
-      ln -sf /opt/firefox/firefox /usr/local/bin/firefox
-    creates: /opt/firefox
+      mv firefox $HOME/apps
+      ln -sf $HOME/apps/firefox/firefox /$HOME/bin/firefox
+    creates: $HOME/apps/firefox
 
 - name: Add firefox desktop shortcut
+  become_user: "{{ ansible_env.SUDO_USER }}"
   ansible.builtin.shell:
     cmd: |
       #!/bin/bash
-      wget --quit https://raw.githubusercontent.com/mozilla/sumo-kb/main/install-firefox-linux/firefox.desktop -P /usr/share/applications
-      desktop-file-edit /usr/share/applications/firefox.desktop --set-key=Name --set-value="Firefox (Mozilla build)"
+      wget --quit https://raw.githubusercontent.com/mozilla/sumo-kb/main/install-firefox-linux/firefox.desktop -P $HOME/.local/share/applications
+      desktop-file-edit $HOME/.local/share/applications/firefox.desktop --set-key=Name --set-value="Firefox (Mozilla build)"
       # TODO untested
       if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
-        desktop-file-edit /usr/share/applications/firefox.desktop --set-key=Exec --set-value="env MOZ_ENABLE_WAYLAND=1 firefox %u"
+        desktop-file-edit $HOME/.local/share/applications/firefox.desktop --set-key=Exec --set-value="env MOZ_ENABLE_WAYLAND=1 firefox %u"
       fi
-    creates: /usr/share/applications/firefox.desktop
+    creates: $HOME/.local/share/applications/firefox.desktop
+
+# Firefox about:config #################################################################
+
+
+
 
 # TODO add systemd env variables -> should be loaded for all Wayland sessions
 # ~/.config/environment.d/envvars.conf
