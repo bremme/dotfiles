@@ -19,7 +19,7 @@ run ansible-pull -i pop-os, --vault-password-file /etc/ansible_vault_key -U http
 
 ```shell
 ansible-galaxy collection install -r requirements.yaml
-``````
+```
 
 # Run pull
 
@@ -97,6 +97,8 @@ add ssh key to gitea, gogs, github
   * sdkman ?
   * angular ?
   * mongo client / compas
+  * nemo bookmarks
+  * us international with dead keys
 * system
   * swapiness lower
   * hibernation
@@ -127,3 +129,58 @@ sign in to Firefox sync
     services.sync.prefs.sync.browser.tabs.insertAfterCurrent
     It is probably possible to sync about:config settings https://support.mozilla.org/en-US/kb/sync-custom-preferences#
     Maybe this services.sync.prefs.dangerously_allow_arbitrary is also required?
+
+
+    this is the whitelist: services.sync.prefs.sync
+
+# Create swap file
+
+dd if=/dev/zero of=/swapfile bs=1M count=32k status=progress
+chmod 600 /swapfile
+mkswap /swapfile
+swapon /swapfile
+
+/etc/fstab
+
+```shell
+# <file system>   <mount point>   <type>  <options>   <dump> <pass>
+/swapfile         none            swap    sw          0       0
+```
+
+echo "vm.swappiness=10" >> /etc/sysctl.conf
+
+https://wiki.debian.org/Hibernation/Hibernate_Without_Swap_Partition
+
+
+
+# Laptop
+
+laptop-mode-tool
+Laptop Mode Tools
+https://wiki.archlinux.org/title/Laptop_Mode_Tools
+https://github.com/rickysarraf/laptop-mode-tools
+
+TLP - https://linrunner.de/tlp/
+
+
+powertop
+auto cpu freq
+
+indicator-cpufreq
+
+thermald (intel only?)
+
+amd_pstate?
+
+## CPU frequency scaling
+
+https://wiki.archlinux.org/title/CPU_frequency_scaling
+
+Enable amd_pstate
+
+
+This all seems realted to the GNOME profile switching, not sure what it actually does?
+
+power-profiles-daemon
+powerprofilesctl get
+

@@ -27,18 +27,18 @@
     cmd: curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
     creates: $HOME/.pyenv
 
-- name: Install latest Python 2
+- name: Compile and install latest Python 2
   become_user: "{{ ansible_env.SUDO_USER }}"
   ansible.builtin.shell:
-    cmd: pyenv install --skip-existing 2
+    cmd: $HOME/.pyenv/bin/pyenv install --skip-existing 2
     creates: $HOME/.pyenv/versions/2.*
 
-- name: Install latest Python 3
+- name: Compile and install latest Python 3
   become_user: "{{ ansible_env.SUDO_USER }}"
   ansible.builtin.shell:
     cmd: |
-      pyenv install --skip-existing 3
-      pyenv global 3
+      $HOME/.pyenv/bin/pyenv install --skip-existing 3
+      $HOME/.pyenv/bin/pyenv global 3
     creates: $HOME/.pyenv/versions/3.*
 
 # TODO install some default packages
