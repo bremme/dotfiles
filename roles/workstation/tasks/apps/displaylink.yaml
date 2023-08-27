@@ -1,3 +1,7 @@
+# Install Displaylink using Synaptics APT Repository
+# https://www.synaptics.com/products/displaylink-graphics/downloads/ubuntu
+
+
 # download https://www.synaptics.com/sites/default/files/Ubuntu/pool/stable/main/all/synaptics-repository-keyring.deb
 
 # sudo apt install ./Downloads/synaptics-repository-keyring.deb
@@ -8,9 +12,28 @@
 
 # DID NOT WORK ON DEBIAN
 
-# MANUAL WORKS BETTTER
+# Install using Latest Official Driver #################################################
+# https://support.displaylink.com/knowledgebase/articles/684649
+- name: Install Displaylink dependencies
+  ansible.builtin.package:
+    name:
+      - dkms
+      - libdrm-dev
 
-# download https://www.synaptics.com/sites/default/files/exe_files/2023-04/DisplayLink%20USB%20Graphics%20Software%20for%20Ubuntu5.7-EXE.zip
-# unzip
-# chmod +x displaylink-driver-5.7.0-61.129.run
-# sudo ./displaylink-driver-5.7.0-61.129.run --quiet --accept
+- name: Download and install Displaylink 5.8
+  become_user: "{{ ansible_env.SUDO_USER }}"
+  ansible.builtin.shell:
+    chdir: /tmp
+    cmd: |
+      #!/bin/bash
+      wget \
+        --content-disposition \
+        'https://www.synaptics.com/sites/default/files/exe_files/2023-08/DisplayLink%20USB%20Graphics%20Software%20for%20Ubuntu5.8-EXE.zip'
+      unzip DisplayLink*.zip
+      chmod +x displaylink-driver-*.run
+      ./displaylink-driver-*.run --quiet --accept
+    created: /opt/displaylink
+
+# To uninstall
+# sudo displaylink-installer uninstall
+
