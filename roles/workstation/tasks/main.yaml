@@ -5,6 +5,7 @@
 # setup system
 - ansible.builtin.include_tasks: system/flatpak.yaml
 - ansible.builtin.include_tasks: system/pipx.yaml
+- ansible.builtin.import_tasks: system/system.yaml
 - ansible.builtin.include_tasks: system/templates.yaml
 - ansible.builtin.include_tasks: system/fonts.yaml
 
