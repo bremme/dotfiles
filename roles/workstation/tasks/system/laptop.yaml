@@ -1,0 +1,11 @@
+# Try to fix random wakeup from suspend
+# https://wiki.archlinux.org/title/Power_management/Suspend_and_hibernate#System_does_not_power_off_when_hibernating
+
+- name: Copy udev rules to prevent i2c device wakeup
+  ansible.builtin.copy:
+    src: etc/udev/rules.d/99-avoid-i2c-wakeup.rules
+    dest: /etc/udev/rules.d/99-avoid-i2c-wakeup.rules
+    owner: root
+    group: root
+    mode: 0644
+  when: ansible_product_name == "HP ProBook 445 G8 Notebook PC"
