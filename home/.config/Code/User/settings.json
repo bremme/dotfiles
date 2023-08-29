@@ -1,6 +1,5 @@
 {
     "workbench.iconTheme": "material-icon-theme",
-    "workbench.colorTheme": "Atom One Dark",
     "editor.fontFamily": "'Fira Code','Droid Sans Mono', 'monospace', monospace",
     "editor.fontSize": 16,
     "editor.fontWeight": "500",
@@ -64,7 +63,7 @@
     "python.linting.mypyEnabled": true,
 
     "python.analysis.autoImportCompletions": true,
-    "python.analysis.autoImportUserSymbols": true,
+
 
 
     // Jupyter notebook ////////////////////////////////////////////////////////////////
@@ -100,6 +99,11 @@
     "redhat.telemetry.enabled": false,
     "files.autoSave": "afterDelay",
     "git.confirmSync": false,
+    "git.autofetch": true,
+    "[markdown]": {
+        "editor.defaultFormatter": "yzhang.markdown-all-in-one"
+    },
+    "workbench.colorTheme": "One Dark Pro Darker",
 
 
     // "java.format.settings.url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
