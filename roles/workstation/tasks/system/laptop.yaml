@@ -9,3 +9,13 @@
     group: root
     mode: 0644
   when: ansible_product_name == "HP ProBook 445 G8 Notebook PC"
+
+- name: Install TLP
+  ansible.builtin.package:
+    name:
+      - tlp
+
+- name: Install TLPUI
+  community.general.flatpak:
+    name:
+      - com.github.d4nj1.tlpui
