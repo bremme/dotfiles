@@ -184,3 +184,17 @@ This all seems realted to the GNOME profile switching, not sure what it actually
 power-profiles-daemon
 powerprofilesctl get
 
+## random wakeup from suspend
+
+find i2c device that could cause wakeup
+ls /sys/bus/i2c/devices/*/power/wakeup
+
+disable it temporarely
+echo "disabled" | sudo tee /sys/bus/i2c/devices/i2c-ELAN0735:00/power/wakeup
+
+test if suspend still works
+
+Make it persistent
+/etc/udev/rules.d/99-avoid-i2c-wakeup.rules
+
+KERNEL=="i2c-ELAN0735:00", SUBSYSTEM=="i2c", ATTR{power/wakeup}="disabled"
