@@ -19,18 +19,62 @@
     cmd: "code --profile Default --install-extension {{ item }}"
     creates: "$HOME/.vscode/extensions/{{ item }}*"
   with_items:
-    # Default
-    - "GitHub.github-vscode-theme"
-    - "akamud.vscode-theme-onedark"
-    - "PKief.material-icon-theme"
-    - "redhat.vscode-yaml"
+    # Theming
+    - GitHub.github-vscode-theme
+    - akamud.vscode-theme-onedark
+    - zhuangtongfa.material-theme
+    # Icons
+    - PKief.material-icon-theme
+    # Spellcheck
+    - streetsidesoftware.code-spell-checker
+    - streetsidesoftware.code-spell-checker-dutch
+    # Copilot
+    - GitHub.copilot
+    - GitHub.copilot-labs
+    - GitHub.copilot-chat
     # Markdown
-    - "yzhang.markdown-all-in-one"
-    - "DavidAnson.vscode-markdownlint"
+    - yzhang.markdown-all-in-one
+    - DavidAnson.vscode-markdownlint
+    # Yaml
+    - redhat.vscode-yaml
     # Python
-    - "ms-python.python"
-    - "ms-python.isort"
-    # Java
-    # - "redhat.java"
+    - ms-python.python
+    - ms-python.vscode-pylance
+    - ms-python.black-formatter
+    - ms-python.flake8
+    - ms-python.isort
+    - ms-python.pylint
 
-# ms-python.python
+# Java profile
+- name: Install VS Code extensions
+  become_user: "{{ ansible_env.SUDO_USER }}"
+  ansible.builtin.shell:
+    cmd: "code --profile Java --install-extension {{ item }}"
+    creates: "$HOME/.vscode/extensions/{{ item }}*"
+  with_items:
+    # Theming
+    - GitHub.github-vscode-theme
+    - akamud.vscode-theme-onedark
+    - zhuangtongfa.material-theme
+    # Icons
+    - PKief.material-icon-theme
+    # Spellcheck
+    - streetsidesoftware.code-spell-checker
+    - streetsidesoftware.code-spell-checker-dutch
+    # Copilot
+    - GitHub.copilot
+    - GitHub.copilot-labs
+    - GitHub.copilot-chat
+    # Markdown
+    - yzhang.markdown-all-in-one
+    - DavidAnson.vscode-markdownlint
+    # Yaml
+    - redhat.vscode-yaml
+    # Sonar
+    - SonarSource.sonarlint-vscode
+    # Java
+    - vscjava.vscode-java-pack  # Includes 6 extensions
+    - vscjava.vscode-gradle
+    - vscjava.vscode-lombok
+    - vmware.vscode-boot-dev-pack
+
