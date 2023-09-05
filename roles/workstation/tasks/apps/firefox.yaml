@@ -8,10 +8,12 @@
 
 # Install firefox from mozilla.org #####################################################
 - name: Install firefox dependencies
+  tags: firefox
   ansible.builtin.package:
     name: libdbus-glib-1-2
 
 - name: Download and install firefox
+  tags: firefox
   become_user: "{{ ansible_env.SUDO_USER }}"
   ansible.builtin.shell:
     chdir: /tmp
@@ -28,15 +30,17 @@
     creates: $HOME/apps/firefox
 
 - name: Add firefox desktop shortcut
+  tags: firefox
   become_user: "{{ ansible_env.SUDO_USER }}"
   ansible.builtin.shell:
     cmd: |
       #!/bin/bash
-      wget --quit https://raw.githubusercontent.com/mozilla/sumo-kb/main/install-firefox-linux/firefox.desktop -P $HOME/.local/share/applications
+      wget --quiet https://raw.githubusercontent.com/mozilla/sumo-kb/main/install-firefox-linux/firefox.desktop -P $HOME/.local/share/applications
       desktop-file-edit $HOME/.local/share/applications/firefox.desktop --set-key=Name --set-value="Firefox (Mozilla build)"
       # TODO untested
       if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
-        desktop-file-edit $HOME/.local/share/applications/firefox.desktop --set-key=Exec --set-value="env MOZ_ENABLE_WAYLAND=1 firefox %u"
+        desktop-file-edit $HOME/.local/share/applications/firefox.desktop --set-key=Exec --set-value="env MOZ_ENABLE_WAYLAND=1 $HOME/apps/firefox/firefox %u"
+        desktop-file-edit $HOME/.local/share/applications/firefox.desktop --set-key=Icon --set-value="$HOME/apps/firefox/browser/chrome/icons/default/default128.png"
       fi
     creates: $HOME/.local/share/applications/firefox.desktop
 
