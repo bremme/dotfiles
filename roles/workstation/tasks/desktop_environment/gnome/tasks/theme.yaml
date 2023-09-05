@@ -1,9 +1,35 @@
 # best themes in the apt repo's
 
 
-
+# icon themes
 # numix-icon-theme
 # numix-icon-theme-circle
 # papirus-icon-theme
 # faenza-icon-theme
 # obsidian-icon-theme
+
+# shell themes
+# orchis-gtk-theme
+# materia-gtk-theme
+
+
+# Yaru
+# yaru-theme-gnome-shell
+# yaru-theme-gtk
+# yaru-theme-icon
+# yaru-theme-sound
+# yaru-theme-unity
+
+# Write a ansible task to install the following themes:
+# numix-icon-theme, numix-icon-theme-circle, papirus-icon-theme, faenza-icon-theme,
+# obsidian-icon-theme, yaru-theme-icon
+- name: Install GNOME themes
+  ansible.builtin.package:
+    name:
+      - numix-icon-theme
+      - numix-icon-theme-circle
+      - papirus-icon-theme
+      - faenza-icon-theme
+      - obsidian-icon-theme
+      - yaru-theme-icon
+
