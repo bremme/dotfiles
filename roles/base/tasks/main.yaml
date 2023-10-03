@@ -29,6 +29,7 @@
       - rsync
       - tar
       - bzip2
+      - zip
 
 - name: Install snap packages
   community.general.snap:
