@@ -3,6 +3,7 @@
     name:
       - apt-transport-https
       - build-essential
+      - cmake
       - command-not-found
       - snapd
       - gpg

@@ -22,7 +22,7 @@
 - ansible.builtin.include_tasks: apps/flameshot.yaml
 - ansible.builtin.include_tasks: apps/keepassxc.yaml
 - ansible.builtin.include_tasks: apps/ms_edge.yaml
-- ansible.builtin.include_tasks: apps/firefox.yaml
+- ansible.builtin.import_tasks: apps/firefox.yaml
 
 # Install programming
 - ansible.builtin.import_tasks: programming/ms_vs_code.yaml
