@@ -118,10 +118,6 @@ fi
 if command -v starship > /dev/null 2>&1; then
   eval "$(starship init zsh)"
 fi
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/alliander/.sdkman"
-[[ -s "/home/alliander/.sdkman/bin/sdkman-init.sh" ]] && source "/home/alliander/.sdkman/bin/sdkman-init.sh"
-
 
 # Load Angular CLI autocompletion.
 if command -v ng >/dev/null 2>&1; then
