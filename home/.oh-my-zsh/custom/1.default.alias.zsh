@@ -81,9 +81,18 @@ if command -v exa > /dev/null 2>&1; then
    alias ll="exa -g --group-directories-first --icons"
 fi
 
+if command -v batcat > /dev/null 2>&1; then
+   alias bat=batcat --plain --paging never
+fi
+
 # Grep from alias
 alias grepa="alias | grep -i"
 # Grep from env
 alias grepe="env | grep -i"
+alias grepp="ps aux | grep -i"
 
 alias whatsmyip="curl ifconfig.me"
+
+alias please='sudo $(fc -ln -1)'
+
+alias rtfm="man"

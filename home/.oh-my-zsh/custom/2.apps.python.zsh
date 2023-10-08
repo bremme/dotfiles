@@ -257,7 +257,7 @@ activate_pyenv() {
 
   alias els="pyenv virtualenvs"             # list pyen venv's
   alias erm="__remove_pyenv_virtualenv"     # remove pyenv venv
-  alias emk="__make_pyenv_virtualenv"       # make pyenv venv
+  alias emk="."       # make pyenv venv
 }
 deactivate_pyenv() {
   export PATH="$PATH_BEFORE_PYENV"
