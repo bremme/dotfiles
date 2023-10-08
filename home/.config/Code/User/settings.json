@@ -92,6 +92,8 @@
     "workbench.experimental.settingsProfiles.enabled": true,
     "redhat.telemetry.enabled": false,
     "files.autoSave": "afterDelay",
+    "editor.inlineSuggest.enabled": true,
+    "update.showReleaseNotes": false,
 
     // "java.format.settings.url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
 }
