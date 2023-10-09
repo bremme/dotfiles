@@ -89,5 +89,10 @@ fi
 alias grepa="alias | grep -i"
 # Grep from env
 alias grepe="env | grep -i"
+alias grepp="ps aux | grep -i"
 
 alias whatsmyip="curl ifconfig.me"
+
+alias please='sudo $(fc -ln -1)'
+
+alias rtfm="man"
