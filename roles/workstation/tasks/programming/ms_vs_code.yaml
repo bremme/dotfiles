@@ -65,6 +65,8 @@
     - GitHub.copilot
     - GitHub.copilot-labs
     - GitHub.copilot-chat
+    # Path intellisense
+    - christian-kohler.path-intellisense
     # Markdown
     - yzhang.markdown-all-in-one
     - DavidAnson.vscode-markdownlint

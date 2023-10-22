@@ -13,6 +13,7 @@
       - darktable
       - gdmap
       - android-sdk-platform-tools
+      - timeshift
 
 - name: Remove unnessecary packages
   ansible.builtin.package:
