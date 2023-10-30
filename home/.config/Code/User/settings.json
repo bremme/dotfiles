@@ -58,10 +58,11 @@
 
     // Python settings /////////////////////////////////////////////////////////////////
     "[python]": {
-        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.defaultFormatter": "ms-python.python",
         "editor.formatOnSave": true,
         "editor.codeActionsOnSave": {
-            "source.organizeImports": true
+            "source.organizeImports": true,
+            "source.fixAll": true
         },
 
         "editor.formatOnType": true
