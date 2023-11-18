@@ -3,7 +3,7 @@
 source $(dirname "$0")/utils.sh
 source $(dirname "$0")/../config.sh
 
-APPDATA_HOME="$HOME/appdata"
+APPDATA_HOME="$HOME/ssd/appdata/home/bremme"
 
 declare -a APPDATA_DIRS=(
     "."
@@ -15,7 +15,7 @@ IFS=$(echo -ne "\n\b")
 
 
 for dir in ${APPDATA_DIRS[@]}; do
-    log_info "Create directory (if not exist)"
+    log_info "Create directory $APPDATA_HOME/$dir (if not exist)"
     mkdir -p "$APPDATA_HOME/$dir"
 
     log_info "Linking directories in '$APPDATA_HOME/$dir' to '$HOME/$dir'"
@@ -25,7 +25,7 @@ for dir in ${APPDATA_DIRS[@]}; do
         if [[ ${APPDATA_DIRS[@]} =~ ${appdir} ]]; then
             continue
         fi
-        log_debug "ln -s -v $(realpath $APPDATA_HOME/$dir/$appdir) $(realpath $HOME/$dir/)"
+        log_debug "ln -sf $(realpath $APPDATA_HOME/$dir/$appdir) $(realpath $HOME/$dir/)"
         # check if destination dir exists (and is not a symlink already)
         if [[ -d $HOME/$dir/$appdir && ! -L $HOME/$dir/$appdir ]]; then
             move_dest="$HOME/$dir/$appdir.backup.$(uuidgen)"
