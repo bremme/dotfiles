@@ -13,7 +13,7 @@ fi
 gsettings set $LIST_VIEW_SCHEMA use-tree-view true
 # preferences
 gsettings set $PREFERENCE_SCHEMA show-delete-permanently true
-gsettings set $PREFERENCE_SCHEMA executable-text-activation ask
+# gsettings set $PREFERENCE_SCHEMA executable-text-activation ask
 gsettings set $PREFERENCE_SCHEMA show-directory-item-counts always
 gsettings set $PREFERENCE_SCHEMA show-image-thumbnails always
 gsettings set $PREFERENCE_SCHEMA show-create-link true

@@ -9,7 +9,7 @@ function install_ohmyzsh() {
         return 0
     fi
     log_info "Install dependencies"
-    sudo ap intstall curl zsh
+    sudo apt install curl zsh
     log_info "Install '$name' Type 'exit' after changing shell to continue"
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     log_info "Changing default shell to zsh for $USER"

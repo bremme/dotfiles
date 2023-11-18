@@ -2,6 +2,8 @@ This project contains a collection of my personal install script which I use whe
 
 # Usage
 
+Copy the `private-config.exmaple.sh` to `private-config.sh` and fill in your personal details.
+
 Run the complete fresh-install script. The script will ask which parts you would like to install.
 
 ```shell
@@ -29,3 +31,5 @@ $ ./scripts/install/install_<name-of-application>.sh
 # TODO
 
 * Gnome themes, icons, wallpaper
+* installers
+  * yq 
