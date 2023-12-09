@@ -63,7 +63,18 @@
 
     // Python settings /////////////////////////////////////////////////////////////////
     "[python]": {
+<<<<<<< HEAD
         "editor.defaultFormatter": "ms-python.black-formatter"
+=======
+        "editor.defaultFormatter": "ms-python.python",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true,
+            "source.fixAll": true
+        },
+
+        "editor.formatOnType": true
+>>>>>>> 5feae6bbea82e17715e24a65113f616f0435397a
     },
     "python.analysis.autoImportCompletions": true,
 
