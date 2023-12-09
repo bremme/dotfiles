@@ -2,8 +2,11 @@
 	name = Bram Harmsen
 	email = 6715707+bremme@users.noreply.github.com
 [init]
-	# use this when git >= 2.28
-	# defaultBranch = main
+	defaultBranch = main
 	# templateDir = ~/.git-template
 [pull]
 	ff = true
+[commit]
+	# gpgsign = true
+[push]
+	autoSetupRemote = true
