@@ -49,10 +49,16 @@ alias du3="_du_depth 3"
 alias doc="docker"
 
 # docker compose
-alias dc="docker compose"
-alias dcu="docker compose up"
-alias dcd="docker compose down"
-alias dcp="docker compose ps"
+if command -v docker-compose > /dev/null 2>&1; then
+   alias dc="docker-compose"
+   alias dcu="docker-compose up"
+   alias dcd="docker-compose down"
+else
+   alias dc="docker compose"
+   alias dcu="docker compose up"
+   alias dcd="docker compose down"
+fi
+
 
 # reload zsh
 alias rlz="source ~/.zshrc"
@@ -68,9 +74,25 @@ alias mv="mv --interactive --verbose"
 # set good defaults for tree
 alias tree="tree -a -I .git"
 
+# rust alternatives
+if command -v exa > /dev/null 2>&1; then
+   alias l="exa -lg --group-directories-first --icons"
+   alias la="exa -lag --group-directories-first --icons"
+   alias ll="exa -g --group-directories-first --icons"
+fi
+
+if command -v batcat > /dev/null 2>&1; then
+   alias bat=batcat --plain --paging never
+fi
+
 # Grep from alias
 alias grepa="alias | grep -i"
 # Grep from env
 alias grepe="env | grep -i"
+alias grepp="ps aux | grep -i"
 
 alias whatsmyip="curl ifconfig.me"
+
+alias please='sudo $(fc -ln -1)'
+
+alias rtfm="man"

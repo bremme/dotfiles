@@ -3,3 +3,10 @@
 	email = 6715707+bremme@users.noreply.github.com
 [init]
 	defaultBranch = main
+	# templateDir = ~/.git-template
+[pull]
+	ff = true
+[commit]
+	# gpgsign = true
+[push]
+	autoSetupRemote = true
