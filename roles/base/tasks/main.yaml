@@ -29,6 +29,7 @@
       - rsync
       - tar
       - bzip2
+      - trash-cli
 
 - name: Install snap packages
   community.general.snap:
