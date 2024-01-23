@@ -1,19 +1,16 @@
-https://www.youtube.com/watch?v=gIDywsGBqf4
+# install ansible
 
-https://github.com/LearnLinuxTV/ansible_desktop_tutorial
-https://github.com/LearnLinuxTV/personal_ansible_desktop_configs
+```shell
+sudo apt install pipx
+# full (recommended)
+pipx install --inlcude-deps ansible
+# minimal
+pipx install ansible-core
+# upgrade
+pipx upgrade --include-injected ansible
+```
 
-
-# serves one bash script
-curl deploy/boostrap | sudo bash
-
-## install ansible
-sudo apt install python3-pip
-pip3 install ansible
-
-sudo apt install ansible ansible-lint cowsay
-
-run ansible-pull -i pop-os, --vault-password-file /etc/ansible_vault_key -U https://gitlab+deploy-xxxxxxxxx@gitlab.com/xxxxxx/ansible.git
+for more information see https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html
 
 # Install dependencies
 
@@ -31,12 +28,16 @@ ansible-pull \
 
 # Run local
 
+```shell
 ansible-playbook \
     --inventory inventory.ini \
-    --limit oxygen.bremme.nl \
+    --limit <hostname> \
     --ask-become-pass \
     --connection local \
+    # Optionally only run specific tags
+    --tags tag1,tag2 \
     local.yml
+```
 
 # Run remote
 
@@ -184,3 +185,12 @@ This all seems realted to the GNOME profile switching, not sure what it actually
 power-profiles-daemon
 powerprofilesctl get
 
+# TODO
+
+* Add some kind of bootstrap script
+
+# Inspiration
+
+* https://www.youtube.com/watch?v=gIDywsGBqf4
+* https://github.com/LearnLinuxTV/ansible_desktop_tutorial
+* https://github.com/LearnLinuxTV/personal_ansible_desktop_configs
