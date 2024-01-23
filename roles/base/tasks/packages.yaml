@@ -1,0 +1,50 @@
+- name: Install minimal packages
+  tags: minimal
+  ansible.builtin.package:
+    name:
+      - apt-transport-https
+      - command-not-found
+      - ca-certificates
+      # cli tools
+      - curl
+      - fzf
+      - git
+      - htop
+      - jq
+      - tree
+      - wget
+      - bat
+      - exa
+      - bash-completion
+      - neofetch
+      - rsync
+      - tar
+      - bzip2
+      - trash-cli
+
+- name: Install base packages
+  tags: base
+  ansible.builtin.package:
+    name:
+      - build-essential
+      - cmake
+      - python3-pip
+      - cowsay
+      - toilet
+      - fortune
+      - nmap
+      - hdparm
+      - gpg
+
+- name: Install snapd
+  ansible.builtin.package:
+    name:
+        - snapd
+
+- name: Install snap packages
+  tags: base
+  community.general.snap:
+    name:
+      - yq
+      - helm
+      - kubectl
