@@ -5,8 +5,8 @@
         "*.ipynb": "jupyter-notebook"
     },
 
-    "editor.fontFamily": "'Fira Code','Droid Sans Mono', 'monospace', monospace",
-    "editor.fontSize": 16,
+    "editor.fontFamily": "'FiraCode Nerd Font Mono','Droid Sans Mono', 'monospace', 'monospace'",
+    "editor.fontSize": 14,
     "editor.fontWeight": "500",
 
     "editor.renderWhitespace": "all",
@@ -20,7 +20,8 @@
     "files.associations": {
         "*.desktop": "ini",
         "flake8": "ini",
-        "*.avsc": "json"
+        "*.avsc": "json",
+        ".prettierrc": "yaml"
     },
     "files.exclude": {
         "**/.classpath": true,
@@ -30,6 +31,7 @@
     },
     "files.trimTrailingWhitespace": true,
     "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 30000,
     "update.showReleaseNotes": false,
 
     "git.confirmSync": false,
@@ -39,22 +41,25 @@
 
     "vsicons.dontShowNewVersionMessage": true,
 
-
     // Terminal settings ///////////////////////////////////////////////////////////////
     "terminal.integrated.fontSize": 16,
-    "terminal.integrated.fontFamily": "Fira Code",
+    "terminal.integrated.fontFamily": "FiraCode Nerd Font Mono",
 
     // Proofing and language //////////////////////////////////////////////////////////
     "cSpell.language": "en,nl",
-    "cSpell.userWords": [
-        "dtap",
-        "gitops",
-        "isort",
-        "jupyter",
-        "pylint",
-        "sasl",
-        "structlog"
-    ],
+    "cSpell.userWords": ["dtap", "gitops", "isort", "jupyter", "pylint", "sasl", "structlog"],
+
+    // Formatter settings //////////////////////////////////////////////////////////////
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": true
+    },
+
+    "prettier.singleQuote": false,
+    "prettier.printWidth": 100,
+    "prettier.tabWidth": 4,
+    "prettier.useTabs": false,
 
     // Python settings /////////////////////////////////////////////////////////////////
     "[python]": {
@@ -84,6 +89,16 @@
         "editor.defaultFormatter": "yzhang.markdown-all-in-one"
     },
 
+    // Typescript settings /////////////////////////////////////////////////////////////
+    "[typescript]": {},
+
+    "github.copilot.enable": {
+        "*": false,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false
+    }
+
     // Java settings ///////////////////////////////////////////////////////////////////
     // "[java]": {
     //     "editor.defaultFormatter": "richardwillis.vscode-spotless-gradle",
@@ -100,5 +115,4 @@
     // "spotlessGradle.diagnostics.enable": true,
 
     // "java.format.settings.url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
-
 }
