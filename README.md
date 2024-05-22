@@ -32,4 +32,8 @@ $ ./scripts/install/install_<name-of-application>.sh
 
 * Gnome themes, icons, wallpaper
 * installers
-  * yq 
+  * yq
+* Firefox user.js about:config settings
+* Gnome extensions
+  * cpufreq (konkor)
+  * freon@UshakovVasilii_Github.yahoo.com
