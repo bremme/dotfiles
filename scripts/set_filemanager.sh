@@ -26,7 +26,7 @@ function install_nautilus() {
     xdg-mime default nautilus.desktop inode/directory application/x-gnome-saved-search
     # disable nautilus from displaying desktop icons
     gsettings set org.gnome.desktop.background show-desktop-icons true
-        gsettings set org.nemo.desktop show-desktop-icons false
+    gsettings set org.nemo.desktop show-desktop-icons false
 }
 
 echo "Which filemanager do you want to use?"
