@@ -94,7 +94,7 @@ add ssh key to gitea, gogs, github
     * fix links
     * fix plugin links
     * run xdg_register
-  * sdkman ?
+  * sdkman
   * angular ?
   * mongo client / compas
   * nemo bookmarks
