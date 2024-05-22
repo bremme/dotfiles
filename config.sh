@@ -48,7 +48,7 @@ declare -a ESSENTIAL_PACKAGES=(
     snapd
 )
 declare -a ESSENTIAL_GUI_PACKAGES=(
-    libreoffice vlc steam gedit chromium-browser
+    libreoffice hunspell-nl vlc steam gedit chromium-browser
     dconf-editor gnome-tweak-tool baobab gdmap
     darktable transmission sqlitebrowser zim meld
     network-manager-fortisslvpn network-manager-fortisslvpn-gnome openfortivpn

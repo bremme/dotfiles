@@ -32,3 +32,5 @@ gsettings set org.gnome.desktop.wm.keybindings switch-windows-backward "['<Shift
 gsettings set org.gnome.desktop.wm.keybindings switch-applications "['<Alt>Tab']"
 gsettings set org.gnome.desktop.wm.keybindings switch-applications-backward "['<Shift><Alt>Tab']"
 
+# Enable night light
+gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled "true"
