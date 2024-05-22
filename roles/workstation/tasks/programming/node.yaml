@@ -21,3 +21,8 @@
       nvm use --lts
     executable: /bin/bash
     creates: "$HOME/.nvm/alias/lts"
+
+# TODO
+# - name: Install fnm
+# generate and add completions file
+# fnm completions --shell zsh > ~/.oh-my-zsh/cache/completions/_fnm.zsh

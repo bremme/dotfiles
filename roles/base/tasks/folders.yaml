@@ -1,0 +1,26 @@
+- name: Create minimal default user folders
+  tags: minimal
+  become_user: "{{ ansible_env.SUDO_USER }}"
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: "0755"
+  loop:
+    - "/home/{{ ansible_env.SUDO_USER }}/git"
+    - "/home/{{ ansible_env.SUDO_USER }}/tmp"
+    - "/home/{{ ansible_env.SUDO_USER }}/bin"
+
+- name: Create base default user folders
+  tags: base
+  become_user: "{{ ansible_env.SUDO_USER }}"
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: "0755"
+  loop:
+    - "/home/{{ ansible_env.SUDO_USER }}/src"
+    - "/home/{{ ansible_env.SUDO_USER }}/git"
+    - "/home/{{ ansible_env.SUDO_USER }}/tmp"
+    - "/home/{{ ansible_env.SUDO_USER }}/mnt"
+    - "/home/{{ ansible_env.SUDO_USER }}/bin"
+    - "/home/{{ ansible_env.SUDO_USER }}/apps"

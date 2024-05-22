@@ -1,0 +1,32 @@
+# Docker
+- name: Install Docker Debian
+  tags: docker
+  block:
+    - name: Add Docker apt key
+      ansible.builtin.apt_key:
+        url: https://download.docker.com/linux/debian/gpg
+        id: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
+        keyring: /etc/apt/trusted.gpg.d/docker.gpg
+    - name: Add Docker repository
+      ansible.builtin.apt_repository:
+        # TODO get arch dynamicly e.g. $(dpkg --print-architecture)
+        repo: "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/docker.gpg] https://download.docker.com/linux/debian {{ ansible_distribution_release }} stable"
+        state: present
+        filename: docker
+    - name: Install Docker
+      ansible.builtin.apt:
+        name:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+          - docker-buildx-plugin
+          - docker-compose-plugin
+        update_cache: true
+  when: ansible_distribution == "Debian"
+
+- name: Add user to a docker group
+  tags: docker
+  ansible.builtin.user:
+    name: "{{ ansible_env.SUDO_USER }}"
+    groups: docker
+    append: true

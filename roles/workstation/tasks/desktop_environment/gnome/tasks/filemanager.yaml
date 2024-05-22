@@ -53,3 +53,8 @@
 # https://askubuntu.com/questions/958355/any-app-on-ubuntu-to-open-and-or-convert-heif-pictures-heic-high-efficiency-i
 # Enable display and thumbnails of heic
 # heif-gdk-pixbuf heif-thumbnailer libheif-examples
+# Enable display and thumbnails of webp
+# libwebp6 libwebpdemux2 libwebpmux3 webp-pixbuf-loader
+- name: Install webp support
+  ansible.builtin.package:
+    name: webp-pixbuf-loader
