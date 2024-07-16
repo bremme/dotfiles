@@ -14,7 +14,7 @@
       - tree
       - wget
       - bat
-      - exa
+      - eza
       - bash-completion
       - neofetch
       - rsync
