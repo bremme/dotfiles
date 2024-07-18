@@ -3,34 +3,34 @@
 #   include_vars: "{{ ansible_distribution }}.yaml"
 
 # setup system
-- ansible.builtin.include_tasks: system/flatpak.yaml
-- ansible.builtin.include_tasks: system/fonts.yaml
-- ansible.builtin.import_tasks: system/laptop.yaml
-- ansible.builtin.include_tasks: system/pipx.yaml
-- ansible.builtin.import_tasks: system/system.yaml
-- ansible.builtin.include_tasks: system/templates.yaml
+- import_tasks: system/flatpak.yaml
+- import_tasks: system/fonts.yaml
+- import_tasks: system/laptop.yaml
+- import_tasks: system/pipx.yaml
+- import_tasks: system/system.yaml
+- import_tasks: system/templates.yaml
 
 # setup desktop environment
 - name: Included GNOME desktop environment tasks
-  ansible.builtin.include_tasks:
+  import_tasks:
     file: desktop_environment/gnome/main.yaml
   when: ansible_env.XDG_CURRENT_DESKTOP in ['GNOME', 'Unity']
 
 # install apps
-- ansible.builtin.include_tasks: apps/default_package.yaml
-- ansible.builtin.include_tasks: apps/virtualbox.yaml
-- ansible.builtin.include_tasks: apps/flameshot.yaml
-- ansible.builtin.include_tasks: apps/keepassxc.yaml
-- ansible.builtin.include_tasks: apps/ms_edge.yaml
-- ansible.builtin.import_tasks: apps/firefox.yaml
+- import_tasks: apps/default_package.yaml
+- import_tasks: apps/virtualbox.yaml
+- import_tasks: apps/flameshot.yaml
+- import_tasks: apps/keepassxc.yaml
+- import_tasks: apps/ms_edge.yaml
+- import_tasks: apps/firefox.yaml
 
 # Install programming
-- ansible.builtin.import_tasks: programming/ms_vs_code.yaml
-- ansible.builtin.import_tasks: programming/intellij.yaml
-- ansible.builtin.import_tasks: programming/python.yaml
-- ansible.builtin.import_tasks: programming/java.yaml
-- ansible.builtin.import_tasks: programming/node.yaml
-- ansible.builtin.import_tasks: programming/rust.yaml
+- import_tasks: programming/ms_vs_code.yaml
+- import_tasks: programming/intellij.yaml
+- import_tasks: programming/python.yaml
+- import_tasks: programming/java.yaml
+- import_tasks: programming/node.yaml
+- import_tasks: programming/rust.yaml
 
 
 # Other
@@ -38,27 +38,12 @@
   tags:
   - never
   - facts
-  ansible.builtin.debug:
+  debug:
     var: ansible_facts
 
 - tags:
     - never
     - test
-  ansible.builtin.debug:
+  debug:
     msg: "HP ProBook 445 G8 Notebook PC"
   when: ansible_product_name == "HP ProBook 445 G8 Notebook PC"
-
-# TEMP only run new stuff
-# - name: Software include MS Edge
-#   tags: edge
-#   ansible.builtin.include_tasks:
-#     file: software/ms_edge.yaml
-#     apply:
-#       tags: edge
-
-# - name: GNOME extensions
-#   tags: new
-#   ansible.builtin.include_tasks:
-#     file: desktop_environment/gnome/tasks/gnome_extensions.yaml
-#     apply:
-#       tags: new

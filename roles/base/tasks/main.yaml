@@ -1,5 +1,5 @@
-- ansible.builtin.import_tasks: docker.yaml
-- ansible.builtin.import_tasks: folders.yaml
-- ansible.builtin.import_tasks: homeshick.yaml
-- ansible.builtin.import_tasks: packages.yaml
-- ansible.builtin.import_tasks: shell.yaml
+- import_tasks: docker.yaml
+- import_tasks: folders.yaml
+- import_tasks: packages.yaml
+- import_tasks: shell.yaml
+- import_tasks: homeshick.yaml

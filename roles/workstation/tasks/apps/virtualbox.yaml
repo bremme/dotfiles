@@ -1,26 +1,28 @@
-- name: Add virtualbox apt key
-  ansible.builtin.apt_key:
-    url: https://www.virtualbox.org/download/oracle_vbox_2016.asc
-    id: B9F8D658297AF3EFC18D5CDFA2F683C52980AECF
-    keyring: /etc/apt/trusted.gpg.d/virtualbox.gpg
-    state: present
-  when: ansible_distribution in ["Debian", "Pop!_OS", "Ubuntu"]
+- name: Install Virtualbox
+  block:
+  - name: Add virtualbox apt key
+    apt_key:
+      url: https://www.virtualbox.org/download/oracle_vbox_2016.asc
+      id: B9F8D658297AF3EFC18D5CDFA2F683C52980AECF
+      keyring: /etc/apt/trusted.gpg.d/virtualbox.gpg
+      state: present
+    when: ansible_distribution in ["Debian", "Pop!_OS", "Ubuntu"]
 
-- name: Add virtualbox repository
-  ansible.builtin.apt_repository:
-    repo: "deb https://download.virtualbox.org/virtualbox/debian {{ ansible_distribution_release }} contrib"
-    state: present
-    filename: virtualbox
-  when: ansible_distribution in ["Debian", "Pop!_OS", "Ubuntu"]
+  - name: Add virtualbox repository
+    apt_repository:
+      repo: "deb https://download.virtualbox.org/virtualbox/debian {{ ansible_distribution_release }} contrib"
+      state: present
+      filename: virtualbox
+    when: ansible_distribution in ["Debian", "Pop!_OS", "Ubuntu"]
 
-- name: Install virtualbox
-  ansible.builtin.apt:
-    name: virtualbox-7.0
-    update_cache: true
-  when: ansible_distribution in ["Debian", "Pop!_OS", "Ubuntu"]
+  - name: Install virtualbox
+    apt:
+      name: virtualbox-7.0
+      update_cache: true
+    when: ansible_distribution in ["Debian", "Pop!_OS", "Ubuntu"]
 
-- name: Add user to a vboxusers group
-  ansible.builtin.user:
-    name: "{{ ansible_env.SUDO_USER }}"
-    groups: vboxusers
-    append: true
+  - name: Add user to a vboxusers group
+    user:
+      name: "{{ ansible_env.SUDO_USER }}"
+      groups: vboxusers
+      append: true

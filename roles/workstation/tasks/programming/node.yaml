@@ -2,7 +2,7 @@
 - name: Install nvm
   tags: node
   become_user: "{{ ansible_env.SUDO_USER }}"
-  ansible.builtin.shell:
+  shell:
     cmd: |
       export NVM_DIR="$HOME/.nvm"
       git clone git@github.com:nvm-sh/nvm.git "$NVM_DIR"
@@ -14,7 +14,7 @@
 - name: Install Node LTS using nvm
   tags: node
   become_user: "{{ ansible_env.SUDO_USER }}"
-  ansible.builtin.shell:
+  shell:
     cmd: |
       \. "$HOME/.nvm/nvm.sh"
       nvm install --lts

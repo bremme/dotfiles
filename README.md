@@ -39,6 +39,18 @@ ansible-playbook \
     local.yml
 ```
 
+# Tags
+
+* base (server) role
+  * minimal
+    * folders
+    * minimal packages
+  * base
+    * docker
+    * base packages
+    * snapd
+      * base snap packages
+
 # Run remote
 
 # Questions
@@ -122,6 +134,8 @@ private:    cura, arduino
 
 # Manual actions
 
+## Firefox
+
 sign in to Firefox sync
     customize toolbar -> remove white spaces
     remove imported bookmarks etc.
@@ -133,6 +147,10 @@ sign in to Firefox sync
 
 
     this is the whitelist: services.sync.prefs.sync
+
+    customize toolbar
+    set default search engine
+
 
 # Create swap file
 

@@ -1,5 +1,5 @@
 - name: Install GNOME extension packages
-  ansible.builtin.package:
+  package:
     name:
       - gnome-tweaks
       - gnome-shell-extensions
@@ -29,7 +29,7 @@
 
 - name: Install GNOME user extensions if not installed
   become_user: "{{ ansible_env.SUDO_USER }}"
-  ansible.builtin.command:
+  command:
     cmd: |
       "/home/{{ ansible_env.SUDO_USER }}/.local/bin/gext --filesystem install {{ item }}"
       "/home/{{ ansible_env.SUDO_USER }}/.local/bin/gext --filesystem enable {{ item }}"

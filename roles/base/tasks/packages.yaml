@@ -1,6 +1,6 @@
 - name: Install minimal packages
-  tags: minimal
-  ansible.builtin.package:
+  tags: minimal,base
+  package:
     name:
       - apt-transport-https
       - command-not-found
@@ -16,6 +16,7 @@
       - bat
       - eza
       - bash-completion
+      # TODO not maintained anymore
       - neofetch
       - rsync
       - tar
@@ -24,7 +25,7 @@
 
 - name: Install base packages
   tags: base
-  ansible.builtin.package:
+  package:
     name:
       - build-essential
       - cmake
@@ -37,14 +38,21 @@
       - gpg
 
 - name: Install snapd
-  ansible.builtin.package:
+  tags: base,snap
+  package:
     name:
         - snapd
 
 - name: Install snap packages
-  tags: base
+  tags: base,snap
   community.general.snap:
     name:
       - yq
+
+- name: Install classic snap packages
+  tags: base,snap
+  community.general.snap:
+    name:
       - helm
       - kubectl
+    classic: true

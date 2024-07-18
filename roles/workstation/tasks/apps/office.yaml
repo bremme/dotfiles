@@ -1,5 +1,6 @@
 - name: Install multiple packages
-  ansible.builtin.package:
+  tags: desktop
+  package:
     name:
       - libreoffice
       - hunspell-nl

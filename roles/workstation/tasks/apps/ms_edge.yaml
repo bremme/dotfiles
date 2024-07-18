@@ -1,5 +1,5 @@
 - name: Add Edge apt key
-  ansible.builtin.apt_key:
+  apt_key:
     url: https://packages.microsoft.com/keys/microsoft.asc
     id: BC528686B50D79E339D3721CEB3E94ADBE1229CF
     keyring: /etc/apt/trusted.gpg.d/edge.gpg
@@ -7,7 +7,7 @@
   when: ansible_distribution in ["Debian", "Pop!_OS", "Ubuntu"]
 
 - name: Add Edge repository
-  ansible.builtin.apt_repository:
+  apt_repository:
     repo: "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/edge.gpg] https://packages.microsoft.com/repos/edge stable main"
     state: present
     filename: edge

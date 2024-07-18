@@ -1,5 +1,6 @@
 - name: Install Flameshot
-  ansible.builtin.package:
+  tags: desktop
+  package:
     name:
       - flameshot
     state: present

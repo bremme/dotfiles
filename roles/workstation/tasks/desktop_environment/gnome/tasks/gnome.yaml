@@ -1,0 +1,82 @@
+- name: Set general GNOME dconf settings
+  tags: gnome
+  become_user: "{{ ansible_env.SUDO_USER }}"
+  community.general.dconf:
+    key: "{{ item.key }}"
+    value: "{{ item.value }}"
+  with_items:
+    # GNOME desktop
+    - key: "/org/gnome/desktop/interface/color-scheme"
+      value: "'prefer-dark'"
+    - key: "/org/gnome/desktop/sound/allow-volume-above-100-percent"
+      value: "true"
+    - key: "/org/gnome/desktop/calendar/show-weekdate"
+      value: "true"
+    - key: "/org/gnome/desktop/interface/clock-show-weekday"
+      value: "true"
+    - key: "/org/gnome/desktop/interface/gtk-theme"
+      value: "'Adwaita-dark'"
+    - key: "/org/gnome/desktop/interface/show-battery-percentage"
+      value: "true"
+    - key: "/org/gnome/desktop/peripherals/touchpad/tap-to-click"
+      value: "true"
+    # GNOME shell
+    - key: "/org/gnome/shell/weather/automatic-location"
+      value: "true"
+    - key: "/org/gnome/shell/overrides/attach-modal-dialogs"
+      value: "false"
+    # GNOME window manager
+    - key: "/org/gnome/desktop/wm/keybindings/show-desktop"
+      value: ['<Super>d']
+    - key: "/org/gnome/desktop/wm/preferences/button-layout"
+      value: "':minimize,maximize,close'"
+    # GNOME settings-daemon
+    - key: "/org/gnome/settings-daemon/plugins/color/night-light-enabled"
+      value: "true"
+    - key: "/org/gnome/settings-daemon/plugins/color/night-light-temperature"
+      value: "3700"
+    # GNOME mutter
+    - key: "/org/gnome/mutter/attach-modal-dialogs"
+      value: "false"
+
+
+# best themes in the apt repo's
+
+
+# icon themes
+# numix-icon-theme
+# numix-icon-theme-circle
+# papirus-icon-theme
+# faenza-icon-theme
+# obsidian-icon-theme
+
+# shell themes
+# orchis-gtk-theme
+# materia-gtk-theme
+
+
+# Yaru
+# yaru-theme-gnome-shell
+# yaru-theme-gtk
+# yaru-theme-icon
+# yaru-theme-sound
+# yaru-theme-unity
+
+# Write a ansible task to install the following themes:
+# numix-icon-theme, numix-icon-theme-circle, papirus-icon-theme, faenza-icon-theme,
+# obsidian-icon-theme, yaru-theme-icon
+- name: Install GNOME themes
+  package:
+    name:
+      - numix-icon-theme
+      - numix-icon-theme-circle
+      - papirus-icon-theme
+      - faenza-icon-theme
+      - obsidian-icon-theme
+      - yaru-theme-icon
+
+# dark
+# blue accent
+# change background
+# power button -> suspend
+# set switch application to alt+tab (disables switch windows)
