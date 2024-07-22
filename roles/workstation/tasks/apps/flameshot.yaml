@@ -1,5 +1,5 @@
 - name: Install Flameshot
-  tags: desktop
+  tags: desktop,flameshot
   package:
     name:
       - flameshot
