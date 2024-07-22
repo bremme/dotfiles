@@ -1,12 +1,18 @@
 [user]
-	name = Bram Harmsen
+	name = bremme
 	email = 6715707+bremme@users.noreply.github.com
+	signingkey = C3E043E815A454DE
 [init]
 	defaultBranch = main
-	# templateDir = ~/.git-template
+	templateDir = ~/.git-template
 [pull]
 	ff = true
 [commit]
-	# gpgsign = true
+	gpgsign = true
 [push]
 	autoSetupRemote = true
+[core]
+	hooksPath = ~/.git-templates/hooks
+
+[include]
+	path = ~/.gitconfig-local
