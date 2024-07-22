@@ -64,7 +64,8 @@
         - key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/{{ custom_keybindings.flameshot }}/name"
           value: "'Take screenshot with Flameshot'"
         - key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/{{ custom_keybindings.flameshot }}/command"
-          value: "'flameshot gui'"
+          # NOTE this is a workaround and requires a flameshot-gui script on your PATH
+          value: "'flameshot-gui'"
         - key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/{{ custom_keybindings.flameshot }}/binding"
           value: "'<Shift><Super>s'"
 
