@@ -1,0 +1,70 @@
+- name: GNOME keybindings
+  tags: gnome,gnome-keybindings
+  block:
+    - name: Load custom keybindings names
+      include_vars:
+        file: custom_keybindings.yaml
+        name: custom_keybindings
+    - name: GNOME | keybindings | set media keys
+      become_user: "{{ ansible_env.SUDO_USER }}"
+      dconf:
+        key: "/org/gnome/settings-daemon/plugins/media-keys/{{ item.key }}"
+        value:  "{{ item.value }}"
+      with_items:
+        - key: home
+          value: ['<Super>e']
+        - key: control-center
+          value: "['<Super>x']"
+
+    # Does not exist in recent GNOME anymore
+    # - name: GNOME | keybindings | set terminal shortcut
+    #   become_user: "{{ ansible_env.SUDO_USER }}"
+    #   dconf:
+    #     key: "/org/gnome/settings-daemon/plugins/media-keys/terminal"
+    #     value:  "['<Primary><Alt>t']"
+    # Custom keybindings
+    - name: GNOME | keybindings | set custom-keybindings
+      become_user: "{{ ansible_env.SUDO_USER }}"
+      community.general.dconf:
+        key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings"
+        value: "{{ custom_keybindings | dict2items | map(attribute='value') | map('regex_replace', '^(.*)$', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/\\1/') | list }}"
+
+    - name: Set GNOME system monitor shortcut
+      become_user: "{{ ansible_env.SUDO_USER }}"
+      community.general.dconf:
+        key: "{{ item.key }}"
+        value: "{{ item.value }}"
+      with_items:
+        - key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/{{ custom_keybindings.system_monitor }}/name"
+          value: "'Open system monitor'"
+        - key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/{{ custom_keybindings.system_monitor }}/command"
+          value: "'gnome-system-monitor'"
+        - key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/{{ custom_keybindings.system_monitor }}/binding"
+          value: "'<Primary><Shift>Escape'"
+
+    - name: Set GNOME terminal shortcut
+      become_user: "{{ ansible_env.SUDO_USER }}"
+      community.general.dconf:
+        key: "{{ item.key }}"
+        value: "{{ item.value }}"
+      with_items:
+        - key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/{{ custom_keybindings.terminal }}/name"
+          value: "'Open terminal'"
+        - key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/{{ custom_keybindings.terminal }}/command"
+          value: "'gnome-terminal'"
+        - key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/{{ custom_keybindings.terminal }}/binding"
+          value: "'<Primary><Alt>t'"
+
+    - name: Set flameshot shortcut
+      become_user: "{{ ansible_env.SUDO_USER }}"
+      community.general.dconf:
+        key: "{{ item.key }}"
+        value: "{{ item.value }}"
+      with_items:
+        - key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/{{ custom_keybindings.flameshot }}/name"
+          value: "'Take screenshot with Flameshot'"
+        - key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/{{ custom_keybindings.flameshot }}/command"
+          value: "'flameshot gui'"
+        - key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/{{ custom_keybindings.flameshot }}/binding"
+          value: "'<Shift><Super>s'"
+
