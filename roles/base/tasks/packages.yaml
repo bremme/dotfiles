@@ -1,5 +1,5 @@
 - name: Install minimal packages
-  tags: minimal,base
+  tags: base,minimal
   package:
     name:
       - apt-transport-https
