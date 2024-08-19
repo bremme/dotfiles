@@ -1,4 +1,5 @@
 - name: Copy Template files
+  tags: templates
   become_user: "{{ ansible_env.SUDO_USER }}"
   copy:
     src: "Templates/{{ item }}"
