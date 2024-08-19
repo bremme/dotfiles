@@ -39,6 +39,14 @@ ansible-playbook \
     local.yml
 ```
 
+# Trouble shooting
+
+## fix FQN
+
+Edit /etc/hosts to look like this
+
+127.0.0.1   hostname.example.com hostname
+
 # Run remote
 
 # Questions
@@ -101,9 +109,11 @@ add ssh key to gitea, gogs, github
   * nemo bookmarks
   * us international with dead keys
 * system
+  * set hostname
   * swapiness lower
   * hibernation
   * hybrid sleep
+  * krew (https://krew.sigs.k8s.io/docs/user-guide/setup/install/)
 * restore backup
   * bluetooth devices
   * accesspoints
