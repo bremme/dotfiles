@@ -28,9 +28,7 @@
 
 # Starship
 - name: Setup starship
-  tags:
-    - minimal
-    - starship
+  tags: minimal,starship
   block:
   - name: Install Starship
     shell:
