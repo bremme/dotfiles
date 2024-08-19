@@ -8,7 +8,7 @@
 
 # Install Firefox .deb package for Debian based distributions ##########################
 - name: Install firefox dependencies
-  tags: desktop,firefox
+  tags: desktop,firefox-apt
   block:
     - name: Remove snap if installed
       community.general.snap:
