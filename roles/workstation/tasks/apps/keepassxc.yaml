@@ -1,18 +1,18 @@
 - name: Install KeepassX
-  ansible.builtin.package:
+  package:
     name:
       - keepassxc
       - desktop-file-utils
 
 - name: Check if .desktop file exists
   become_user: "{{ ansible_env.SUDO_USER }}"
-  ansible.builtin.stat:
+  stat:
     path: "$HOME/.local/share/applications/org.keepassxc.KeePassXC.desktop"
   register: desktop_file_exists
 
 - name: Install and configure KeePassXC .desktop file
   become_user: "{{ ansible_env.SUDO_USER }}"
-  ansible.builtin.shell: |
+  shell: |
     desktop-file-install --dir=$HOME/.local/share/applications /usr/share/applications/org.keepassxc.KeePassXC.desktop &&
     desktop-file-edit $HOME/.local/share/applications/org.keepassxc.KeePassXC.desktop --set-key=Exec --set-value="keepassxc -platform xcb %f" &&
     update-desktop-database $HOME/.local/share/applications
@@ -20,7 +20,7 @@
 
 - name: Add autostart KeePassXC link
   become_user: "{{ ansible_env.SUDO_USER }}"
-  ansible.builtin.file:
+  file:
     src: $HOME/.local/share/applications/org.keepassxc.KeePassXC.desktop
     dest: $HOME/.config/autostart/org.keepassxc.KeePassXC.desktop
     state: link

@@ -1,4 +1,5 @@
 - name: Install GNOME packages
-  ansible.builtin.package:
+  tags: gnome
+  package:
     name:
       - gnome-power-manager

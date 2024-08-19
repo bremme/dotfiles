@@ -1,19 +1,19 @@
 # Homeshick
-- name: Install Docker Debian
+- name: Install Homeshick
   tags: minimal,homeshick
   block:
-  - name: Install Homeshick
+  - name: Clone Homeshick repo
     become_user: "{{ ansible_env.SUDO_USER }}"
-    ansible.builtin.git:
+    git:
       repo: https://github.com/andsens/homeshick.git
       dest: $HOME/.homesick/repos/homeshick
-  - name: Clone Homeshick dotfiles repo
+  - name: Clone dotfiles repo
     become_user: "{{ ansible_env.SUDO_USER }}"
-    ansible.builtin.git:
+    git:
       repo: https://github.com/bremme/dotfiles.git
       dest: $HOME/.homesick/repos/dotfiles
-  - name: Link Homeshick dotfiles
+  - name: Link dotfiles
     become_user: "{{ ansible_env.SUDO_USER }}"
-    ansible.builtin.shell:
+    shell:
       cmd: $HOME/.homesick/repos/homeshick/bin/homeshick link dotfiles --batch --force
       creates: $HOME/.link-dotfiles-has-run

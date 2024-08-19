@@ -1,53 +1,60 @@
 - name: Get default filemanager
   become_user: "{{ ansible_env.SUDO_USER }}"
-  ansible.builtin.shell: xdg-mime query default inode/directory
+  shell: xdg-mime query default inode/directory
   register: default_filemanager
 
 # Nautilus
 - name: Set general Nautilus settings
+  tags: gnome,nautilus
   become_user: "{{ ansible_env.SUDO_USER }}"
   dconf:
     key: "{{ item.key }}"
     value:  "{{ item.value }}"
   with_items:
+    # list-view
     - key: "/org/gnome/nautilus/preferences/default-folder-viewer"
       value: "'list-view'"
     - key: "/org/gnome/nautilus/list-view/use-tree-view"
       value: "true"
+    - key: "/org/gnome/nautilus/list-view/default-zoom-level"
+      value: "true"
+    # icon-view
+    - key: "/org/gnome/nautilus/icon-view/captions"
+      value: "['size', 'none', 'none']"
     - key: "/org/gtk/gtk4/settings/file-chooser/sort-directories-first"
       value: "true"
     - key: "/org/gnome/nautilus/preferences/show-create-link"
       value: "true"
     - key: "/org/gnome/nautilus/preferences/show-delete-permanently"
       value: "true"
-    - key: "/org/gnome/nautilus/icon-view/captions"
-      value: "['size', 'none', 'none']"
 
 # Nemo
 - name: Install Nemo
-  ansible.builtin.package:
-    name: nemo
+  tags: gnome,nemo
+  block:
+  - name: Install nemo package
+    package:
+      name: nemo
 
-- name: Configure Nemo
-  become_user: "{{ ansible_env.SUDO_USER }}"
-  community.general.dconf:
-    key: "{{ item.key }}"
-    value: "{{ item.value }}"
-  with_items:
-    - key: "/org/gnome/desktop/background/show-desktop-icons"
-      value: "false"
-    - key: "/org/nemo/desktop/show-desktop-icons"
-      value: "true"
-    - key: "/org/nemo/preferences/default-folder-viewer"
-      value: "'list-view'"
-    - key: "/org/nemo/preferences/inherit-folder-viewer"
-      value: "true"
+  - name: Set dconf Nemo customizations
+    become_user: "{{ ansible_env.SUDO_USER }}"
+    community.general.dconf:
+      key: "{{ item.key }}"
+      value: "{{ item.value }}"
+    with_items:
+      - key: "/org/gnome/desktop/background/show-desktop-icons"
+        value: "false"
+      - key: "/org/nemo/desktop/show-desktop-icons"
+        value: "true"
+      - key: "/org/nemo/preferences/default-folder-viewer"
+        value: "'list-view'"
+      - key: "/org/nemo/preferences/inherit-folder-viewer"
+        value: "true"
 
-# Set default filemanager
-- name: Set Nemo as the default filemanager
-  become_user: "{{ ansible_env.SUDO_USER }}"
-  ansible.builtin.shell: xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search
-  when: "'nautilus' in default_filemanager.stdout.lower()"
+  - name: Set Nemo as the default filemanager
+    become_user: "{{ ansible_env.SUDO_USER }}"
+    shell: xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search
+    when: "'nautilus' in default_filemanager.stdout.lower()"
 
 
 # https://askubuntu.com/questions/958355/any-app-on-ubuntu-to-open-and-or-convert-heif-pictures-heic-high-efficiency-i
@@ -56,5 +63,13 @@
 # Enable display and thumbnails of webp
 # libwebp6 libwebpdemux2 libwebpmux3 webp-pixbuf-loader
 - name: Install webp support
-  ansible.builtin.package:
+  package:
     name: webp-pixbuf-loader
+
+
+# Nautilus missing features
+# create link by dragging and CTRL+SHIFT
+# open directory in VS code
+# List view
+  # with expand
+  # more tight together -> fit more lines

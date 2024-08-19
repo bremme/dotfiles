@@ -1,5 +1,6 @@
-- name: Install multiple packages
-  ansible.builtin.package:
+- name: Install multiple desktop applications
+  tags: desktop
+  package:
     name:
       - dconf-editor
       - gimp
@@ -14,15 +15,39 @@
       - android-sdk-platform-tools
       - timeshift
 
-- name: Remove unnessecary packages
-  ansible.builtin.package:
+- name: Remove unnessecary desktop applications
+  tags: desktop
+  package:
     name:
       - shotwell
       - xterm
     state: absent
 
+# install as user??
+- name: Install multiple Flatpak desktop applications
+  tags: desktop
+  community.general.flatpak:
+    name:
+      # - com.bitwarden.desktop
+      - com.jgraph.drawio.desktop
+      - net.poedit.Poedit
+      - org.telegram.desktop
+      - org.signal.Signal
+      - com.discordapp.Discord
+      # - com.github.IsmaelMartinez.teams_for_linux
+      # - io.missioncenter.MissionCenter
+    state: present
+
+- name: Install snap packages
+  tags: desktop
+  community.general.snap:
+    name:
+      - keep-presence
+      - mqtt-explorer
+
 - name: Install restricted extra's on Debian
-  ansible.builtin.apt:
+  tags: desktop
+  apt:
     name:
     # Install restricted-extras
     - ttf-mscorefonts-installer
@@ -35,32 +60,4 @@
     # Microsoft Fonts Compatibility
     - fonts-crosextra-carlito
     - fonts-crosextra-caladea
-
-# install as user??
-- name: Install multiple Flatpak packages
-  community.general.flatpak:
-    name:
-      - com.bitwarden.desktop
-      - com.jgraph.drawio.desktop
-      - com.emqx.MQTTX
-      - net.poedit.Poedit
-      - org.telegram.desktop
-      - org.signal.Signal
-      - com.discordapp.Discord
-      - com.github.IsmaelMartinez.teams_for_linux
-      - io.missioncenter.MissionCenter
-    state: present
-
-- name: Install snap packages
-  community.general.snap:
-    name: keep-presence
-
-# Install dowloadable .deb
-# VS Code
-# Syncthing
-
-# Install AppImage' s
-# Cura
-
-# Install tar.gz
-# Camunda modeller
+  when: ansible_distribution == "Debian"

@@ -33,10 +33,10 @@
     - starship
   block:
   - name: Install Starship
-    ansible.builtin.shell:
+    shell:
       cmd: "curl -sS https://starship.rs/install.sh | sh -s -- --yes"
       creates: /usr/local/bin/starship
-
+  # https://linuxiac.com/how-to-install-fonts-on-linux/
   - name: Install FiraCode font
-    ansible.builtin.package:
+    package:
       name: fonts-firacode

@@ -47,6 +47,26 @@ Edit /etc/hosts to look like this
 
 127.0.0.1   hostname.example.com hostname
 
+# Trouble shooting
+
+## fix FQN
+
+Edit /etc/hosts to look like this
+
+127.0.0.1   hostname.example.com hostname
+
+# Tags
+
+* base (server) role
+  * minimal
+    * folders
+    * minimal packages
+  * base
+    * docker
+    * base packages
+    * snapd
+      * base snap packages
+
 # Run remote
 
 # Questions
@@ -132,6 +152,8 @@ private:    cura, arduino
 
 # Manual actions
 
+## Firefox
+
 sign in to Firefox sync
     customize toolbar -> remove white spaces
     remove imported bookmarks etc.
@@ -143,6 +165,10 @@ sign in to Firefox sync
 
 
     this is the whitelist: services.sync.prefs.sync
+
+    customize toolbar
+    set default search engine
+
 
 # Create swap file
 
