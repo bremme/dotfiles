@@ -150,6 +150,7 @@ sign in to Firefox sync
 
     customize toolbar
     set default search engine
+    install Dutch woordenboek
 
 
 # Create swap file
