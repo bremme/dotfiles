@@ -47,13 +47,24 @@
 
     // Proofing and language //////////////////////////////////////////////////////////
     "cSpell.language": "en,nl",
-    "cSpell.userWords": ["dtap", "gitops", "isort", "jupyter", "pylint", "sasl", "structlog"],
+    "cSpell.userWords": [
+        "dtap",
+        "gitops",
+        "isort",
+        "jupyter",
+        "pacticipant",
+        "pacticipants",
+        "pylint",
+        "sasl",
+        "structlog"
+    ],
 
     // Formatter settings //////////////////////////////////////////////////////////////
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true,
+    "editor.formatOnSave": false,
     "editor.codeActionsOnSave": {
-        "source.organizeImports": "explicit"
+        // "source.organizeImports": "explicit"
+
     },
 
     "prettier.singleQuote": false,
@@ -97,7 +108,20 @@
         "plaintext": false,
         "markdown": false,
         "scminput": false
-    }
+    },
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "[yaml]": {
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
+    "[xml]": {
+        "editor.defaultFormatter": "redhat.vscode-xml"
+    },
+    "explorer.confirmPasteNative": false
 
     // Java settings ///////////////////////////////////////////////////////////////////
     // "[java]": {
