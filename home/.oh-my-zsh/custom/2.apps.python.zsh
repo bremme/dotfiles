@@ -175,10 +175,17 @@ deactivate_conda() {
   unset CONDA_PYTHONBREAKPOINT
 }
 
+__activate_venv() {
+  if [ -d "venv" ]; then
+    source venv/bin/activate
+  elif [ -d ".venv" ]; then
+    source .venv/bin/activate
+  fi
+}
 
 # use system python 2
 activate_syspy2() {
-  alias a="source venv/bin/activate"
+  alias a="__activate_venv"
   alias da="deactivate"
 }
 deactivate_syspy2() {
@@ -189,7 +196,7 @@ deactivate_syspy2() {
 activate_syspy3() {
   alias python=python3
   alias pip=pip3
-  alias a="source venv/bin/activate"
+  alias a="__activate_venv"
   alias da="deactivate"
 }
 deactivate_syspy3() {
