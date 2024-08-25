@@ -12,7 +12,7 @@
 [push]
 	autoSetupRemote = true
 [core]
-	hooksPath = ~/.git-templates/hooks
+	hooksPath = ~/.git-template/hooks
 
 [include]
 	path = ~/.gitconfig-local
