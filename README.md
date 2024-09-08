@@ -1,13 +1,14 @@
-# install ansible
+# Bootstrap
+
+## install ansible
 
 ```shell
 sudo apt install pipx
-# full (recommended)
-pipx install --inlcude-deps ansible
-# minimal
-pipx install ansible-core
-# upgrade
-pipx upgrade --include-injected ansible
+
+pipx install --include-deps ansible
+
+pipx ensurepath
+eval "$(register-python-argcomplete pipx)"
 ```
 
 for more information see https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html
@@ -39,21 +40,24 @@ ansible-playbook \
     local.yml
 ```
 
+Or use the provides `run-local.sh` script:
+
+```shell
+
+# Using a single tag or multiple
+./run-local --tags base
+./run-local --tags dconf,gedit,templates,vscode
+```
+
 # Trouble shooting
 
 ## fix FQN
 
 Edit /etc/hosts to look like this
 
+```
 127.0.0.1   hostname.example.com hostname
-
-# Trouble shooting
-
-## fix FQN
-
-Edit /etc/hosts to look like this
-
-127.0.0.1   hostname.example.com hostname
+```
 
 # Tags
 
@@ -66,6 +70,9 @@ Edit /etc/hosts to look like this
     * base packages
     * snapd
       * base snap packages
+* workstation (desktop) rol
+  * gnome
+    *
 
 # Run remote
 
@@ -108,6 +115,9 @@ add ssh key to gitea, gogs, github
 
 # TODO
 
+* nautilus
+  * shortcuts: Local,Data etc.
+  *
 
 * software
   * syncthing
@@ -211,10 +221,39 @@ amd_pstate?
 
 ## CPU frequency scaling
 
-https://wiki.archlinux.org/title/CPU_frequency_scaling
+Find out which scaling driver is used:
 
-Enable amd_pstate
+```shell
+cpupower frequency-info
+# This gives for example
 
+analyzing CPU 10:
+  driver: acpi-cpufreq
+  CPUs which run at the same hardware frequency: 10
+  CPUs which need to have their frequency coordinated by software: 10
+  maximum transition latency:  Cannot determine or is not supported.
+  hardware limits: 2.20 GHz - 4.85 GHz
+  available frequency steps:  3.80 GHz, 2.80 GHz, 2.20 GHz
+  available cpufreq governors: conservative ondemand userspace powersave performance schedutil
+  current policy: frequency should be within 2.20 GHz and 3.80 GHz.
+                  The governor "schedutil" may decide which speed to use
+                  within this range.
+  current CPU frequency: 3.80 GHz (asserted by call to hardware)
+  boost state support:
+    Supported: yes
+    Active: yes
+    Boost States: 0
+    Total States: 3
+    Pstate-P0:  3800MHz
+    Pstate-P1:  2800MHz
+    Pstate-P2:  2200MHz
+```
+
+### AMD pstate
+
+When using a modern AMD cpu its better to use the amd_pstate driver instead of acpi-cpufreq. Add `amd_pstate=active` to the kernal parametes in `/etc/default/grub` and run `sudo update-grub`.
+
+For more information see: https://wiki.archlinux.org/title/CPU_frequency_scaling.
 
 This all seems realted to the GNOME profile switching, not sure what it actually does?
 
