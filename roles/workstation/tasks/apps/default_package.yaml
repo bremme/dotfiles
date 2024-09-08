@@ -1,5 +1,5 @@
-- name: Install multiple desktop applications
-  tags: desktop
+- name: Install default desktop applications
+  tags: desktop,desktop-packages
   package:
     name:
       - dconf-editor
@@ -38,16 +38,9 @@
       # - io.missioncenter.MissionCenter
     state: present
 
-- name: Install snap packages
-  tags: desktop
-  community.general.snap:
-    name:
-      - keep-presence
-      - mqtt-explorer
-
 - name: Install restricted extra's on Debian
   tags: desktop
-  apt:
+  package:
     name:
     # Install restricted-extras
     - ttf-mscorefonts-installer
