@@ -261,6 +261,17 @@ This all seems realted to the GNOME profile switching, not sure what it actually
 power-profiles-daemon
 powerprofilesctl get
 
+## sensors-detect
+
+Note: there is no driver for ITE IT8655E Super IO Sensors yet.
+Check https://hwmon.wiki.kernel.org/device_support_status for updates.
+
+Build custom IT8655E driver
+
+https://zedt.eu/tech/linux/how-to-add-experimental-sensors-support-for-it8665e-in-centos/
+https://github.com/a1wong/it87
+
+
 ## random wakeup from suspend
 
 find i2c device that could cause wakeup
