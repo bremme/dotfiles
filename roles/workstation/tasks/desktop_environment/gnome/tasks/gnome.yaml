@@ -25,6 +25,14 @@
       value: ['<Super>d']
     - key: "/org/gnome/desktop/wm/preferences/button-layout"
       value: "':minimize,maximize,close'"
+    - key: "/org/gnome/desktop/wm/keybindings/switch-applications"
+      value: ['<Alt>Tab']
+    - key: "/org/gnome/desktop/wm/keybindings/switch-applications-backward"
+      value: ['<Shift><Alt>Tab']
+    - key: "/org/gnome/desktop/wm/keybindings/switch-windows"
+      value: ['<Super>Tab']
+    - key: "/org/gnome/desktop/wm/keybindings/switch-windows-backward"
+      value: ['<Shift><Super>Tab']
     # GNOME shell
     - key: "/org/gnome/shell/weather/automatic-location"
       value: "true"
