@@ -86,6 +86,8 @@ help() {
     echo "-h, --help            Show this help."
 }
 
+DRY_RUN=false
+
 # parse options
 while true; do
     if [ "$1" = "--dry-run" ] || [ "$1" = "-d" ]; then
