@@ -33,7 +33,20 @@ $ ./scripts/install/install_<name-of-application>.sh
 * Gnome themes, icons, wallpaper
 * installers
   * yq
-* Firefox user.js about:config settings
-* Gnome extensions
-  * cpufreq (konkor)
-  * freon@UshakovVasilii_Github.yahoo.com
+
+
+# Most important
+
+setup terminal
+setup git
+setup dotfiles sync
+setup gnome
+
+
+setup keepasscx
+setup ssh keys
+sync files
+
+
+
+git clone https://github.com/andsens/homeshick.git $HOME/.homesick/repos/homeshick
