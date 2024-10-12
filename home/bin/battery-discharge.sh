@@ -41,4 +41,6 @@ while ! is_below_set_point "$SET_POINT"; do
     sleep 10
 done
 
+echo "Reached $SET_POINT %, stop discharging"
+
 stop_discharging
