@@ -29,7 +29,7 @@
         "**/.settings": true,
         "**/.factorypath": true
     },
-    "files.trimTrailingWhitespace": true,
+    "files.trimTrailingWhitespace": false,
     "files.autoSave": "afterDelay",
     "files.autoSaveDelay": 30000,
     "update.showReleaseNotes": false,
@@ -74,7 +74,7 @@
 
     // Python settings /////////////////////////////////////////////////////////////////
     "[python]": {
-        "editor.defaultFormatter": "ms-python.python",
+        "editor.defaultFormatter": "ms-python.black-formatter",
         "editor.formatOnSave": true,
         "editor.codeActionsOnSave": {
             "source.organizeImports": "explicit",
@@ -84,10 +84,6 @@
         "editor.formatOnType": true
     },
     "python.analysis.autoImportCompletions": true,
-
-    "isort.args": ["--profile", "black"],
-    "flake8.args": ["--max-line-length", "88"],
-    "pylint.args": ["--disable missing-function-docstring"],
 
     // Jupyter notebook ////////////////////////////////////////////////////////////////
     "notebook.cellToolbarLocation": {
@@ -103,12 +99,6 @@
     // Typescript settings /////////////////////////////////////////////////////////////
     "[typescript]": {},
 
-    "github.copilot.enable": {
-        "*": false,
-        "plaintext": false,
-        "markdown": false,
-        "scminput": false
-    },
     "[json]": {
         "editor.defaultFormatter": "vscode.json-language-features"
     },
