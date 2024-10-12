@@ -23,6 +23,10 @@ function _du_depth() {
    du -hxcd $1 "$2" | sort -rh
 }
 
+function _docker_rm_all() {
+   docker rm -f $(docker ps -aq)
+}
+
 # chmod
 alias chmox='chmod +x'
 # grep process
@@ -47,16 +51,19 @@ alias du3="_du_depth 3"
 
 # docker
 alias doc="docker"
+alias drma="_docker_rm_all"
 
 # docker compose
 if command -v docker-compose > /dev/null 2>&1; then
    alias dc="docker-compose"
    alias dcu="docker-compose up"
    alias dcd="docker-compose down"
+   alias dcufl="docker-compose up -d && docker-compose logs --follow"
 else
    alias dc="docker compose"
    alias dcu="docker compose up"
    alias dcd="docker compose down"
+   alias dcufl="docker compose up -d && docker compose logs --follow"
 fi
 
 
@@ -82,7 +89,16 @@ if command -v exa > /dev/null 2>&1; then
 fi
 
 if command -v batcat > /dev/null 2>&1; then
-   alias bat=batcat --plain --paging never
+   alias cat=batcat --paging=never
+elif command -v bat > /dev/null 2>&1; then
+   alias cat=bat --paging=never
+fi
+
+if command -v fdfind > /dev/null 2>&1; then
+   alias fd=fdfind
+   alias f=fdfind
+elif command -v fd > /dev/null 2>&1; then
+   alias f=fd
 fi
 
 # Grep from alias
