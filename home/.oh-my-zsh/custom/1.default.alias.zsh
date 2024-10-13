@@ -56,24 +56,22 @@ alias drma="_docker_rm_all"
 # docker compose
 if command -v docker-compose > /dev/null 2>&1; then
    alias dc="docker-compose"
-   alias dcu="docker-compose up"
-   alias dcd="docker-compose down"
-   alias dcufl="docker-compose up -d && docker-compose logs --follow"
 else
    alias dc="docker compose"
-   alias dcu="docker compose up"
-   alias dcd="docker compose down"
-   alias dcufl="docker compose up -d && docker compose logs --follow"
 fi
+
+alias dcu="dc up"
+alias dcd="dc down"
+alias dcufl="dc up -d && dc logs --follow"
 
 
 # reload zsh
 alias rlz="source ~/.zshrc"
 
 # set good defaults for cp
-alias cp="cp --interactive --recursive --archive"
+alias cp="cp --interactive --recursive --archive --verbose"
 # set good defaults for rm
-alias rm="rm --recursive --interactive=once"
+alias rm="rm --recursive --interactive=once --verbose"
 # set good defaults for mkdir
 alias mkdir="mkdir --parents --verbose"
 # set good defaults for mv
@@ -83,9 +81,14 @@ alias tree="tree -a -I .git"
 
 # rust alternatives
 if command -v exa > /dev/null 2>&1; then
-   alias l="exa -lg --group-directories-first --icons"
-   alias la="exa -lag --group-directories-first --icons"
-   alias ll="exa -g --group-directories-first --icons"
+   exa_common_args="--group --group-directories-first --icons"
+   alias l="exa -l $exa_common_args"
+   alias la="exa -la $exa_common_args"
+   alias ls="exa $exa_common_args"
+
+   exa_tree_args="--tree"
+   alias lt2="exa $exa_tree_args $exa_common_args --level=2"
+   alias lt3="exa $exa_tree_args $exa_common_args --level=3"
 fi
 
 if command -v batcat > /dev/null 2>&1; then
