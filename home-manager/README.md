@@ -1,3 +1,13 @@
+# Bootstrap
+
+* change shell to zsh
+* copy ssh keys
+* setup flakes
+
+## Usage
+
+
+
 # What home manager can't do
 
 * change shell
