@@ -4,8 +4,8 @@
   nixpkgs.config.allowUnfree = true;
 
   imports = [
-    ./dconf.nix
-    ./starship.nix
+    ./workstation/dconf.nix
+    ./base/starship.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
