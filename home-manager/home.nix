@@ -118,52 +118,6 @@
   programs = {
     # Let Home Manager install and manage itself.
     home-manager.enable = true;
-
-    zsh = {
-      enable = true;
-      oh-my-zsh = {
-        enable = true;
-        plugins = [ 
-          # "git" 
-        ];
-        theme = "robbyrussell";
-        custom = "$HOME/dotfiles/dotfiles/oh-my-zsh";
-      };
-      autosuggestion = {
-        enable = true;
-      };
-    };
-
-
-    zoxide = {
-      enable = true;
-      enableZshIntegration = true;
-      options = [ "--cmd" "cd" ];
-    };
-
-    git = {
-      enable = true;
-      userName = "bremme";
-      userEmail = "6715707+bremme@users.noreply.github.com";
-      extraConfig = {
-        init = {
-          defaultBranch = "main";
-        };
-        pull = {
-          ff = "true";
-        };
-        push = {
-          autoSetupRemote = "true";
-        };
-        # core = {
-        #   hooksPath = "~/.git-template/hooks";
-        # };
-        include = {
-          path = "~/.gitconfig-local";
-        };
-      };
-    };
-
     vscode = {
       enable = true;
       extensions = with pkgs.vscode-extensions; [

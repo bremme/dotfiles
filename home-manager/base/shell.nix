@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./git/git.nix
     ./starship/starship.nix
   ];
 
@@ -30,7 +31,7 @@
     fzf = {
       enable = true;
       enableZshIntegration = true;
-    }
+    };
 
   };
 }
