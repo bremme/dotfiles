@@ -124,10 +124,12 @@
         enable = true;
         plugins = [ 
           # "git" 
-          "zsh-autosuggestions"
         ];
         theme = "robbyrussell";
         custom = "$HOME/dotfiles/dotfiles/oh-my-zsh";
+      };
+      autosuggestion = {
+        enable = true;
       };
     };
     starship = {
