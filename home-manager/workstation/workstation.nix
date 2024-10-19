@@ -3,7 +3,7 @@
 {
   imports = [
     ./terminal.nix
-    ./dconf.nix
+    ./gnome.nix
     ./vscode.nix
   ];
 }

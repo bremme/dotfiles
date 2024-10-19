@@ -12,13 +12,6 @@ with lib.hm.gvariant;
       home = [ "<Super>e" ];
     }; 
 
-    # GNOME terminal
-    
-    # Console terminal
-    "org/gnome/Console" = {
-      custom-font = "FiraCode Nerd Font Mono 10";
-    };
-
     # Keyboard shortcuts ######################################################
     "org/gnome/desktop/wm/keybindings" = {
         show-desktop = [ "<Super>d" ];

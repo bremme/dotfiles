@@ -1,6 +1,9 @@
 { pkgs, lib, ... }:
 
-{
+let
+  font = "FiraCode Nerd Font Mono";
+  fontSize = "12";
+in {
   home.packages = with pkgs; [
     gnome.gnome-terminal
   ];
@@ -37,7 +40,7 @@
     # Default
     "org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9" = {
       audible-bell = true;
-      font = "FiraCode Nerd Font Mono 12";
+      font = "${font} ${fontSize}";
       use-system-font = false;
       use-theme-colors = true;
       visible-name = "Default";
@@ -57,7 +60,7 @@
       cursor-foreground-color = "#1F1F13130505";
       cursor-shape = "block";
       delete-binding = "delete-sequence";
-      font = "FiraCode Nerd Font Mono 12";
+      font = "${font} ${fontSize}";
       foreground-color = "#B4B4E1E1FDFD";
       highlight-colors-set = false;
       login-shell = false;
@@ -87,7 +90,7 @@
       cursor-foreground-color = "#0D0D19192626";
       cursor-shape = "block";
       delete-binding = "delete-sequence";
-      font = "FiraCode Nerd Font Mono 12";
+      font = "${font} ${fontSize}";
       foreground-color = "#B4B4E1E1FDFD";
       highlight-colors-set = false;
       login-shell = false;
@@ -117,7 +120,7 @@
       cursor-foreground-color = "#222222221B1B";
       cursor-shape = "block";
       delete-binding = "delete-sequence";
-      font = "FiraCode Nerd Font Mono 12";
+      font = "${font} ${fontSize}";
       foreground-color = "#878785857373";
       highlight-colors-set = false;
       login-shell = false;
