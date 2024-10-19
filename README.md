@@ -5,11 +5,17 @@
 * setup flakes
 * install home-manager
 
-$
+## Setup ssh keys
+
+```shell
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/*
+chmod 644 ~/.ssh/*.pub
+```
 
 ## Install
 
-$ home-manager switch --flake .
+`$ home-manager switch --flake .`
 
 # Maintenance
 
