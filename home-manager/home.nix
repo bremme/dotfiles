@@ -124,7 +124,7 @@
         enable = true;
         plugins = [ 
           # "git" 
-          zsh-autosuggestions
+          "zsh-autosuggestions"
         ];
         theme = "robbyrussell";
         custom = "$HOME/dotfiles/dotfiles/oh-my-zsh";
