@@ -20,6 +20,9 @@
       autosuggestion = {
         enable = true;
       };
+      syntaxHighlighting = {
+        enable = true;
+      }
     };
 
     zoxide = {
