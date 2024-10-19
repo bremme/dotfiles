@@ -5,6 +5,7 @@
 
   imports = [
     ./dconf.nix
+    ./starship.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -132,10 +133,7 @@
         enable = true;
       };
     };
-    starship = {
-      enable = true;
-      enableZshIntegration = true;
-    };
+
 
     zoxide = {
       enable = true;
