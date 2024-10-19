@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ pkgs, lib, ... }:
 
 {
   imports = [
@@ -6,7 +6,20 @@
     ./starship/starship.nix
   ];
 
+  home.packages = with pkgs; [
+    fd
+    eza
+    wget
+    curl
+    jq
+    yq
+    bat
+    unzip
+    htop
+  ];  
+
   programs = {
+
     zsh = {
       enable = true;
       oh-my-zsh = {
@@ -14,7 +27,7 @@
         plugins = [ 
           # "git" 
         ];
-        theme = "robbyrussell";
+        # theme = "robbyrussell";
         custom = "$HOME/dotfiles/dotfiles/oh-my-zsh";
       };
       autosuggestion = {
@@ -22,7 +35,7 @@
       };
       syntaxHighlighting = {
         enable = true;
-      }
+      };
     };
 
     zoxide = {

@@ -5,8 +5,7 @@
 
   imports = [
     ./base/shell.nix
-    ./workstation/dconf.nix
-    ./workstation/vscode.nix
+    ./workstation/workstation.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -31,25 +30,24 @@
       # git
       # zoxide
       # fzf
-      fd
-      eza
-      wget
-      curl
-      jq
-      yq
-      bat
-      unzip
+      # fd
+      # eza
+      # wget
+      # curl
+      # jq
+      # yq
+      # bat
+      # unzip
       android-tools
       kubectl
       ansible
       dconf2nix
-      htop
 
       (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
 
       # GUI apps
       gnome.dconf-editor
-      gnome.gnome-terminal
+      # gnome.gnome-terminal
       gnome.gnome-tweaks
 
       # # Adds the 'hello' command to your environment. It prints a friendly
