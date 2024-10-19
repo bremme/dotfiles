@@ -113,3 +113,5 @@ alias gp="git push"
 alias gl="git pull"
 alias glg="git log"
 alias gd="git diff"
+
+alias hm="home-manager"
