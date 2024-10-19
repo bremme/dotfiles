@@ -104,7 +104,8 @@ alias rtfm="man"
 
 # Git alias
 alias gst="git status"
-alias ga="git add"
+alias ga= "git add"
+alias gau="git add --update"
 alias gaa="git add --all"
 alias gc="git commit --m"
 alias gp="git push"
