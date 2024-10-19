@@ -172,7 +172,8 @@
         ms-python.debugpy
         ms-python.black-formatter
 
-        bbenoist.nix
+        # bbenoist.nix
+        jnoortheen.nix-ide
         yzhang.markdown-all-in-one
         redhat.vscode-yaml
         tamasfe.even-better-toml
