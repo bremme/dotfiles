@@ -3,9 +3,15 @@
 * change shell to zsh
 * copy ssh keys
 * setup flakes
+* install home-manager
 
-## Usage
+$
 
+## Install
+
+$ home-manager switch --flake .
+
+# Maintenance
 
 
 # What home manager can't do
