@@ -5,7 +5,7 @@
 
   imports = [
     ./workstation/dconf.nix
-    ./base/starship.nix
+    ./base/shell.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -29,7 +29,7 @@
       # cli tools
       # git
       # zoxide
-      fzf
+      # fzf
       fd
       eza
       wget
