@@ -103,15 +103,17 @@ alias please='sudo $(fc -ln -1)'
 alias rtfm="man"
 
 # Git alias
-alias gst="git status"
-alias ga= "git add"
-alias gau="git add --update"
-alias gaa="git add --all"
-alias gc="git commit"
-alias gcm="git commit -m"
-alias gp="git push"
-alias gl="git pull"
-alias glg="git log"
-alias gd="git diff"
+if command -v git > /dev/null 2>&1; then
+   alias gst="git status"
+   alias ga= "git add"
+   alias gau="git add --update"
+   alias gaa="git add --all"
+   alias gc="git commit"
+   alias gcm="git commit -m"
+   alias gp="git push"
+   alias gl="git pull"
+   alias glg="git log"
+   alias gd="git diff"
+fi
 
 alias hm="home-manager"
