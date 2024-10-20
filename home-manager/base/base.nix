@@ -15,6 +15,7 @@
     yq
     bat
     unzip
+    gnutar
     htop
   ];  
 
@@ -51,7 +52,7 @@
 
     fastfetch = {
       enable = true;
-    }
+    };
 
   };
 }

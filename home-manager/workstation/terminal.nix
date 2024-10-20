@@ -4,6 +4,7 @@ let
   font = "FiraCode Nerd Font Mono";
   fontSize = "12";
 in {
+
   home.packages = with pkgs; [
     gnome.gnome-terminal
   ];
@@ -13,7 +14,7 @@ in {
     "org/gnome/terminal/legacy/keybindings" = {
         zoom-in = "<Ctrl>equal";
     };
-        # Profiles ################################################################
+    # Profiles ################################################################
     "org/gnome/terminal/legacy" = {
       "profiles:" = [
         "/org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/"

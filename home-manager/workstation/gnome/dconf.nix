@@ -1,20 +1,57 @@
-{ lib, ... }:
 
-with lib.hm.gvariant;
+
 {
-  dconf.settings = {
+    dconf.settings = {
     "ca/desrt/dconf-editor" = {
         show-warning = false;
     };
 
-    # Shortcuts
+    "org/gnome/desktop/interface" = {
+      color-scheme = "'prefer-dark'";
+      gtk-theme = "'Adwaita-dark'";
+      show-battery-percentage = true;
+      clock-show-weekday = true;
+    };
+
+    "org/gnome/desktop/sound" = {
+      allow-volume-above-100-percent = true;
+    };
+
+    "org/gnome/desktop/calendar" = {
+      show-weekdate = true;
+    };
+
+    "org/gnome/desktop/peripherals/touchpad" = {
+      tap-to-click = true;
+    };
+
+    "org/gnome/shell/weather" = {
+      automatic-location = true;
+    };
+
+    "org/gnome/shell/overrides" = {
+      attach-modal-dialogs = false;
+    };
+
+    "org/gnome/desktop/wm/preferences" = {
+      button-layout = "':minimize,maximize,close'";
+    };
+
+    "org/gnome/settings-daemon/plugins/color" = {
+      night-light-enabled = true;
+      night-light-temperature = 3700;
+    };
+
+    "org/gnome/mutter" = {
+      attach-modal-dialogs = false;
+    };
+
+    # Keyboard shortcuts ######################################################
     "org/gnome/settings-daemon/plugins/media-keys" = {
       home = [ "<Super>e" ];
     }; 
-
-    # Keyboard shortcuts ######################################################
     "org/gnome/desktop/wm/keybindings" = {
-        show-desktop = [ "<Super>d" ];
+      show-desktop = [ "<Super>d" ];
     };
 
     # Custom shortcut
