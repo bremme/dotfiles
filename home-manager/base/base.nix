@@ -49,5 +49,9 @@
       enableZshIntegration = true;
     };
 
+    fastfetch = {
+      enable = true;
+    }
+
   };
 }

@@ -4,7 +4,7 @@
   nixpkgs.config.allowUnfree = true;
 
   imports = [
-    ./base/shell.nix
+    ./base/base.nix
     ./workstation/workstation.nix
   ];
 
