@@ -7,8 +7,8 @@
     };
 
     "org/gnome/desktop/interface" = {
-      color-scheme = "'prefer-dark'";
-      gtk-theme = "'Adwaita-dark'";
+      color-scheme = "prefer-dark";
+      gtk-theme = "Adwaita-dark";
       show-battery-percentage = true;
       clock-show-weekday = true;
     };
@@ -34,7 +34,7 @@
     };
 
     "org/gnome/desktop/wm/preferences" = {
-      button-layout = "':minimize,maximize,close'";
+      button-layout = ":minimize,maximize,close";
     };
 
     "org/gnome/settings-daemon/plugins/color" = {

@@ -7,5 +7,6 @@
     ./dconf.nix
     ./extensions.nix
     ./nautilus.nix
+    ./gedit.nix
   ];
 }
