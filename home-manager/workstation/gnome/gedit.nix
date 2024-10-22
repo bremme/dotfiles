@@ -1,5 +1,6 @@
 { lib,... }:
 
+with lib.gvariant;
 
 {
 
