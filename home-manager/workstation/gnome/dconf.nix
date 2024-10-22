@@ -1,5 +1,7 @@
 { ... }:
 
+with lib.gvariant;
+
 {
     dconf.settings = {
     "ca/desrt/dconf-editor" = {
@@ -39,7 +41,7 @@
 
     "org/gnome/settings-daemon/plugins/color" = {
       night-light-enabled = true;
-      night-light-temperature = 3700;
+      night-light-temperature = mkUint32 3700;
     };
 
     "org/gnome/mutter" = {
