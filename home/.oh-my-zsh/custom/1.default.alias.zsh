@@ -92,9 +92,11 @@ if command -v exa > /dev/null 2>&1; then
 fi
 
 if command -v batcat > /dev/null 2>&1; then
-   alias cat=batcat --paging=never
+   alias cat="batcat --paging=never"
+   alias catp="batcat --style=plain --paging=never"
 elif command -v bat > /dev/null 2>&1; then
-   alias cat=bat --paging=never
+   alias cat="bat --paging=never"
+   alias catp="bat --style=plain --paging=never"
 fi
 
 if command -v fdfind > /dev/null 2>&1; then
@@ -115,3 +117,6 @@ alias whatsmyip="curl ifconfig.me"
 alias please='sudo $(fc -ln -1)'
 
 alias rtfm="man"
+
+alias mvn-dependency-check="mvn org.owasp:dependency-check-maven:check"
+alias mvn-dependency-tree="mvn dependency:tree"
