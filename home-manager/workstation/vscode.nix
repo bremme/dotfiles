@@ -1,16 +1,27 @@
-{ pkgs, lib, ... }:
-
 {
+  pkgs,
+  lib,
+  ...
+}: {
+  home.packages = with pkgs; [
+    alejandra
+    nixd
+  ];
+
   programs.vscode = {
     enable = true;
     extensions = with pkgs.vscode-extensions; [
-      ms-python.python 
+      # python
+      ms-python.python
       ms-python.vscode-pylance
       ms-python.debugpy
       ms-python.black-formatter
 
+      # nix
       # bbenoist.nix
       jnoortheen.nix-ide
+      kamadorueda.alejandra
+
       yzhang.markdown-all-in-one
       redhat.vscode-yaml
       tamasfe.even-better-toml
