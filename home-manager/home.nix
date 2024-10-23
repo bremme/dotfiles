@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   nixpkgs.config.allowUnfree = true;
 
   imports = [
@@ -43,7 +45,7 @@
       ansible
       dconf2nix
 
-      (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
+      (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono"];})
 
       # GUI apps
       gnome.dconf-editor
@@ -109,10 +111,9 @@
     #
     sessionVariables = {
       # EDITOR = "emacs";
-      TERMINAL="gnome-terminal";
+      TERMINAL = "gnome-terminal";
     };
   };
-  
 
   programs = {
     # Let Home Manager install and manage itself.
@@ -125,6 +126,5 @@
     # alacritty = {
     #   enable = true;
     # };
-
   };
 }

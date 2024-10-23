@@ -1,11 +1,8 @@
-{ ... }:
-
-with lib.gvariant;
-
-{
-    dconf.settings = {
+{lib, ...}:
+with lib.gvariant; {
+  dconf.settings = {
     "ca/desrt/dconf-editor" = {
-        show-warning = false;
+      show-warning = false;
     };
 
     "org/gnome/desktop/interface" = {
@@ -50,18 +47,18 @@ with lib.gvariant;
 
     # Keyboard shortcuts ######################################################
     "org/gnome/settings-daemon/plugins/media-keys" = {
-      home = [ "<Super>e" ];
-    }; 
+      home = ["<Super>e"];
+    };
     "org/gnome/desktop/wm/keybindings" = {
-      show-desktop = [ "<Super>d" ];
+      show-desktop = ["<Super>d"];
     };
 
     # Custom shortcut
     "org/gnome/settings-daemon/plugins/media-keys" = {
-      custom-keybindings = [ 
-        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/" 
-        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/" 
-        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/" 
+      custom-keybindings = [
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/"
       ];
     };
 
@@ -82,6 +79,5 @@ with lib.gvariant;
       command = "flameshot-gui";
       name = "Take screenshot with Flameshot";
     };
-
-  }; 
+  };
 }

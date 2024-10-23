@@ -1,9 +1,5 @@
-{ ... }:
-
-{
-
+{...}: {
   dconf.settings = {
-
     "org/gnome/nautilus/icon-view" = {
       default-zoom-level = "medium";
     };
@@ -21,7 +17,5 @@
       show-delete-permanently = true;
       show-image-thumbnails = "always";
     };
-    
   };
 }
-

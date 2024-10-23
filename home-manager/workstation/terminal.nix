@@ -1,18 +1,18 @@
-{ pkgs, lib, ... }:
-
-let
+{
+  pkgs,
+  lib,
+  ...
+}: let
   font = "FiraCode Nerd Font Mono";
   fontSize = "12";
 in {
-
   home.packages = with pkgs; [
     gnome.gnome-terminal
   ];
 
   dconf.settings = {
-
     "org/gnome/terminal/legacy/keybindings" = {
-        zoom-in = "<Ctrl>equal";
+      zoom-in = "<Ctrl>equal";
     };
     # Profiles ################################################################
     "org/gnome/terminal/legacy" = {
@@ -65,7 +65,7 @@ in {
       foreground-color = "#B4B4E1E1FDFD";
       highlight-colors-set = false;
       login-shell = false;
-      palette = [ "#3F3F3F3F3F3F" "#FFFF08088383" "#8383FFFF0808" "#FFFF83830808" "#08088383FFFF" "#83830808FFFF" "#0808FFFF8383" "#BEBEBEBEBEBE" "#474747474747" "#FFFF1E1E8E8E" "#8E8EFFFF1E1E" "#FFFF8E8E1E1E" "#1E1E8E8EFFFF" "#8E8E1E1EFFFF" "#1E1EFFFF8E8E" "#C4C4C4C4C4C4" ];
+      palette = ["#3F3F3F3F3F3F" "#FFFF08088383" "#8383FFFF0808" "#FFFF83830808" "#08088383FFFF" "#83830808FFFF" "#0808FFFF8383" "#BEBEBEBEBEBE" "#474747474747" "#FFFF1E1E8E8E" "#8E8EFFFF1E1E" "#FFFF8E8E1E1E" "#1E1E8E8EFFFF" "#8E8E1E1EFFFF" "#1E1EFFFF8E8E" "#C4C4C4C4C4C4"];
       scroll-on-output = true;
       scrollback-lines = 10000;
       scrollbar-policy = "always";
@@ -95,7 +95,7 @@ in {
       foreground-color = "#B4B4E1E1FDFD";
       highlight-colors-set = false;
       login-shell = false;
-      palette = [ "#363636363636" "#FFFF08088383" "#8383FFFF0808" "#FFFF83830808" "#08088383FFFF" "#83830808FFFF" "#0808FFFF8383" "#B6B6B6B6B6B6" "#424242424242" "#FFFF1E1E8E8E" "#8E8EFFFF1E1E" "#FFFF8E8E1E1E" "#1E1E8E8EFFFF" "#8E8E1E1EFFFF" "#1E1EFFFF8E8E" "#C2C2C2C2C2C2" ];
+      palette = ["#363636363636" "#FFFF08088383" "#8383FFFF0808" "#FFFF83830808" "#08088383FFFF" "#83830808FFFF" "#0808FFFF8383" "#B6B6B6B6B6B6" "#424242424242" "#FFFF1E1E8E8E" "#8E8EFFFF1E1E" "#FFFF8E8E1E1E" "#1E1E8E8EFFFF" "#8E8E1E1EFFFF" "#1E1EFFFF8E8E" "#C2C2C2C2C2C2"];
       scroll-on-output = true;
       scrollback-lines = 10000;
       scrollbar-policy = "always";
@@ -125,7 +125,7 @@ in {
       foreground-color = "#878785857373";
       highlight-colors-set = false;
       login-shell = false;
-      palette = [ "#BABA62623636" "#BABA62623636" "#7D7D97972626" "#A5A598980D0D" "#3636A1A16666" "#9D9D6C6C7C7C" "#5B5B9D9D4848" "#E7E7E6E6DFDF" "#6C6C6B6B5A5A" "#AEAE73731313" "#7D7D97972626" "#A5A598980D0D" "#5F5F91918282" "#9D9D6C6C7C7C" "#5B5B9D9D4848" "#F4F4F3F3ECEC" ];
+      palette = ["#BABA62623636" "#BABA62623636" "#7D7D97972626" "#A5A598980D0D" "#3636A1A16666" "#9D9D6C6C7C7C" "#5B5B9D9D4848" "#E7E7E6E6DFDF" "#6C6C6B6B5A5A" "#AEAE73731313" "#7D7D97972626" "#A5A598980D0D" "#5F5F91918282" "#9D9D6C6C7C7C" "#5B5B9D9D4848" "#F4F4F3F3ECEC"];
       scroll-on-output = true;
       scrollback-lines = 10000;
       scrollbar-policy = "always";

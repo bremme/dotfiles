@@ -1,8 +1,9 @@
-{ pkgs, lib, ... }:
-
-with lib.hm.gvariant;
-
 {
+  pkgs,
+  lib,
+  ...
+}:
+with lib.hm.gvariant; {
   programs.gnome-shell = with pkgs.gnomeExtensions; {
     enable = true;
     extensions = [
@@ -19,7 +20,6 @@ with lib.hm.gvariant;
 
   # Extensions settings
   dconf.settings = {
-
     "org/gnome/shell/extensions/vitals" = {
       icon-style = mkInt32 1;
     };

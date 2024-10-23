@@ -1,6 +1,8 @@
-{ pkgs, lib, ... }:
-
 {
+  pkgs,
+  lib,
+  ...
+}: {
   imports = [
     ./git/git.nix
     ./starship/starship.nix
@@ -17,16 +19,15 @@
     unzip
     gnutar
     htop
-  ];  
+  ];
 
   programs = {
-
     zsh = {
       enable = true;
       oh-my-zsh = {
         enable = true;
-        plugins = [ 
-          # "git" 
+        plugins = [
+          # "git"
         ];
         # theme = "robbyrussell";
         custom = "$HOME/dotfiles/dotfiles/oh-my-zsh";
@@ -42,7 +43,7 @@
     zoxide = {
       enable = true;
       enableZshIntegration = true;
-      options = [ "--cmd" "cd" ];
+      options = ["--cmd" "cd"];
     };
 
     fzf = {
@@ -53,6 +54,5 @@
     fastfetch = {
       enable = true;
     };
-
   };
 }

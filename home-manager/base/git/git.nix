@@ -1,6 +1,4 @@
-{ lib, ... }:
-
-{
+{lib, ...}: {
   programs.git = {
     enable = true;
     userName = "bremme";
@@ -24,6 +22,3 @@
     };
   };
 }
-
-
-

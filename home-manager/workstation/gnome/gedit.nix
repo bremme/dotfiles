@@ -1,11 +1,6 @@
-{ lib,... }:
-
-with lib.gvariant;
-
-{
-
+{lib, ...}:
+with lib.gvariant; {
   dconf.settings = {
-
     "org/gnome/TextEditor" = {
       use-system-font = false;
       custom-font = "FiraCode Nerd Font Mono 12";
@@ -17,6 +12,5 @@ with lib.gvariant;
       show-right-margin = true;
       style-scheme = "solarized-dark";
     };
-    
   };
 }
