@@ -1,8 +1,4 @@
-{
-  pkgs,
-  lib,
-  ...
-}: {
+{pkgs, ...}: {
   home.packages = with pkgs; [
     alejandra
     nixd
@@ -23,7 +19,7 @@
       kamadorueda.alejandra
 
       yzhang.markdown-all-in-one
-      DavidAnson.vscode-markdownlint
+      davidanson.vscode-markdownlint
       redhat.vscode-yaml
       tamasfe.even-better-toml
       redhat.vscode-xml
@@ -37,6 +33,10 @@
       christian-kohler.path-intellisense
 
       zhuangtongfa.material-theme
+      dracula-theme.theme-dracula
+      github.github-vscode-theme
+
+      pkief.material-icon-theme
     ];
   };
 }
