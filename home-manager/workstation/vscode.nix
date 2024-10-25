@@ -23,6 +23,7 @@
       kamadorueda.alejandra
 
       yzhang.markdown-all-in-one
+      DavidAnson.vscode-markdownlint
       redhat.vscode-yaml
       tamasfe.even-better-toml
       redhat.vscode-xml
@@ -33,6 +34,7 @@
       tomoki1207.pdf
       github.copilot
       github.copilot-chat
+      christian-kohler.path-intellisense
 
       zhuangtongfa.material-theme
     ];
