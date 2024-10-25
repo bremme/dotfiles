@@ -14,5 +14,12 @@
     kubectl
     helm
     dconf2nix
+
+    (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono"];})
+
+    # GUI apps
+    gnome.dconf-editor
+    # gnome.gnome-terminal
+    gnome.gnome-tweaks
   ];
 }

@@ -10,6 +10,10 @@ in {
     gnome.gnome-terminal
   ];
 
+  home.sessionVariables = {
+    TERMINAL = "gnome-terminal";
+  };
+
   dconf.settings = {
     "org/gnome/terminal/legacy/keybindings" = {
       zoom-in = "<Ctrl>equal";

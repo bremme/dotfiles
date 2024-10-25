@@ -28,30 +28,6 @@
     # environment.
     # https://search.nixos.org/packages
     packages = with pkgs; [
-      # cli tools
-      # git
-      # zoxide
-      # fzf
-      # fd
-      # eza
-      # wget
-      # curl
-      # jq
-      # yq
-      # bat
-      # unzip
-      android-tools
-      kubectl
-      ansible
-      dconf2nix
-
-      (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono"];})
-
-      # GUI apps
-      gnome.dconf-editor
-      # gnome.gnome-terminal
-      gnome.gnome-tweaks
-
       # # Adds the 'hello' command to your environment. It prints a friendly
       # # "Hello, world!" when run.
       # pkgs.hello
@@ -111,20 +87,11 @@
     #
     sessionVariables = {
       # EDITOR = "emacs";
-      TERMINAL = "gnome-terminal";
     };
   };
 
   programs = {
     # Let Home Manager install and manage itself.
     home-manager.enable = true;
-
-    # gnome-terminal = {
-    #   enable = true;
-    # };
-
-    # alacritty = {
-    #   enable = true;
-    # };
   };
 }
