@@ -7,6 +7,7 @@
     ./terminal.nix
     ./gnome/gnome.nix
     ./vscode.nix
+    ./python.nix
   ];
 
   home.packages = with pkgs; [

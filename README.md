@@ -31,3 +31,4 @@ chmod 644 ~/.ssh/*.pub
 move to flake setup
 use variable for font and use everywhere, terminal, vscode etc.
 git alias
+devenv, direnv is probably the way to go for development environments.
