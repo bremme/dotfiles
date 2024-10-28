@@ -38,72 +38,76 @@ function error() {
 }
 
 function get_distro_id() {
-    local distro_id=$(grep '^ID=' /etc/os-release | cut -d '=' -f 2 | tr -d '"')
+    local distro_id
+    
+    distro_id=$(grep '^ID=' /etc/os-release | cut -d '=' -f 2 | tr -d '"')
     echo "$distro_id"
 }
 
-function get_packages() {
-    local packages=$1
-    local overried=$2
-
-    # for package in "${packages[@]}"; do
-
-    # done
-}
-
 function update_packages() {
-    local distro_id=$(get_distro_id)
+    local distro_id
+    local update_command
+
+    distro_id=$(get_distro_id)
 
     case "$distro_id" in
         debian|ubuntu)
             info "Updating repositories for Debian/Ubuntu..."
-            sudo apt update
+            update_command="apt update"
             ;;
         fedora)
             info "Updating repositories for Fedora..."
-            sudo dnf check-update
+            update_command="dnf check-update"
             ;;
         arch)
             info "Updating repositories for Arch-based systems..."
-            sudo pacman -Syu
+            update_command="pacman -Syu"
             ;;
         *)
-            error "Unsupported distribution: $ID"
+            error "Unsupported distribution: $distro_id"
             return 1
             ;;
     esac
+
+    debug "Will run: 'sudo $update_command'"
+    sudo $update_command
 }
 
 function install_packages() {
-    local distro_id=$(get_distro_id)
+    local distro_id
     local install_command
-
+    
+    distro_id=$(get_distro_id)
 
     case "$distro_id" in
         debian|ubuntu)
-            install_command="apt install"
+            install_command="apt install --ignore-missing -y"
             ;;
         fedora)
-            install_command="dnf install"
+            install_command="dnf install --skip-unavailable -y"
             ;;
         arch)
             install_command="pacman -S"
             ;;
         *)
-            error "Unsupported distribution: $ID"
+            error "Unsupported distribution: $distro_id"
             return 1
             ;;
     esac
 
+    debug "Installing packages: $*"
+    debug "sudo $install_command $*"
     sudo $install_command $@
 }
 
 function install_font_zip() {
     local url="$1"
-    local filename="$(basename "$url")"
+    local filename
+    
+    filename="$(basename "$url")"
 
     mkdir -p "$HOME/.local/share/fonts"
-
+    # shellcheck disable=SC2164
     cd "$HOME/.local/share/fonts"
 
     wget "$url"
@@ -115,6 +119,7 @@ function install_font_zip() {
     cd -
 
     # Refresh font cache
+    info "Refreshing font cache..."
     fc-cache --force --vebose
 }
 

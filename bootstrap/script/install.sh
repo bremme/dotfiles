@@ -1,13 +1,19 @@
 #!/usr/bin/env bash
 set -e
 
-source "$(dirname "$0")/lib/utils.sh"
+script_dir="$(dirname "$0")"
+
+source "$script_dir/lib/utils.sh"
 
 info "Update packages"
 
 update_packages
 
-$(dirname "$0")/bin/install_base_packages.sh
+info "Bootstrap base configuration"
+
+"$script_dir/bin/base/install_base_packages.sh"
+"$script_dir/bin/base/install_oh_my_zsh.sh"
+
 
 # terminal app
 # fonts

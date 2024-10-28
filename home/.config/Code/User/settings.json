@@ -111,8 +111,12 @@
     "[xml]": {
         "editor.defaultFormatter": "redhat.vscode-xml"
     },
-    "explorer.confirmPasteNative": false
+    "explorer.confirmPasteNative": false,
 
+    // 
+    "shellcheck.customArgs": [
+        "--external-sources"
+    ]
     // Java settings ///////////////////////////////////////////////////////////////////
     // "[java]": {
     //     "editor.defaultFormatter": "richardwillis.vscode-spotless-gradle",

@@ -1,16 +1,30 @@
 #!/usr/bin/env bash
 
 declare -a BASE_PACKAGES=(
-    # essential cli
-    git wget curl htop zsh command-not-found fzf 
-    # nice to have cli
-    imagemagick jq yq
-    # fun cli
-    cowsay fastfetch
-    # development
-    android-tools-adb android-tools-fastboot avrdude
-    # network tools
-    # hardware tools: disk, sensors
+    # base
+    command-not-found 
+    cowsay
+    curl 
+    eza
+    fastfetch
+    fd-find 
+    fzf
+    git 
+    tar
+    htop 
+    jq
+    unzip
+    wget 
+    yq
+    zsh
+    zoxide
+)
+
+declare -a WORKSTATION_PACKAGES=(
+    imagemagick
+    android-tools-adb 
+    android-tools-fastboot 
+    avrdude
     lm-sensors
 )
 
