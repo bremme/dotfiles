@@ -1,0 +1,5 @@
+- import_tasks: docker.yaml
+- import_tasks: folders.yaml
+- import_tasks: packages.yaml
+- import_tasks: shell.yaml
+- import_tasks: homeshick.yaml

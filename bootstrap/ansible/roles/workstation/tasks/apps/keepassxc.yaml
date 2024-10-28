@@ -1,0 +1,29 @@
+- name: Install KeepassX
+  package:
+    name:
+      - keepassxc
+      - desktop-file-utils
+
+- name: Check if .desktop file exists
+  become_user: "{{ ansible_env.SUDO_USER }}"
+  stat:
+    path: "$HOME/.local/share/applications/org.keepassxc.KeePassXC.desktop"
+  register: desktop_file_exists
+
+- name: Install and configure KeePassXC .desktop file
+  become_user: "{{ ansible_env.SUDO_USER }}"
+  shell: |
+    desktop-file-install --dir=$HOME/.local/share/applications /usr/share/applications/org.keepassxc.KeePassXC.desktop &&
+    desktop-file-edit $HOME/.local/share/applications/org.keepassxc.KeePassXC.desktop --set-key=Exec --set-value="keepassxc -platform xcb %f" &&
+    update-desktop-database $HOME/.local/share/applications
+  when: not desktop_file_exists.stat.exists
+
+- name: Add autostart KeePassXC link
+  become_user: "{{ ansible_env.SUDO_USER }}"
+  file:
+    src: $HOME/.local/share/applications/org.keepassxc.KeePassXC.desktop
+    dest: $HOME/.config/autostart/org.keepassxc.KeePassXC.desktop
+    state: link
+
+# TODO KeepassXC config (theme, hotkey etc.)
+

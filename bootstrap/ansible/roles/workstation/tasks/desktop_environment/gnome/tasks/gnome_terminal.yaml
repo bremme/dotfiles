@@ -1,0 +1,37 @@
+- name: Install GNOME terminal
+  tags: gnome,gnome-terminal
+  block:
+    - name: Install GNOME terminal package
+      package:
+        name:
+          - gnome-terminal
+        state: present
+
+    - name: Set GNOME terminal legacy keybindings
+      become_user: "{{ ansible_env.SUDO_USER }}"
+      community.general.dconf:
+        key: "{{ item.key }}"
+        value: "{{ item.value }}"
+      with_items:
+        - key: "/org/gnome/terminal/legacy/keybindings/zoom-in"
+          value: "'<Ctrl>equal'"
+
+    - name: Install Gogh dependencies
+      package:
+        name:
+          - dconf-cli
+          - uuid-runtime
+
+    - name: Clone Gogh repository
+      git:
+        repo: 'https://github.com/Gogh-Co/Gogh.git'
+        dest: $HOME/src/gogh
+        depth: 1
+
+    # TODO no way to detect if it has been run
+    - name: Install the desired theme
+      become_user: "{{ ansible_env.SUDO_USER }}"
+      shell:
+        # cmd:  ./{{ gogh_theme_name | lower | replace(' ', '-') }}.sh
+        cmd:  TERMINAL=gnome-terminal ./aura.sh
+        chdir: $HOME/src/gogh/installs

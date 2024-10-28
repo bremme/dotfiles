@@ -1,0 +1,43 @@
+
+# - name: Install nvm
+#   tags: node
+#   become_user: "{{ ansible_env.SUDO_USER }}"
+#   shell:
+#     cmd: |
+#       export NVM_DIR="$HOME/.nvm"
+#       git clone git@github.com:nvm-sh/nvm.git "$NVM_DIR"
+#       cd "$NVM_DIR"
+#       git checkout $(git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1))
+#     executable: /bin/bash
+#     creates: "$HOME/.nvm/nvm.sh"
+
+- name: Install nvm
+  tags: node
+  become_user: "{{ ansible_env.SUDO_USER }}"
+  shell: >
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
+  args:
+    creates: "$HOME/.nvm/nvm.sh"
+
+- name: Install Node LTS using nvm
+  tags: node
+  become_user: "{{ ansible_env.SUDO_USER }}"
+  shell:
+    cmd: |
+      \. "$HOME/.nvm/nvm.sh"
+      nvm install --lts
+      nvm use --lts
+    executable: /bin/bash
+    creates: "$HOME/.nvm/alias/lts"
+
+# TODO
+# - name: Install fnm
+# generate and add completions file
+# fnm completions --shell zsh > ~/.oh-my-zsh/cache/completions/_fnm.zsh
+
+# Alternatives
+# nvm
+# fnm
+# n
+# volta
+# pnpm

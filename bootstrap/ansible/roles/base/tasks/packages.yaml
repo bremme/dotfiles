@@ -1,0 +1,59 @@
+- name: Install minimal packages
+  tags: base,minimal
+  package:
+    name:
+      - apt-transport-https
+      - command-not-found
+      - ca-certificates
+      # cli tools
+      - curl
+      - fzf
+      - git
+      - htop
+      - jq
+      - tree
+      - wget
+      - bat
+      - eza
+      - bash-completion
+      # TODO not maintained anymore
+      - neofetch
+      - rsync
+      - tar
+      - bzip2
+      - trash-cli
+      - net-tools
+
+- name: Install base packages
+  tags: base
+  package:
+    name:
+      - build-essential
+      - cmake
+      - python3-pip
+      - cowsay
+      - toilet
+      - fortune
+      - nmap
+      - hdparm
+      - gpg
+
+- name: Install snapd
+  tags: base,snap
+  package:
+    name:
+        - snapd
+
+- name: Install snap packages
+  tags: base,snap
+  community.general.snap:
+    name:
+      - yq
+
+- name: Install classic snap packages
+  tags: base,snap
+  community.general.snap:
+    name:
+      - helm
+      - kubectl
+    classic: true

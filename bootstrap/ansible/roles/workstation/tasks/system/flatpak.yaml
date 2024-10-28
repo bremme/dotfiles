@@ -1,0 +1,12 @@
+- name: Install Flatpak
+  tags: flatpak
+  block:
+  - name: Install Flatpak pacakge
+    package:
+      name:
+        - flatpak
+        - gnome-software-plugin-flatpak
+  - name: Add Flathub repository
+    community.general.flatpak_remote:
+      name: flathub
+      flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo

@@ -1,0 +1,78 @@
+- name: Install VS Code
+  tags: desktop,vscode
+  become_user: "{{ ansible_env.SUDO_USER }}"
+  block:
+    # TODO check Ubuntu/Debian based distro
+    - name: Download VS Code .deb
+      get_url:
+        url: https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64
+        dest: /tmp/code.deb
+    - name: Install CVS Code .deb
+      apt:
+        deb: /tmp/code.deb
+    - name: Install VS Code extensions Default profile
+      shell:
+        cmd: "code --profile Default --install-extension {{ item }}"
+        creates: "$HOME/.vscode/extensions/{{ item.lower() }}*"
+      with_items:
+        # Theming
+        - GitHub.github-vscode-theme
+        - akamud.vscode-theme-onedark
+        - zhuangtongfa.material-theme
+        # Icons
+        - PKief.material-icon-theme
+        # Spellcheck
+        - streetsidesoftware.code-spell-checker
+        - streetsidesoftware.code-spell-checker-dutch
+        # Copilot
+        - GitHub.copilot
+        - GitHub.copilot-chat
+        # Markdown
+        - yzhang.markdown-all-in-one
+        - DavidAnson.vscode-markdownlint
+        # Yaml
+        - redhat.vscode-yaml
+        # Python
+        - ms-python.python
+        - ms-python.vscode-pylance
+        - ms-python.black-formatter
+        - ms-python.flake8
+        - ms-python.isort
+        - ms-python.pylint
+
+    # Java profile
+    - name: Create Java Profile
+      shell:
+        cmd: code --profile Java
+    - name: Install VS Code extensions Java profile
+      shell:
+        cmd: "code --profile Java --install-extension {{ item }}"
+        creates: "$HOME/.vscode/extensions/{{ item.lower() }}*"
+      with_items:
+        # Theming
+        - GitHub.github-vscode-theme
+        - akamud.vscode-theme-onedark
+        - zhuangtongfa.material-theme
+        # Icons
+        - PKief.material-icon-theme
+        # Spellcheck
+        - streetsidesoftware.code-spell-checker
+        - streetsidesoftware.code-spell-checker-dutch
+        # Copilot
+        - GitHub.copilot
+        - GitHub.copilot-chat
+        # Path intellisense
+        - christian-kohler.path-intellisense
+        # Markdown
+        - yzhang.markdown-all-in-one
+        - DavidAnson.vscode-markdownlint
+        # Yaml
+        - redhat.vscode-yaml
+        # Sonar
+        - SonarSource.sonarlint-vscode
+        # Java
+        - vscjava.vscode-java-pack  # Includes 6 extensions
+        - vscjava.vscode-gradle
+        - vscjava.vscode-lombok
+        - vmware.vscode-boot-dev-pack
+

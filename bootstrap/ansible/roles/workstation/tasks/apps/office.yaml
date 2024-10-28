@@ -1,0 +1,16 @@
+- name: Install multiple packages
+  tags: desktop
+  package:
+    name:
+      - libreoffice
+      - hunspell-nl
+
+# TODO way to synchronise settings
+# View -> User Interface
+# Tabbed
+
+# View -> Rulers
+# Vertical ruler
+
+# Tools -> Options -> View
+# Icon Theme: Colibre

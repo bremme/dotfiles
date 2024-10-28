@@ -1,0 +1,48 @@
+# Load distro-specific variables
+# - name: Load distro specific variables
+#   include_vars: "{{ ansible_distribution }}.yaml"
+
+# setup system
+- import_tasks: system/flatpak.yaml
+- import_tasks: system/laptop.yaml
+- import_tasks: system/pipx.yaml
+- import_tasks: system/system.yaml
+- import_tasks: system/templates.yaml
+
+# setup desktop environment
+- name: Included GNOME desktop environment tasks
+  import_tasks:
+    file: desktop_environment/gnome/main.yaml
+  when: ansible_env.XDG_CURRENT_DESKTOP in ['GNOME', 'Unity']
+
+# install apps
+- import_tasks: apps/default_package.yaml
+- import_tasks: apps/virtualbox.yaml
+- import_tasks: apps/flameshot.yaml
+- import_tasks: apps/keepassxc.yaml
+- import_tasks: apps/ms_edge.yaml
+- import_tasks: apps/firefox.yaml
+
+# Install programming
+- import_tasks: programming/ms_vs_code.yaml
+- import_tasks: programming/intellij.yaml
+- import_tasks: programming/python.yaml
+- import_tasks: programming/java.yaml
+- import_tasks: programming/node.yaml
+- import_tasks: programming/rust.yaml
+
+
+# Other
+- name: Print all available facts for debugging
+  tags:
+  - never
+  - facts
+  debug:
+    var: ansible_facts
+
+- tags:
+    - never
+    - test
+  debug:
+    msg: "HP ProBook 445 G8 Notebook PC"
+  when: ansible_product_name == "HP ProBook 445 G8 Notebook PC"

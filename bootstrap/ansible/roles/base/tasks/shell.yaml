@@ -1,0 +1,40 @@
+# Oh-my-zsh
+# install zsh
+- name: Setup zsh shell
+  tags: minimal,zsh
+  block:
+    - name: Install zsh package
+      ansible.builtin.package:
+        name:
+          - zsh
+          - fzf
+          - curl
+    # change default shell to zsh
+    - name: Change default shell to zsh
+      ansible.builtin.user:
+        name: "{{ ansible_env.SUDO_USER }}"
+        shell: /usr/bin/zsh
+    # install oh-my-zsh (before homeshick!)
+    - name: Install oh-my-zsh!!
+      become_user: "{{ ansible_env.SUDO_USER }}"
+      ansible.builtin.shell:
+        cmd: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+        creates: $HOME/.oh-my-zsh
+    - name: Install zsh-autosuggestions
+      become_user: "{{ ansible_env.SUDO_USER }}"
+      ansible.builtin.shell:
+        cmd: git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+        creates: $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+
+# Starship
+- name: Setup starship
+  tags: minimal,starship
+  block:
+  - name: Install Starship
+    shell:
+      cmd: "curl -sS https://starship.rs/install.sh | sh -s -- --yes"
+      creates: /usr/local/bin/starship
+  # https://linuxiac.com/how-to-install-fonts-on-linux/
+  - name: Install FiraCode font
+    package:
+      name: fonts-firacode

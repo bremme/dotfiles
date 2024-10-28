@@ -1,0 +1,7 @@
+- name: Install Flameshot
+  tags: desktop,flameshot
+  package:
+    name:
+      - flameshot
+    state: present
+

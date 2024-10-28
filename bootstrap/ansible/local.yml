@@ -1,0 +1,53 @@
+---
+# Playbook
+- name: Run base role
+  hosts: all
+  become: true
+  roles:
+    - base
+
+# - name: Run server role
+#   hosts: server
+#   become: true
+#   roles:
+#     - server
+
+- name: Run workstation role
+  hosts: workstation
+  become: true
+  gather_facts: yes
+  roles:
+    - workstation
+
+
+# - name: Run base and workstation role on localhost
+#   hosts: localhost
+#   connection: local
+#   become: true
+#   roles:
+#     - base
+#     - workstation
+
+# - hosts: localhost
+#   connection: local   # default is ssh
+#   become: true
+
+#   tasks:
+#   - name: Install htop
+#     package:
+#       name:
+#         - htop
+#         - zsh
+#         - wget
+#   - name: Install Snap packages
+#     community.general.snap:
+#       name:
+#         - starship
+
+#   - name: Copy wallpaper file
+#     copy:
+#       src: files/wallpaper.png
+#       dest: /usr/share/backgrounds/ansible-wallpaper.png
+#       owner: root
+#       group: root
+#       mode: 0644

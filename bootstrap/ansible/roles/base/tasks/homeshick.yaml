@@ -1,0 +1,19 @@
+# Homeshick
+- name: Install Homeshick
+  tags: base,minimal,homeshick
+  block:
+  - name: Clone Homeshick repo
+    become_user: "{{ ansible_env.SUDO_USER }}"
+    git:
+      repo: https://github.com/andsens/homeshick.git
+      dest: $HOME/.homesick/repos/homeshick
+  - name: Clone dotfiles repo
+    become_user: "{{ ansible_env.SUDO_USER }}"
+    git:
+      repo: https://github.com/bremme/dotfiles.git
+      dest: $HOME/.homesick/repos/dotfiles
+  - name: Link dotfiles
+    become_user: "{{ ansible_env.SUDO_USER }}"
+    shell:
+      cmd: $HOME/.homesick/repos/homeshick/bin/homeshick link dotfiles --batch --force
+      creates: $HOME/.link-dotfiles-has-run

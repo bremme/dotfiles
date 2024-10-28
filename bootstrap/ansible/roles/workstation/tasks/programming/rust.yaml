@@ -1,0 +1,7 @@
+- name: Install Rust
+  tags: rust
+  become_user: "{{ ansible_env.SUDO_USER }}"
+  shell:
+    cmd: |
+      curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path
+    creates: "$HOME/.cargo"

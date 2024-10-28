@@ -1,0 +1,7 @@
+- import_tasks: desktop_environment/gnome/tasks/apps_install.yaml
+- import_tasks: desktop_environment/gnome/tasks/filemanager.yaml
+- import_tasks: desktop_environment/gnome/tasks/gedit.yaml
+- import_tasks: desktop_environment/gnome/tasks/gnome_extensions.yaml
+- import_tasks: desktop_environment/gnome/tasks/gnome_terminal.yaml
+- import_tasks: desktop_environment/gnome/tasks/gnome.yaml
+- import_tasks: desktop_environment/gnome/tasks/keybindings.yaml

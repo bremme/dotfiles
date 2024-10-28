@@ -1,0 +1,56 @@
+- name: Install default desktop applications
+  tags: desktop,desktop-packages
+  package:
+    name:
+      - dconf-editor
+      - gimp
+      - gparted
+      - jstest-gtk
+      - meld
+      - sqlitebrowser
+      - vlc
+      - filezilla
+      - darktable
+      - gdmap
+      - android-sdk-platform-tools
+      - timeshift
+
+- name: Remove unnessecary desktop applications
+  tags: desktop
+  package:
+    name:
+      - shotwell
+      - xterm
+    state: absent
+
+# install as user??
+- name: Install multiple Flatpak desktop applications
+  tags: desktop
+  community.general.flatpak:
+    name:
+      # - com.bitwarden.desktop
+      - com.jgraph.drawio.desktop
+      - net.poedit.Poedit
+      - org.telegram.desktop
+      - org.signal.Signal
+      - com.discordapp.Discord
+      # - com.github.IsmaelMartinez.teams_for_linux
+      # - io.missioncenter.MissionCenter
+    state: present
+
+- name: Install restricted extra's on Debian
+  tags: desktop
+  package:
+    name:
+    # Install restricted-extras
+    - ttf-mscorefonts-installer
+    - rar
+    - unrar
+    - libavcodec-extra
+    - gstreamer1.0-libav
+    - gstreamer1.0-plugins-ugly
+    - gstreamer1.0-vaapi
+    # Microsoft Fonts Compatibility
+    - fonts-crosextra-carlito
+    - fonts-crosextra-caladea
+  when: ansible_distribution == "Debian"
