@@ -22,6 +22,7 @@
       - tar
       - bzip2
       - trash-cli
+      - net-tools
 
 - name: Install base packages
   tags: base
