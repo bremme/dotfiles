@@ -120,3 +120,21 @@ alias rtfm="man"
 
 alias mvn-dependency-check="mvn org.owasp:dependency-check-maven:check"
 alias mvn-dependency-tree="mvn dependency:tree"
+
+# git
+# See https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git for more inspiration
+if command -v git > /dev/null 2>&1; then
+   function _git_commit_message() {
+      git commit -m "$*"
+   }
+   alias gst="git status"
+   alias ga= "git add"
+   alias gau="git add --update"
+   alias gaa="git add --all"
+   alias gc="git commit"
+   alias gcm="_git_commit_message"
+   alias gp="git push"
+   alias gl="git pull"
+   alias glg="git log"
+   alias gd="git diff"
+fi
