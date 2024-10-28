@@ -1,0 +1,1 @@
+GNOME_SHELL_VERSION="$(gnome-shell --version | cut -d " " -f 3)"

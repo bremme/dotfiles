@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=KeePassXC
+GenericName=Password vault
+Exec=$HOME/AppImage/KeePassXC.AppImage
+Icon=$HOME/AppImage/icons/keepassxc.png
+Terminal=false
+StartupNotify=true
+Categories=Office;Utility
+Keywords=key;password;manager;safety

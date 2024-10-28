@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Cura
+GenericName=3D printer / slicing GUI
+Exec=$HOME/AppImage/Cura.AppImage
+Icon=$HOME/AppImage/icons/cura.png
+Terminal=false
+StartupNotify=true
+Categories=Utility;Science;Development
+Keywords=3d;slicer;printer
