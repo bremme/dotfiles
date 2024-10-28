@@ -8,4 +8,4 @@ cfg.InteractiveShellEmbed.colors = "Linux"  # syntax highlighting
 cfg.InteractiveShellEmbed.confirm_exit = False
 
 # enter IPython shell using 'i'
-alias i IPython.embed(config=cfg)
+alias i IPython.embed(config=cfg) # type: ignore
