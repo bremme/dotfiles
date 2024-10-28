@@ -2,11 +2,11 @@
 
 echo "ansible-playbook
     --inventory inventory.ini
-    --limit "$(hostname -f)"
+    --limit $(hostname -f)
     --ask-become-pass
     --connection local
     -vvv
-    "$*"
+    $*
     local.yml"
 
 ansible-playbook \
@@ -15,5 +15,5 @@ ansible-playbook \
     --ask-become-pass \
     --connection local \
     --verbose \
-    $* \
+    "$@" \
     local.yml
