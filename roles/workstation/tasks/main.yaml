@@ -4,7 +4,6 @@
 
 # setup system
 - import_tasks: system/flatpak.yaml
-- import_tasks: system/fonts.yaml
 - import_tasks: system/laptop.yaml
 - import_tasks: system/pipx.yaml
 - import_tasks: system/system.yaml

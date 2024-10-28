@@ -1,5 +1,5 @@
 - name: Install GNOME packages
-  tags: gnome
+  tags: gnome,gnome-apps
   package:
     name:
       - gnome-power-manager

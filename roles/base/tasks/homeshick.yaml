@@ -1,6 +1,6 @@
 # Homeshick
 - name: Install Homeshick
-  tags: minimal,homeshick
+  tags: base,minimal,homeshick
   block:
   - name: Clone Homeshick repo
     become_user: "{{ ansible_env.SUDO_USER }}"
