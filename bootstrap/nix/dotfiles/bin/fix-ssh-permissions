@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -e
+
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/*
+chmod 644 ~/.ssh/*.pub

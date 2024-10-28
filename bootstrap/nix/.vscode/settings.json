@@ -1,0 +1,9 @@
+{
+    "nix.serverSettings": {
+        "options": {
+            "home_manager": {
+                "expr": "(builtins.getFlake \"${workspaceFolder}/home-manager/flake.nix\").homeConfigurations.bremme.options"
+            },
+        },
+    }
+}
