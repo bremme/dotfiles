@@ -137,4 +137,5 @@ if command -v git > /dev/null 2>&1; then
    alias gl="git pull"
    alias glg="git log"
    alias gd="git diff"
+   alias gco="git checkout"
 fi
