@@ -31,7 +31,7 @@
     },
     "files.trimTrailingWhitespace": false,
     "files.autoSave": "afterDelay",
-    "files.autoSaveDelay": 30000,
+    "files.autoSaveDelay": 1000,
     "update.showReleaseNotes": false,
 
     "git.confirmSync": false,
@@ -48,8 +48,11 @@
     // Proofing and language //////////////////////////////////////////////////////////
     "cSpell.language": "en,nl",
     "cSpell.userWords": [
+        "betweenness",
+        "Betweenness",
         "dtap",
         "gitops",
+        "gpflow",
         "isort",
         "jupyter",
         "pacticipant",
@@ -116,7 +119,17 @@
     // 
     "shellcheck.customArgs": [
         "--external-sources"
-    ]
+    ],
+    "jupyter.widgetScriptSources": [
+        "jsdelivr.com",
+        "unpkg.com"
+    ],
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false
+    }
     // Java settings ///////////////////////////////////////////////////////////////////
     // "[java]": {
     //     "editor.defaultFormatter": "richardwillis.vscode-spotless-gradle",
