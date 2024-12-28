@@ -10,6 +10,10 @@
 	autoSetupRemote = true
 [core]
 	hooksPath = ~/.git-template/hooks
-
 [include]
 	path = ~/.gitconfig-local
+# Add for example signing config to a local gitconfig file
+#[user]
+#	signingkey=1234567890ABCDEF
+#[commit]
+#	gpgSign = true
