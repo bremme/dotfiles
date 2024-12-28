@@ -1,16 +1,6 @@
 [Default Applications]
 x-scheme-handler/jetbrains=jetbrains-toolbox.desktop
 x-scheme-handler/nc=com.nextcloud.desktopclient.nextcloud.desktop
-x-scheme-handler/http=userapp-Firefox-8R6TQ2.desktop
-x-scheme-handler/https=userapp-Firefox-8R6TQ2.desktop
-x-scheme-handler/chrome=userapp-Firefox-8R6TQ2.desktop
-text/html=userapp-Firefox-8R6TQ2.desktop
-application/x-extension-htm=userapp-Firefox-8R6TQ2.desktop
-application/x-extension-html=userapp-Firefox-8R6TQ2.desktop
-application/x-extension-shtml=userapp-Firefox-8R6TQ2.desktop
-application/xhtml+xml=userapp-Firefox-8R6TQ2.desktop
-application/x-extension-xhtml=userapp-Firefox-8R6TQ2.desktop
-application/x-extension-xht=userapp-Firefox-8R6TQ2.desktop
 application/x-zerosize=code.desktop
 text/x-maven+xml=code.desktop
 application/json=code.desktop
@@ -18,16 +8,6 @@ application/vnd.ms-publisher=code.desktop
 video/mp4=vlc.desktop
 
 [Added Associations]
-x-scheme-handler/http=userapp-Firefox-8R6TQ2.desktop;
-x-scheme-handler/https=userapp-Firefox-8R6TQ2.desktop;
-x-scheme-handler/chrome=userapp-Firefox-8R6TQ2.desktop;
-text/html=userapp-Firefox-8R6TQ2.desktop;
-application/x-extension-htm=userapp-Firefox-8R6TQ2.desktop;
-application/x-extension-html=userapp-Firefox-8R6TQ2.desktop;
-application/x-extension-shtml=userapp-Firefox-8R6TQ2.desktop;
-application/xhtml+xml=userapp-Firefox-8R6TQ2.desktop;
-application/x-extension-xhtml=userapp-Firefox-8R6TQ2.desktop;
-application/x-extension-xht=userapp-Firefox-8R6TQ2.desktop;
 text/x-maven+xml=code.desktop;
 text/plain=code.desktop;
 text/x-markdown=code.desktop
