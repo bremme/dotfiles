@@ -1,6 +1,6 @@
 {
     "workbench.iconTheme": "material-icon-theme",
-    "workbench.colorTheme": "One Dark Pro Darker",
+    "workbench.colorTheme": "GitHub Dark Dimmed",
     "workbench.editorAssociations": {
         "*.ipynb": "jupyter-notebook"
     },
@@ -100,7 +100,9 @@
     },
 
     // Typescript settings /////////////////////////////////////////////////////////////
-    "[typescript]": {},
+    "[typescript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
 
     "[json]": {
         "editor.defaultFormatter": "vscode.json-language-features"
