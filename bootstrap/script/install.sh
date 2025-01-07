@@ -12,7 +12,7 @@ update_packages
 info "Bootstrap base configuration"
 
 "$script_dir/bin/base/install_base_packages.sh"
-"$script_dir/bin/base/install_oh_my_zsh.sh"
+"$script_dir/bin/base/install_shell.sh"
 
 
 # terminal app
