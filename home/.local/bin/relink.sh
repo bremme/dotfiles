@@ -3,7 +3,17 @@
 
 # For appdata it links directories by default unless they are excluded
 # For root data it links files by default, directories can be linked if included
+GREEN="\033[0;32m"
+ORANGE="\033[0;33m"
+NC="\033[0m"
 
+info() {
+    echo -e "${GREEN}[INFO]${NC} $1"
+}
+
+warn() {
+    echo -e "${ORANGE}[WARN]${NC} $1"
+}
 
 # Function to create symlink
 create_symlink() {
@@ -12,30 +22,37 @@ create_symlink() {
 
     if [[ -d "$dest" && ! -L "$dest" ]]; then
         backup_dest=$dest.$(uuidgen | cut -c 1-8).backup
-        echo "[WARN] Destination already exist, moving to $backup_dest"
-        if ! $DRY_RUN; then
-            mv "$dest" "$backup_dest"
-            echo "[INFO] mv $dest $backup_dest"
-        else
-            echo "[INFO] mv $dest $backup_dest (dry-run)"
+        warn "Can't link $src to $dest, destination already exist."
+
+        if $SKIP_EXISTING; then
+            warn "Skipping $src since $dest already exists and --skip-existing is set."
+            return
         fi
 
+        if ! $DRY_RUN; then
+            mv "$dest" "$backup_dest"
+            info "mv $dest $backup_dest"
+        else
+            info "mv $dest $backup_dest (dry-run)"
+        fi
     fi
+
     if ! $DRY_RUN; then
         ln -sf "$src" "$dest"
-        echo "[INFO] ln -sf $src to $dest"
+        info "ln -sf $src to $dest"
     else
-        echo "[INFO] ln -sf $src to $dest (dry-run)"
+        info "ln -sf $src to $dest (dry-run)"
     fi
+
 
 }
 
 is_ignored() {
     if [[ "$1" == "$IGNORE_FILE" ]]; then
-        echo "[INFO] Ignore $1, default ignore file."
+        info "Ignore $1, default ignore file."
         return 0
     elif [[ ${IGNORE_LIST[*]} =~ $1 ]]; then
-        echo "[INFO] Ignore $1 on ignore list."
+        info "Ignore $1 on ignore list."
         return 0
     fi
     return 1
@@ -83,15 +100,20 @@ help() {
     echo ""
     echo "OPTIONS"
     echo "-d, --dry-run         Don't link or move files."
+    echo "-s, --skip-existing   Skip linking files that already exist."
     echo "-h, --help            Show this help."
 }
 
 DRY_RUN=false
+SKIP_EXISTING=false
 
 # parse options
 while true; do
     if [ "$1" = "--dry-run" ] || [ "$1" = "-d" ]; then
         DRY_RUN=true
+        shift 1
+    elif [ "$1" = "--skip-existing" ] || [ "$1" = "-s" ]; then
+        SKIP_EXISTING=true
         shift 1
     elif [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
         help
