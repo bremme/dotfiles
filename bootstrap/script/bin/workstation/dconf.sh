@@ -59,3 +59,6 @@ dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/cus
 dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/binding "'<Shift><Super>s'"
 dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/command "'flameshot-gui'"
 dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/name "'Take screenshot with Flameshot'"
+
+
+dconf write /org/gnome/desktop/input-sources/sources "[('xkb', 'us+intl')]"
