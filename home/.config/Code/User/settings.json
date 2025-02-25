@@ -4,6 +4,7 @@
     "workbench.editorAssociations": {
         "*.ipynb": "jupyter-notebook"
     },
+    "workbench.externalBrowser": "firefox",
 
     "editor.fontFamily": "'FiraCode Nerd Font Mono','Droid Sans Mono', 'monospace', 'monospace'",
     "editor.fontSize": 14,
@@ -40,8 +41,6 @@
 
     "redhat.telemetry.enabled": false,
 
-    "vsicons.dontShowNewVersionMessage": true,
-
     // Terminal settings ///////////////////////////////////////////////////////////////
     "terminal.integrated.fontSize": 16,
     "terminal.integrated.fontFamily": "'FiraCode Nerd Font Mono'",
@@ -57,7 +56,8 @@
         "pacticipants",
         "pylint",
         "sasl",
-        "structlog"
+        "structlog",
+        "vens"
     ],
 
     // Formatter settings //////////////////////////////////////////////////////////////
