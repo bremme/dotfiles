@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+echo "Running pre-commit spotless check"
+
+staged_files=$(git diff --cached --name-only | paste -sd, -)
+
+echo "running: mvn spotless:check -DspotlessFiles=\"$staged_files\""
+
+mvn spotless:check -DspotlessFiles="$staged_files"
