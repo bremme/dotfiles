@@ -23,7 +23,8 @@
         "*.desktop": "ini",
         "flake8": "ini",
         "*.avsc": "json",
-        ".prettierrc": "yaml"
+        ".prettierrc": "yaml",
+        "*.ledsprofile": "json"
     },
     "files.exclude": {
         "**/.classpath": true,
@@ -51,6 +52,7 @@
         "dtap",
         "gitops",
         "isort",
+        "Jimmi",
         "jupyter",
         "pacticipant",
         "pacticipants",
@@ -117,7 +119,26 @@
     // 
     "shellcheck.customArgs": [
         "--external-sources"
-    ]
+    ],
+    "[cpp]": {
+        "editor.defaultFormatter": "ms-vscode.cpptools"
+    },
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false
+    },
+    "[dockercompose]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2,
+        "editor.autoIndent": "advanced",
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
+    "[github-actions-workflow]": {
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    }
     // Java settings ///////////////////////////////////////////////////////////////////
     // "[java]": {
     //     "editor.defaultFormatter": "richardwillis.vscode-spotless-gradle",
