@@ -1,9 +1,21 @@
 #!/usr/bin/env bash
 
-echo "Running pre-commit spotless check"
+# Check if mvn command is available (IntelliJ IDEA doesn't have it in PATH)
+if ! command -v mvn &> /dev/null; then
+    export PATH=$PATH:$HOME/.sdkman/candidates/maven/current/bin
+    export JAVA_HOME=$HOME/.sdkman/candidates/java/current
+    echo "Maven not found in PATH, added it."
+fi
 
-staged_files=$(git diff --cached --name-only | paste -sd, -)
 
-echo "running: mvn spotless:check -DspotlessFiles=\"$staged_files\""
+echo "[pre-commit] Running spotless apply and check."
 
-mvn spotless:check -DspotlessFiles="$staged_files"
+project_root_dir="$(git rev-parse --show-toplevel)"
+staged_java_files=$(git diff --cached --name-only | grep '\.java$' | sed "s|^|$project_root_dir/|" | paste -sd, -)
+
+echo "[pre-commit] Running: mvn spotless:apply -DspotlessFiles=\"$staged_java_files\""
+mvn spotless:apply -DspotlessFiles="$staged_java_files"
+
+# This part is optionally, after an apply the check should never fail
+echo "[pre-commit] Running: mvn spotless:check -DspotlessFiles=\"$staged_java_files\""
+mvn spotless:check -DspotlessFiles="$staged_java_files"
