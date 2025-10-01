@@ -104,38 +104,28 @@ alias please='sudo $(fc -ln -1)'
 
 alias rtfm="man"
 
-<<<<<<< HEAD:home/.oh-my-zsh/custom/1.default.alias.zsh
 alias mvn-dependency-check="mvn org.owasp:dependency-check-maven:check"
 alias mvn-dependency-tree="mvn dependency:tree"
 
-# git
+
+# Git alias
 # See https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git for more inspiration
 if command -v git > /dev/null 2>&1; then
    function _git_commit_message() {
       git commit -m "$*"
    }
-=======
-# Git alias
-if command -v git > /dev/null 2>&1; then
->>>>>>> nix:bootstrap/nix/dotfiles/oh-my-zsh/alias.zsh
    alias gst="git status"
    alias ga= "git add"
    alias gau="git add --update"
    alias gaa="git add --all"
+   alias gco="git checkout"
    alias gc="git commit"
-<<<<<<< HEAD:home/.oh-my-zsh/custom/1.default.alias.zsh
-   alias gcm="_git_commit_message"
-=======
    alias gcm="git commit -m"
->>>>>>> nix:bootstrap/nix/dotfiles/oh-my-zsh/alias.zsh
+   alias gcm="_git_commit_message"
    alias gp="git push"
    alias gl="git pull"
    alias glg="git log"
    alias gd="git diff"
-<<<<<<< HEAD:home/.oh-my-zsh/custom/1.default.alias.zsh
-fi
-=======
 fi
 
 alias hm="home-manager"
->>>>>>> nix:bootstrap/nix/dotfiles/oh-my-zsh/alias.zsh
