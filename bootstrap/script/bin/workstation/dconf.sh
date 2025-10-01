@@ -5,6 +5,10 @@
 
 dconf write /ca/desrt/dconf-editor/show-warning false
 
+## freedesktop
+dconf write /org/freedesktop/tracker/miner/files/index-recursive-directories "['&DESKTOP', '&DOCUMENTS', '&MUSIC', '&PICTURES', '&VIDEOS', '/home/bremme/Sync', '/home/bremme/Data', '/home/bremme/Local']"
+
+## gnome
 dconf write /org/gnome/desktop/calendar/show-weekdate true
 
 dconf write /org/gnome/desktop/interface/clock-show-weekday true
