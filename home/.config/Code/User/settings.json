@@ -49,14 +49,19 @@
     // Proofing and language //////////////////////////////////////////////////////////
     "cSpell.language": "en,nl",
     "cSpell.userWords": [
+        "aiomqtt",
         "dtap",
         "gitops",
+        "growatt",
+        "Growatt",
         "isort",
         "Jimmi",
         "jupyter",
+        "MBAP",
         "pacticipant",
         "pacticipants",
         "pylint",
+        "repareerbaar",
         "sasl",
         "structlog",
         "vens"
@@ -138,7 +143,9 @@
     },
     "[github-actions-workflow]": {
         "editor.defaultFormatter": "redhat.vscode-yaml"
-    }
+    },
+    "git.blame.editorDecoration.enabled": false,
+    "chat.viewSessions.orientation": "stacked"
     // Java settings ///////////////////////////////////////////////////////////////////
     // "[java]": {
     //     "editor.defaultFormatter": "richardwillis.vscode-spotless-gradle",
