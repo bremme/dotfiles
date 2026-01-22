@@ -8,6 +8,10 @@ _pl() {
   fi
 }
 
+if command -v uv > /dev/null 2>&1; then
+  eval "$(uv generate-shell-completion zsh)"
+fi
+
 alias p="python"
 alias pl=_pl
 # python install default

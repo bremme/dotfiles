@@ -94,9 +94,11 @@ fi
 if command -v batcat > /dev/null 2>&1; then
    alias cat="batcat --paging=never"
    alias catp="batcat --style=plain --paging=never"
+   alias catb="/usr/bin/cat"
 elif command -v bat > /dev/null 2>&1; then
    alias cat="bat --paging=never"
    alias catp="bat --style=plain --paging=never"
+   alias catb="/usb/bin/cat"
 fi
 
 if command -v fdfind > /dev/null 2>&1; then
