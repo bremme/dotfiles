@@ -87,11 +87,11 @@ disabled = false
 format = '[$symbol\($namespace\)]($style) in '
 style = "green bold"
 
-[env_var]
-variable = "PYCUSTOM_CUR_ENV"
-default = "unknown env"
-format = "[$env_value]($style) "
-style = "yellow bold dimmed"
+# [env_var]
+# variable = "PYCUSTOM_CUR_ENV"
+# default = "unknown env"
+# format = "[$env_value]($style) "
+# style = "yellow bold dimmed"
 
 
 # [character]
@@ -102,3 +102,10 @@ style = "yellow bold dimmed"
 # when = "echo 0"
 # command = "task +in count"
 # format = "[$symbol($output)]($style) inbox"
+
+
+
+[python]
+format = 'via [${symbol}(${version} )(\($virtualenv\) )]($style)'
+symbol = " "
+style = "bold #f3e10b"

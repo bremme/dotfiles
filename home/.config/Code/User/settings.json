@@ -50,39 +50,51 @@
     "cSpell.language": "en,nl",
     "cSpell.userWords": [
         "aiomqtt",
+        "Alliander",
+        "bremme",
+        "derating",
         "dtap",
+        "fromdict",
+        "github",
         "gitops",
         "growatt",
         "Growatt",
+        "hass",
+        "homeassistant",
+        "importlib",
         "isort",
         "Jimmi",
         "jupyter",
         "MBAP",
+        "mqtt",
         "pacticipant",
         "pacticipants",
         "pylint",
+        "pytest",
+        "Pytest",
+        "Qube",
         "repareerbaar",
         "sasl",
+        "sdist",
+        "sonarqube",
+        "ssid",
         "structlog",
         "vens"
     ],
 
     // Formatter settings //////////////////////////////////////////////////////////////
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    // "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": false,
     "editor.codeActionsOnSave": {
         // "source.organizeImports": "explicit"
 
     },
 
-    "prettier.singleQuote": false,
-    "prettier.printWidth": 100,
-    "prettier.tabWidth": 4,
-    "prettier.useTabs": false,
 
     // Python settings /////////////////////////////////////////////////////////////////
     "[python]": {
-        "editor.defaultFormatter": "ms-python.black-formatter",
+        // "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.defaultFormatter": "charliermarsh.ruff",
         "editor.formatOnSave": true,
         "editor.codeActionsOnSave": {
             "source.organizeImports": "explicit",
@@ -92,6 +104,9 @@
         "editor.formatOnType": true
     },
     "python.analysis.autoImportCompletions": true,
+    
+    "python.languageServer": "Pylance",
+    "ty.disableLanguageServices": true,
 
     // Jupyter notebook ////////////////////////////////////////////////////////////////
     "notebook.cellToolbarLocation": {
@@ -101,10 +116,11 @@
 
     // Markdown settings ///////////////////////////////////////////////////////////////
     "[markdown]": {
-        "editor.defaultFormatter": "yzhang.markdown-all-in-one"
+        "editor.defaultFormatter": "DavidAnson.vscode-markdownlint",
+        "editor.formatOnSave": false,
     },
 
-    // Typescript settings /////////////////////////////////////////////////////////////
+    // Language settings /////////////////////////////////////////////////////////////
     "[typescript]": {},
 
     "[json]": {
@@ -116,24 +132,19 @@
     "[yaml]": {
         "editor.defaultFormatter": "redhat.vscode-yaml"
     },
+    "[toml]": {
+        "editor.defaultFormatter": "tamasfe.even-better-toml",
+        // "editor.formatOnSave": true
+        
+
+    },
+    "evenBetterToml.formatter.arrayAutoCollapse": false,
+    
     "[xml]": {
         "editor.defaultFormatter": "redhat.vscode-xml"
     },
-    "explorer.confirmPasteNative": false,
-
-    // 
-    "shellcheck.customArgs": [
-        "--external-sources"
-    ],
     "[cpp]": {
         "editor.defaultFormatter": "ms-vscode.cpptools"
-    },
-    "github.copilot.nextEditSuggestions.enabled": true,
-    "github.copilot.enable": {
-        "*": true,
-        "plaintext": false,
-        "markdown": false,
-        "scminput": false
     },
     "[dockercompose]": {
         "editor.insertSpaces": true,
@@ -141,10 +152,39 @@
         "editor.autoIndent": "advanced",
         "editor.defaultFormatter": "redhat.vscode-yaml"
     },
+    ////////////////////////////////////////////////////////////////////////////////////
+
+    "explorer.confirmPasteNative": false,
+
+    // 
+    "shellcheck.customArgs": [
+        "--external-sources"
+    ],
+    
+
+    "github.copilot.nextEditSuggestions.enabled": true,
     "[github-actions-workflow]": {
         "editor.defaultFormatter": "redhat.vscode-yaml"
     },
     "git.blame.editorDecoration.enabled": false,
+    "[instructions]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2,
+        "editor.autoIndent": "advanced",
+        "editor.unicodeHighlight.ambiguousCharacters": false,
+        "editor.unicodeHighlight.invisibleCharacters": false,
+        "diffEditor.ignoreTrimWhitespace": false,
+        "editor.wordWrap": "on",
+        "editor.quickSuggestions": {
+            "comments": "off",
+            "strings": "on",
+            "other": "on"
+        },
+        "editor.wordBasedSuggestions": "off"
+    },
+    "files.watcherExclude": {
+        "**/.venv/**": true
+    },
     "chat.viewSessions.orientation": "stacked"
     // Java settings ///////////////////////////////////////////////////////////////////
     // "[java]": {
