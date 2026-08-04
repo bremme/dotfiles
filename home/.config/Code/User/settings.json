@@ -50,6 +50,7 @@
     "cSpell.language": "en,nl",
     "cSpell.userWords": [
         "aiomqtt",
+        "alice",
         "Alliander",
         "bremme",
         "derating",
@@ -104,7 +105,7 @@
         "editor.formatOnType": true
     },
     "python.analysis.autoImportCompletions": true,
-    
+
     "python.languageServer": "Pylance",
     "ty.disableLanguageServices": true,
 
@@ -135,11 +136,11 @@
     "[toml]": {
         "editor.defaultFormatter": "tamasfe.even-better-toml",
         // "editor.formatOnSave": true
-        
+
 
     },
     "evenBetterToml.formatter.arrayAutoCollapse": false,
-    
+
     "[xml]": {
         "editor.defaultFormatter": "redhat.vscode-xml"
     },
@@ -156,11 +157,11 @@
 
     "explorer.confirmPasteNative": false,
 
-    // 
+    //
     "shellcheck.customArgs": [
         "--external-sources"
     ],
-    
+
 
     "github.copilot.nextEditSuggestions.enabled": true,
     "[github-actions-workflow]": {
@@ -185,6 +186,14 @@
     "files.watcherExclude": {
         "**/.venv/**": true
     },
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false,
+        "yaml": true
+    },
+    "python.analysis.typeCheckingMode": "basic",
     "chat.viewSessions.orientation": "stacked"
     // Java settings ///////////////////////////////////////////////////////////////////
     // "[java]": {
