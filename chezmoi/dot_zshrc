@@ -1,0 +1,14 @@
+PREFIX_ANTIDOTE="$(brew --prefix)/opt/antidote/share/antidote"
+
+# source antidote
+source $PREFIX_ANTIDOTE/antidote.zsh
+
+# initialize plugins statically with ${ZDOTDIR:-$HOME}/.zsh_plugins.txt
+antidote load
+
+autoload -Uz compinit; compinit
+
+# Look custom files
+for file in ~/.config/zsh/*.zsh; do
+    [[ -f "$file" ]] && source "$file"
+done
