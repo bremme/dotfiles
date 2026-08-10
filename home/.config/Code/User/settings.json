@@ -57,6 +57,7 @@
         "fromdict",
         "github",
         "gitops",
+        "Gmail",
         "growatt",
         "Growatt",
         "hass",
@@ -65,7 +66,9 @@
         "isort",
         "Jimmi",
         "jupyter",
+        "Keepass",
         "MBAP",
+        "Modbus",
         "mqtt",
         "pacticipant",
         "pacticipants",
@@ -104,7 +107,8 @@
         "editor.formatOnType": true
     },
     "python.analysis.autoImportCompletions": true,
-    
+    "python.analysis.typeCheckingMode": "standard",
+
     "python.languageServer": "Pylance",
     "ty.disableLanguageServices": true,
 
@@ -135,11 +139,11 @@
     "[toml]": {
         "editor.defaultFormatter": "tamasfe.even-better-toml",
         // "editor.formatOnSave": true
-        
+
 
     },
     "evenBetterToml.formatter.arrayAutoCollapse": false,
-    
+
     "[xml]": {
         "editor.defaultFormatter": "redhat.vscode-xml"
     },
@@ -156,11 +160,11 @@
 
     "explorer.confirmPasteNative": false,
 
-    // 
+    //
     "shellcheck.customArgs": [
         "--external-sources"
     ],
-    
+
 
     "github.copilot.nextEditSuggestions.enabled": true,
     "[github-actions-workflow]": {
@@ -185,7 +189,25 @@
     "files.watcherExclude": {
         "**/.venv/**": true
     },
-    "chat.viewSessions.orientation": "stacked"
+    "sonarlint.connectedMode.connections.sonarcloud": [
+        {
+            "organizationKey": "bremme",
+            "connectionId": "bremme",
+            "region": "EU"
+        }
+    ],
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false
+    },
+    "chat.tools.terminal.autoApprove": {
+        "uv": true
+    },
+    "diffEditor.ignoreTrimWhitespace": false,
+    "chat.viewSessions.orientation": "stacked",
+    "terminal.integrated.initialHint": false
     // Java settings ///////////////////////////////////////////////////////////////////
     // "[java]": {
     //     "editor.defaultFormatter": "richardwillis.vscode-spotless-gradle",
