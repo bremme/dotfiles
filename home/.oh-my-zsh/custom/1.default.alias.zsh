@@ -112,6 +112,7 @@ fi
 alias grepa="alias | grep -i"
 # Grep from env
 alias grepe="env | grep -i"
+# Grep from ps
 alias grepp="ps aux | grep -i"
 
 alias whatsmyip="curl ifconfig.me"
