@@ -1,0 +1,226 @@
+{
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.colorTheme": "One Dark Pro Darker",
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+    "workbench.externalBrowser": "firefox",
+
+    "editor.fontFamily": "'FiraCode Nerd Font Mono','Droid Sans Mono', 'monospace', 'monospace'",
+    "editor.fontSize": 14,
+    "editor.fontWeight": "500",
+    "editor.fontLigatures": true,
+
+    "editor.renderWhitespace": "all",
+    "editor.rulers": [88, 100, 120],
+    "editor.suggestSelection": "first",
+    "editor.inlineSuggest.enabled": true,
+
+    "diffEditor.ignoreTrimWhitespace": false,
+
+    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDelete": false,
+    "explorer.confirmPasteNative": false,
+
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false
+    },
+    "chat.tools.terminal.autoApprove": {
+        "uv": true
+    },
+    "chat.viewSessions.orientation": "stacked",
+
+    "files.associations": {
+        "*.desktop": "ini",
+        "flake8": "ini",
+        "*.avsc": "json",
+        ".prettierrc": "yaml",
+        "*.ledsprofile": "json"
+    },
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
+    },
+    "files.watcherExclude": {
+        "**/.venv/**": true
+    },
+    "files.trimTrailingWhitespace": false,
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 30000,
+    "update.showReleaseNotes": false,
+
+    "git.confirmSync": false,
+    "git.autofetch": true,
+    "git.blame.editorDecoration.enabled": false,
+
+    "redhat.telemetry.enabled": false,
+
+    // Terminal settings ///////////////////////////////////////////////////////////////
+    "terminal.integrated.fontSize": 16,
+    "terminal.integrated.fontFamily": "'FiraCode Nerd Font Mono'",
+    "terminal.integrated.initialHint": false,
+
+    // Proofing and language //////////////////////////////////////////////////////////
+    "cSpell.language": "en,nl",
+    "cSpell.userWords": [
+        "aiomqtt",
+        "alice",
+        "Alliander",
+        "bremme",
+        "derating",
+        "dtap",
+        "fromdict",
+        "github",
+        "gitops",
+        "Gmail",
+        "growatt",
+        "Growatt",
+        "hass",
+        "homeassistant",
+        "importlib",
+        "isort",
+        "Jimmi",
+        "jupyter",
+        "Keepass",
+        "MBAP",
+        "Modbus",
+        "mqtt",
+        "pacticipant",
+        "pacticipants",
+        "pylint",
+        "pytest",
+        "Pytest",
+        "Qube",
+        "repareerbaar",
+        "sasl",
+        "sdist",
+        "sonarqube",
+        "ssid",
+        "structlog",
+        "vens"
+    ],
+
+    // Formatter settings //////////////////////////////////////////////////////////////
+    // "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": false,
+    "editor.codeActionsOnSave": {
+        // "source.organizeImports": "explicit"
+
+    },
+
+    // Python settings /////////////////////////////////////////////////////////////////
+    "[python]": {
+        // "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.defaultFormatter": "charliermarsh.ruff",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit",
+            "source.fixAll": "explicit"
+        },
+
+        "editor.formatOnType": true
+    },
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.typeCheckingMode": "standard",
+
+    "python.languageServer": "Pylance",
+    "ty.disableLanguageServices": true,
+
+    // Jupyter notebook ////////////////////////////////////////////////////////////////
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
+
+    // Markdown settings ///////////////////////////////////////////////////////////////
+    "[markdown]": {
+        "editor.defaultFormatter": "DavidAnson.vscode-markdownlint",
+        "editor.formatOnSave": false,
+    },
+
+    // Other language settings /////////////////////////////////////////////////////////////
+    "[typescript]": {},
+
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "[yaml]": {
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
+    "[toml]": {
+        "editor.defaultFormatter": "tamasfe.even-better-toml",
+        // "editor.formatOnSave": true
+
+
+    },
+    "evenBetterToml.formatter.arrayAutoCollapse": false,
+
+    "[xml]": {
+        "editor.defaultFormatter": "redhat.vscode-xml"
+    },
+    "[cpp]": {
+        "editor.defaultFormatter": "ms-vscode.cpptools"
+    },
+    "[dockercompose]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2,
+        "editor.autoIndent": "advanced",
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
+    "shellcheck.customArgs": [
+        "--external-sources"
+    ],
+    "[github-actions-workflow]": {
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
+    "[instructions]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2,
+        "editor.autoIndent": "advanced",
+        "editor.unicodeHighlight.ambiguousCharacters": false,
+        "editor.unicodeHighlight.invisibleCharacters": false,
+        "diffEditor.ignoreTrimWhitespace": false,
+        "editor.wordWrap": "on",
+        "editor.quickSuggestions": {
+            "comments": "off",
+            "strings": "on",
+            "other": "on"
+        },
+        "editor.wordBasedSuggestions": "off"
+    },
+    ////////////////////////////////////////////////////////////////////////////////////
+    "sonarlint.connectedMode.connections.sonarcloud": [
+        {
+            "organizationKey": "bremme",
+            "connectionId": "bremme",
+            "region": "EU"
+        }
+    ],
+
+
+    // Java settings ///////////////////////////////////////////////////////////////////
+    // "[java]": {
+    //     "editor.defaultFormatter": "richardwillis.vscode-spotless-gradle",
+    //     "editor.codeActionsOnSave": {
+    //         "source.fixAll.spotlessGradle": true
+    //       },
+    //     "files.trimTrailingWhitespace": false
+    // },
+
+    // "redhat.telemetry.enabled": false,
+    // "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx1G -Xms100m -javaagent:\"/home/bremme/.vscode/extensions/gabrielbb.vscode-lombok-1.0.1/server/lombok.jar\"",
+
+    // "spotlessGradle.format.enable": true,
+    // "spotlessGradle.diagnostics.enable": true,
+
+    // "java.format.settings.url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
+}
