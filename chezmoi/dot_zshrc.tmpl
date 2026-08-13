@@ -1,4 +1,9 @@
+
+{{ if eq .chezmoi.os "darwin" }}
 PREFIX_ANTIDOTE="$(brew --prefix)/opt/antidote/share/antidote"
+{{ else }}
+PREFIX_ANTIDOTE="${ZDOTDIR:-$HOME}/.antidote"
+{{ end }}
 
 # source antidote
 source $PREFIX_ANTIDOTE/antidote.zsh

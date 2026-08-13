@@ -1,0 +1,248 @@
+#!/usr/bin/env python3
+
+from pathlib import Path
+import shutil
+import subprocess
+import sys
+import os
+from datetime import date, datetime
+import re
+import logging
+
+
+log_directory = (
+    Path(os.environ.get("XDG_CACHE_HOME", Path.home() / ".cache")) / "nautilus-scripts"
+)
+log_file = log_directory / "set-exif-date-time-whatsapp.log"
+
+# Format:
+#   WhatsApp Image 2023-09-02 at 19.42.44 (1).jpg
+#   WhatsApp Video 2023-09-02 at 19.42.44.mp4
+#   WhatsApp Video 2022-08-01 at 1.46.13 AM.mp4
+
+whatsapp_24hformat_pattern = re.compile(
+    r"WhatsApp (?:Image|Video) (\d{4})-(\d{2})-(\d{2}) at (\d{2})\.(\d{2})\.(\d{2})"
+)
+
+whatsapp_12hformat_pattern = re.compile(
+    r"WhatsApp (?:Image|Video) (\d{4})-(\d{2})-(\d{2}) at (\d{1,2})\.(\d{2})\.(\d{2}) (AM|PM)"
+)
+
+regular_date_pattern = re.compile(r"(\d{4})[-_./](\d{2})[-_./](\d{2})")
+
+LOGGING_LEVEL_TO_ZENITY = {
+    logging.NOTSET: "info",
+    logging.DEBUG: "info",
+    logging.INFO: "info",
+    logging.WARNING: "warning",
+    logging.ERROR: "error",
+    logging.CRITICAL: "error",
+}
+
+
+def show_popup_dialog(message: str, level: int = logging.INFO):
+    zenity_level = LOGGING_LEVEL_TO_ZENITY.get(level, "info")
+    subprocess.run(["zenity", f"--{zenity_level}", "--text", message])
+
+
+def setup_logging():
+
+    class ZenityHandler(logging.Handler):
+        def emit(self, record):
+            if record.levelno >= logging.ERROR:
+                msg = self.format(record)
+                show_popup_dialog(msg, level=record.levelno)
+
+    log_file.parent.mkdir(parents=True, exist_ok=True)
+
+    logger = logging.getLogger("WhatsappMetadataFixer")
+    logger.setLevel(logging.DEBUG)
+
+    fh = logging.FileHandler(log_file)
+    fh.setFormatter(
+        logging.Formatter(
+            "%(asctime)s - %(levelname)s - %(message)s", datefmt="%Y-%m-%d %H:%M:%S"
+        )
+    )
+    logger.addHandler(fh)
+
+    zh = ZenityHandler()
+    zh.setFormatter(logging.Formatter("%(message)s"))
+    logger.addHandler(zh)
+
+    return logger
+
+
+def parse_whatsapp_24h_format(m: re.Match) -> datetime:
+
+    year, month, day, hour, minute, second = m.groups()
+
+    return datetime(
+        year=int(year),
+        month=int(month),
+        day=int(day),
+        hour=int(hour),
+        minute=int(minute),
+        second=int(second),
+    )
+
+
+def parse_whatsapp_12h_format(m: re.Match) -> datetime:
+
+    year, month, day, hour, minute, second, am_pm = m.groups()
+
+    hour = int(hour)
+    if am_pm.upper() == "PM" and hour != 12:
+        hour += 12
+    elif am_pm.upper() == "AM" and hour == 12:
+        hour = 0
+
+    return datetime(
+        year=int(year),
+        month=int(month),
+        day=int(day),
+        hour=hour,
+        minute=int(minute),
+        second=int(second),
+    )
+
+
+def parse_date(m: re.Match) -> datetime:
+
+    year, month, day = m.groups()
+
+    return datetime(
+        year=int(year),
+        month=int(month),
+        day=int(day),
+        hour=12,
+        minute=0,
+        second=0,
+    )
+
+
+def parse_datetime_from_filename(filename: str) -> datetime | None:
+
+    match = whatsapp_24hformat_pattern.match(filename)
+    if match:
+        return parse_whatsapp_24h_format(match)
+
+    match = whatsapp_12hformat_pattern.match(filename)
+    if match:
+        return parse_whatsapp_12h_format(match)
+
+    match = regular_date_pattern.search(filename)
+    if match:
+        return parse_date(match)
+
+    return None
+
+
+def update_datetime_images(file: Path, date_time: datetime):
+    date_str = date_time.strftime("%Y:%m:%d %H:%M:%S")
+    cmd = [
+        "exiftool",
+        "-overwrite_original",
+        f"-ModifyDate='{date_str}'",
+        f"-DateTimeOriginal='{date_str}'",
+        f"-CreateDate='{date_str}'",
+        f"{file}",
+    ]
+    logger.info(f"Running command: {' '.join(cmd)}")
+    return subprocess.run(cmd, capture_output=True, text=True)
+
+
+def update_datetime_videos(file: Path, date_time: date):
+    date_str = date_time.strftime("%Y-%m-%dT%H:%M:%S")
+    temp_file = Path(f"{file.stem}.temp{file.suffix}")
+    cmd = [
+        "ffmpeg",
+        "-i",
+        f"{file.name}",
+        "-c",
+        "copy",
+        "-map",
+        "0",
+        "-metadata",
+        f"creation_time={date_str}",
+        "-y",
+        f"{temp_file}",
+    ]
+
+    logger.info(f"Running command: {' '.join(cmd)}")
+    result = subprocess.run(cmd, capture_output=True, text=True)
+
+    if result.returncode == 0:
+        temp_file.replace(file)
+
+    if temp_file.exists():
+        temp_file.unlink()
+
+    return result
+
+
+def check_required_tools():
+    for tool in ["exiftool", "ffmpeg"]:
+        if not shutil.which(tool):
+            logger.error(f"Required tool '{tool}' is not installed or not in PATH.")
+            show_popup_dialog(
+                f"Required tool '{tool}' is not installed or not in PATH.",
+                level=logging.ERROR,
+            )
+            sys.exit(1)
+
+
+logger = setup_logging()
+
+
+def main(files: list[Path]):
+
+    check_required_tools()
+
+    num_files = len(files)
+    processed_files = 0
+    failed_files = 0
+
+    for file in files:
+
+        if file.is_dir():
+            logger.warning(f"Skipping directory {file}")
+            continue
+
+        date_time = parse_datetime_from_filename(file.name)
+
+        if not date_time:
+            logger.warning(f"Could not parse date for {file}")
+            continue
+
+        logger.info(f"Parsed date for {file}: {date_time}")
+
+        if file.suffix in [".mp4"]:
+            result = update_datetime_videos(file, date_time)
+        elif file.suffix in [".jpg", ".jpeg"]:
+            result = update_datetime_images(file, date_time)
+        else:
+            logger.warning(f"Unknown file extension {file.suffix} for {file.name}")
+            continue
+
+        if result.returncode != 0:
+            logger.error(f"Error processing {file.name}: {result.stderr}")
+            failed_files += 1
+        else:
+            logger.info(
+                f"Successfully updated date time metadata for {file.name}:  {result.stdout}"
+            )
+            processed_files += 1
+
+    show_popup_dialog(
+        f"Successfully updated datetime metadata for {processed_files} out of {num_files} files."
+    )
+
+
+if __name__ == "__main__":
+    args = sys.argv[1:]
+    files = []
+    for string in args:
+        files.append(Path(string).expanduser())
+
+    main(files)

@@ -1,6 +1,12 @@
-[user]
+
 {{ if eq .chezmoi.hostname "MC-FL613VQ2RN" }}
+[commit]
+    gpgSign = true
+[user]
     signingkey = 38B2BCCA27FA0C5F
-{{ else }}
-    signingkey = 1234567890ABCDEF
+{{ else if eq .chezmoi.hostname "carbon" }}
+[commit]
+    gpgSign = true
+[user]
+    signingkey = A461B222966381E0 
 {{ end }}

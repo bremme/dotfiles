@@ -57,3 +57,21 @@ Bootstrapping new systems and keeping my dotfiles in sync. I used to have multip
 
 If I break it down to the most essential separation, I have two type of machines: workstations and servers. Of course there can still be many differences between those two categories, like personal vs work, desktop vs laptop, virtual machine vs bare metal etc. But to keep it simple and manageable I will start with those two.
 
+### Homeshick to Chezmoi migration
+
+Setup chezmoi directory
+
+nano ~/.config/chezmoi/chezmoi.yaml
+
+```yaml
+sourceDir: ~/git/dotfiles/chezmoi
+```
+
+
+```shell
+# replace link with original file (stored in homeshick)
+cp --remove-destination "$(readlink -f ~/.zshrc)" ~/.zshrc
+
+# add to chezmoi (if not already part of chezmoi)
+chezmoi add ~/.zshrc
+```

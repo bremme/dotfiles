@@ -1,0 +1,3 @@
+#!/bin/bash
+# Open the selected directory in VS Code
+code "$1"

@@ -1,0 +1,11 @@
+
+
+# Linux only files
+{{ if ne .chezmoi.os "linux" }}
+
+{{ end }}
+
+# Mac only files
+{{ if ne .chezmoi.os "darwin" }}
+.config/ghostty/config.ghostty
+{{ end }}
