@@ -1,5 +1,7 @@
 # Default shell tools ##########################################################################
 
+export PATH=$HOME/.local/bin:$HOME/bin:/sbin:/usr/games:$PATH
+
 # reload zsh
 alias rlz="source ~/.zshrc"
 
@@ -58,7 +60,7 @@ if command -v chezmoi > /dev/null 2>&1; then
    alias cha="chezmoi -v apply"
    alias chaa="chezmoi -v add"
    alias chd="chezmoi -v diff"
-   alias chs="chezmoi -v status"
+   alias chst="chezmoi -v status"
 fi
 
 # Dev shell tools ################################################################################
