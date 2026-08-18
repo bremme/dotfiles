@@ -59,6 +59,7 @@ if command -v chezmoi > /dev/null 2>&1; then
    alias chaa="chezmoi -v add"
    alias chd="chezmoi -v diff"
    alias chs="chezmoi -v status"
+   eval "$(chezmoi completion zsh)"
 fi
 
 # Dev shell tools ################################################################################
