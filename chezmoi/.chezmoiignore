@@ -1,11 +1,10 @@
-
-
-# Linux only files
+# Linux only files ########################
 {{ if ne .chezmoi.os "linux" }}
-
+.config/Code/User
 {{ end }}
 
-# Mac only files
+# Mac only files ##########################
 {{ if ne .chezmoi.os "darwin" }}
+Library
 .config/ghostty/config.ghostty
 {{ end }}
