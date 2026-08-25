@@ -9,5 +9,7 @@ setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_SPACE
 
 # Use up/down to complete command from history (instead of looping through previous commands)
-[[ -n "${terminfo[kcuu1]}" ]] && bindkey "${terminfo[kcuu1]}" history-substring-search-up
-[[ -n "${terminfo[kcud1]}" ]] && bindkey "${terminfo[kcud1]}" history-substring-search-down
+
+# These work on macOS
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
