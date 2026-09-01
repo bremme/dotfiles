@@ -13,3 +13,7 @@ setopt HIST_IGNORE_SPACE
 # These work on macOS
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
+
+# These work on Ubuntu
+bindkey '^[OA' history-substring-search-up
+bindkey '^[OB' history-substring-search-down
