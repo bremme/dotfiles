@@ -1,0 +1,10 @@
+[[index]]
+name = "artifactory-pypi-all"
+url = "https://alliander.jfrog.io/artifactory/api/pypi/pypi-all/simple"
+publish-url = "https://alliander.jfrog.io/artifactory/api/pypi/pypi-all"
+default = true
+exclude-newer = "7 days"
+authenticate = "always"
+
+[pip]
+require-hashes = true
