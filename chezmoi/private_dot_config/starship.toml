@@ -109,3 +109,10 @@ style = "green bold"
 format = 'via [${symbol}(${version} )(\($virtualenv\) )]($style)'
 symbol = " "
 style = "bold #f3e10b"
+
+[custom.sudo_session]
+command = 'if [[ -n "$SUDO_ASKPASS_SESSION_ACTIVE" ]]; then echo "🔓"; fi'
+when = true
+symbol = ""
+style = "bold red"
+description = "Active sudo session warning"

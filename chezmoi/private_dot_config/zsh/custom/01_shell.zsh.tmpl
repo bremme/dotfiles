@@ -65,6 +65,50 @@ if command -v chezmoi > /dev/null 2>&1; then
    eval "$(chezmoi completion zsh)"
 fi
 
+# Easy copy to clipboard function
+copy() {
+  local text
+
+  # Use -s flag to indicate secret text that should be hidden during input
+  if [[ "$1" == "-s" ]]; then
+    read -s "text?Type secret to copy: "
+  else
+    read "text?Type text to copy: "ch
+  fi
+
+  if command -v pbcopy >/dev/null; then
+    printf '%s' "$text" | pbcopy
+  elif command -v wl-copy >/dev/null; then
+    printf '%s' "$text" | wl-copy
+  elif command -v xclip >/dev/null; then
+    printf '%s' "$text" | xclip -selection clipboard
+  else
+    echo "Warning: No clipboard tool found" >&2
+    return 1
+  fi
+}
+
+sudo-askpass-session() {
+    if [[ -n "$SUDO_ASKPASS_SESSION_ACTIVE" ]]; then
+        echo "❌ Sudo askpass session already active."
+        return 1
+    fi
+    export SUDO_ASKPASS_SESSION_ACTIVE=true
+    source ~/.config/zsh/scripts/sudo-askpass-session.sh
+
+    echo "Run 'deactivate-session' to end the sudo askpass session."
+}
+
+deactivate-session() {
+    if [[ -z "$SUDO_ASKPASS_SESSION_ACTIVE" ]]; then
+        echo "❌ No active sudo askpass session."
+        return 1
+    fi
+    cleanup
+    unset SUDO_ASKPASS_SESSION_ACTIVE
+}
+
+
 # Dev shell tools ################################################################################
 # git
 # See https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git for more inspiration
@@ -103,7 +147,7 @@ alias dcd="dc down"
 alias dcufl="dc up -d && dc logs --follow"
 
 # Mac specific settings
-{{ if eq .chezmoi.hostname "MC-FL613VQ2RN" }}
+{{ if eq .chezmoi.os "darwin" }}
 export HOMEBREW_NO_ENV_HINTS=1
 export GPG_TTY=$(tty)
 {{ end }}
