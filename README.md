@@ -80,7 +80,6 @@ If file(s) are already part of Chezmoi just run `chezmoi apply` to overwrite all
 
 > Use the `--interactive` flag to approve each change and or to see the diff first.
 
-
 If files has not already been added to Chezmoi, replace link by actual files content and add to chezmoi.
 
 ```shell
