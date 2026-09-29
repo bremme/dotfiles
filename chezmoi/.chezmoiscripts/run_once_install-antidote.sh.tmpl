@@ -1,0 +1,22 @@
+#!/bin/bash
+set -euo pipefail
+
+{{ if eq .chezmoi.os "darwin" -}}
+if ! command -v antidote &> /dev/null; then
+  echo "Installing Antidote via Homebrew..."
+  brew install antidote
+else
+  echo "Antidote is already installed via Homebrew."
+fi
+
+{{ else if eq .chezmoi.os "linux" -}}
+# Linux: Install via Git clone
+ANTIDOTE_DIR="${HOME}/.antidote"
+
+if [ ! -d "${ANTIDOTE_DIR}" ]; then
+  echo "Installing Antidote via Git..."
+  git clone --depth=1 https://github.com/mattmc3/antidote.git "${ANTIDOTE_DIR}"
+else
+  echo "Antidote is already installed at ${ANTIDOTE_DIR}."
+fi
+{{ end -}}
