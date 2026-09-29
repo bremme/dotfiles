@@ -66,7 +66,6 @@ mkdir -p ~/.config/chezmoi/
 nano ~/.config/chezmoi/chezmoi.yaml
 ```
 
-
 ```yaml
 # set location of chezmoi repo (or folder in repo)
 sourceDir: ~/git/dotfiles/chezmoi
@@ -76,6 +75,13 @@ data:
 ```
 
 ### Homeshick to Chezmoi migration
+
+If file(s) are already part of Chezmoi just run `chezmoi apply` to overwrite all links with the actual content of the Chezmoi working directory.
+
+> Use the `--interactive` flag to approve each change and or to see the diff first.
+
+
+If files has not already been added to Chezmoi, replace link by actual files content and add to chezmoi.
 
 ```shell
 # replace link with original file (stored in homeshick)
