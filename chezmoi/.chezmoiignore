@@ -6,6 +6,5 @@
 # Mac only files ##########################
 {{ if ne .chezmoi.os "darwin" }}
 Library
-.config/ghostty/config.ghostty
 .gnupg/gpg-agent.conf
 {{ end }}
