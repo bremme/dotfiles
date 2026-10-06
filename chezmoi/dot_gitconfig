@@ -1,19 +1,19 @@
 [user]
-	name = bremme
-	email = 6715707+bremme@users.noreply.github.com
+    name = bremme
+    email = 6715707+bremme@users.noreply.github.com
 [init]
-	defaultBranch = main
-	; templateDir = ~/.git-template
+    defaultBranch = main
+    ; templateDir = ~/.git-template
 [pull]
-	ff = true
+    ff = true
 [push]
-	autoSetupRemote = true
+    autoSetupRemote = true
 [include]
-	path = ~/.gitconfig-local
+    path = ~/.gitconfig-local
 
 #[core]
-#	hooksPath = ~/.git-template/hooks
+#    hooksPath = ~/.git-template/hooks
 
 # Add for example signing config to a local gitconfig file
 # [user]
-# 	signingkey=1234567890ABCDEF
+#     signingkey=1234567890ABCDEF
