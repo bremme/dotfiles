@@ -1,3 +1,0 @@
-#!/bin/env bash
-# NOTE this is a workaround, until this https://github.com/flameshot-org/flameshot/issues/3365 gets fixed
-/usr/bin/flameshot gui

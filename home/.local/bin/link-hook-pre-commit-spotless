@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-ln -sf $HOME/.homesick/repos/dotfiles/home/.git-template/hooks/pre-commit-spotless .git/hooks/pre-commit

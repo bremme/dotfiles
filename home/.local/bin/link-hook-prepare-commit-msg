@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-ln -s $HOME/.homehick/repos/dotfiles/home/.git-template/hooks/prepare-commit-msg .git/hooks/prepare-commit-msg
