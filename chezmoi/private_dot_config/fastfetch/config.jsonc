@@ -1,0 +1,41 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/master/doc/json_schema.json",
+  "modules": [
+    "title",
+    "separator",
+    // SYSTEM INFORMATION
+    "os",
+    "uptime",
+    "kernel",
+    "de",
+    "wm",
+    "host",
+    "packages",
+    // "display",
+    // "wmtheme",
+    // "theme",
+    // "icons",
+    // "font",
+    // "cursor",
+    // SHELL INFORMATION
+    "separator",
+    "shell",
+    "terminal",
+    "terminalfont",
+    // HARDWARE INFORMATION
+    "separator",
+    "cpu",
+    "gpu",
+    "memory",
+    "swap",
+    "disk",
+    "PublicIp",
+    "localip",
+    "battery",
+    "poweradapter",
+    // "locale",
+    "break",
+    "Version",
+    // "colors"
+  ]
+}
