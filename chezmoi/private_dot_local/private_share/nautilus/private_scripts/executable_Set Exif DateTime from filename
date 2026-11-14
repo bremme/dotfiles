@@ -1,34 +1,23 @@
 #!/usr/bin/env python3
 
-from pathlib import Path
+import argparse
+import logging
+import os
+import re
 import shutil
 import subprocess
 import sys
-import os
-from datetime import date, datetime
-import re
-import logging
+import tempfile
+import unittest
+from collections.abc import Callable
+from datetime import datetime
+from pathlib import Path
+from typing import ClassVar
 
-
-log_directory = (
+LOG_DIRECTORY = (
     Path(os.environ.get("XDG_CACHE_HOME", Path.home() / ".cache")) / "nautilus-scripts"
 )
-log_file = log_directory / "set-exif-date-time-whatsapp.log"
-
-# Format:
-#   WhatsApp Image 2023-09-02 at 19.42.44 (1).jpg
-#   WhatsApp Video 2023-09-02 at 19.42.44.mp4
-#   WhatsApp Video 2022-08-01 at 1.46.13 AM.mp4
-
-whatsapp_24hformat_pattern = re.compile(
-    r"WhatsApp (?:Image|Video) (\d{4})-(\d{2})-(\d{2}) at (\d{2})\.(\d{2})\.(\d{2})"
-)
-
-whatsapp_12hformat_pattern = re.compile(
-    r"WhatsApp (?:Image|Video) (\d{4})-(\d{2})-(\d{2}) at (\d{1,2})\.(\d{2})\.(\d{2}) (AM|PM)"
-)
-
-regular_date_pattern = re.compile(r"(\d{4})[-_./](\d{2})[-_./](\d{2})")
+LOG_FILE = LOG_DIRECTORY / "set-exif-date-time-whatsapp.log"
 
 LOGGING_LEVEL_TO_ZENITY = {
     logging.NOTSET: "info",
@@ -40,209 +29,539 @@ LOGGING_LEVEL_TO_ZENITY = {
 }
 
 
-def show_popup_dialog(message: str, level: int = logging.INFO):
-    zenity_level = LOGGING_LEVEL_TO_ZENITY.get(level, "info")
-    subprocess.run(["zenity", f"--{zenity_level}", "--text", message])
+class Dialog:
+    def __init__(self, run_command: Callable[..., object] | None = None):
+        self.run_command = run_command or subprocess.run
+
+    def show(self, message: str, level: int = logging.INFO) -> None:
+        log_level = LOGGING_LEVEL_TO_ZENITY.get(level, "info")
+        self.run_command(["zenity", f"--{log_level}", "--text", message], check=False)
 
 
-def setup_logging():
+class _DialogLoggingHandler(logging.Handler):
+    def __init__(self, dialog: Dialog):
+        super().__init__()
+        self.dialog = dialog
 
-    class ZenityHandler(logging.Handler):
-        def emit(self, record):
-            if record.levelno >= logging.ERROR:
-                msg = self.format(record)
-                show_popup_dialog(msg, level=record.levelno)
-
-    log_file.parent.mkdir(parents=True, exist_ok=True)
-
-    logger = logging.getLogger("WhatsappMetadataFixer")
-    logger.setLevel(logging.DEBUG)
-
-    fh = logging.FileHandler(log_file)
-    fh.setFormatter(
-        logging.Formatter(
-            "%(asctime)s - %(levelname)s - %(message)s", datefmt="%Y-%m-%d %H:%M:%S"
-        )
-    )
-    logger.addHandler(fh)
-
-    zh = ZenityHandler()
-    zh.setFormatter(logging.Formatter("%(message)s"))
-    logger.addHandler(zh)
-
-    return logger
+    def emit(self, record: logging.LogRecord) -> None:
+        if record.levelno >= logging.ERROR:
+            self.dialog.show(self.format(record), level=record.levelno)
 
 
-def parse_whatsapp_24h_format(m: re.Match) -> datetime:
+class LoggingManager:
+    def __init__(
+        self,
+        file: Path,
+        dialog: Dialog,
+        logger_name: str = "WhatsappMetadataFixer",
+    ):
+        self.file = file
+        self.dialog = dialog
+        self.logger = logging.getLogger(logger_name)
+        self.handlers: list[logging.Handler] = []
 
-    year, month, day, hour, minute, second = m.groups()
+    def configure(self) -> logging.Logger:
+        self.file.parent.mkdir(parents=True, exist_ok=True)
+        self.close()
+        self.logger.setLevel(logging.DEBUG)
 
-    return datetime(
-        year=int(year),
-        month=int(month),
-        day=int(day),
-        hour=int(hour),
-        minute=int(minute),
-        second=int(second),
-    )
-
-
-def parse_whatsapp_12h_format(m: re.Match) -> datetime:
-
-    year, month, day, hour, minute, second, am_pm = m.groups()
-
-    hour = int(hour)
-    if am_pm.upper() == "PM" and hour != 12:
-        hour += 12
-    elif am_pm.upper() == "AM" and hour == 12:
-        hour = 0
-
-    return datetime(
-        year=int(year),
-        month=int(month),
-        day=int(day),
-        hour=hour,
-        minute=int(minute),
-        second=int(second),
-    )
-
-
-def parse_date(m: re.Match) -> datetime:
-
-    year, month, day = m.groups()
-
-    return datetime(
-        year=int(year),
-        month=int(month),
-        day=int(day),
-        hour=12,
-        minute=0,
-        second=0,
-    )
-
-
-def parse_datetime_from_filename(filename: str) -> datetime | None:
-
-    match = whatsapp_24hformat_pattern.match(filename)
-    if match:
-        return parse_whatsapp_24h_format(match)
-
-    match = whatsapp_12hformat_pattern.match(filename)
-    if match:
-        return parse_whatsapp_12h_format(match)
-
-    match = regular_date_pattern.search(filename)
-    if match:
-        return parse_date(match)
-
-    return None
-
-
-def update_datetime_images(file: Path, date_time: datetime):
-    date_str = date_time.strftime("%Y:%m:%d %H:%M:%S")
-    cmd = [
-        "exiftool",
-        "-overwrite_original",
-        f"-ModifyDate='{date_str}'",
-        f"-DateTimeOriginal='{date_str}'",
-        f"-CreateDate='{date_str}'",
-        f"{file}",
-    ]
-    logger.info(f"Running command: {' '.join(cmd)}")
-    return subprocess.run(cmd, capture_output=True, text=True)
-
-
-def update_datetime_videos(file: Path, date_time: date):
-    date_str = date_time.strftime("%Y-%m-%dT%H:%M:%S")
-    temp_file = Path(f"{file.stem}.temp{file.suffix}")
-    cmd = [
-        "ffmpeg",
-        "-i",
-        f"{file.name}",
-        "-c",
-        "copy",
-        "-map",
-        "0",
-        "-metadata",
-        f"creation_time={date_str}",
-        "-y",
-        f"{temp_file}",
-    ]
-
-    logger.info(f"Running command: {' '.join(cmd)}")
-    result = subprocess.run(cmd, capture_output=True, text=True)
-
-    if result.returncode == 0:
-        temp_file.replace(file)
-
-    if temp_file.exists():
-        temp_file.unlink()
-
-    return result
-
-
-def check_required_tools():
-    for tool in ["exiftool", "ffmpeg"]:
-        if not shutil.which(tool):
-            logger.error(f"Required tool '{tool}' is not installed or not in PATH.")
-            show_popup_dialog(
-                f"Required tool '{tool}' is not installed or not in PATH.",
-                level=logging.ERROR,
+        file_handler = logging.FileHandler(self.file)
+        file_handler.setFormatter(
+            logging.Formatter(
+                "%(asctime)s - %(levelname)s - %(message)s",
+                datefmt="%Y-%m-%d %H:%M:%S",
             )
-            sys.exit(1)
+        )
+        self.logger.addHandler(file_handler)
+        self.handlers.append(file_handler)
+
+        dialog_handler = _DialogLoggingHandler(self.dialog)
+        dialog_handler.setFormatter(logging.Formatter("%(message)s"))
+        self.logger.addHandler(dialog_handler)
+        self.handlers.append(dialog_handler)
+        return self.logger
+
+    def close(self) -> None:
+        for handler in self.handlers:
+            self.logger.removeHandler(handler)
+            handler.close()
+        self.handlers.clear()
 
 
-logger = setup_logging()
+class DateTimeParser:
+    # Accepts standard dates/times and names such as WhatsApp's "at" format.
+    date_time_pattern = re.compile(
+        r"(\d{4})[-_./]?(\d{2})[-_./]?(\d{2})"
+        r"(?:(?:\s+at\s+|[ T_-]|(?=\d))(\d{1,2})[:._-]?(\d{2})"
+        r"(?:[:._-]?(\d{2}))?\s*(AM|PM)?)?",
+        re.IGNORECASE,
+    )
+
+    def parse(self, filename: str) -> datetime | None:
+        try:
+            match = self.date_time_pattern.search(filename)
+            if not match:
+                return None
+
+            year, month, day, hour, minute, second, period = match.groups()
+            hour_value = int(hour) if hour is not None else 12
+            if period:
+                if not 1 <= hour_value <= 12:
+                    return None
+                if period.upper() == "PM" and hour_value != 12:
+                    hour_value += 12
+                elif period.upper() == "AM" and hour_value == 12:
+                    hour_value = 0
+
+            return datetime(
+                int(year),
+                int(month),
+                int(day),
+                hour_value,
+                int(minute) if minute is not None else 0,
+                int(second) if second is not None else 0,
+            ).astimezone()
+        except ValueError:
+            return None
 
 
-def main(files: list[Path]):
+class MetadataWriter:
+    supported_media_types: ClassVar[dict[str, str]] = {
+        ".jpg": "image",
+        ".jpeg": "image",
+        ".mp4": "video",
+    }
 
-    check_required_tools()
+    def __init__(
+        self,
+        logger: logging.Logger,
+        run_command: Callable[..., subprocess.CompletedProcess] | None = None,
+        find_executable: Callable[[str], str | None] | None = None,
+    ):
+        self.logger = logger
+        self.run_command = run_command or subprocess.run
+        self.find_executable = find_executable or shutil.which
 
-    num_files = len(files)
-    processed_files = 0
-    failed_files = 0
+    @classmethod
+    def get_media_type_by_file(cls, file: Path) -> str | None:
+        return cls.supported_media_types.get(file.suffix.lower())
 
-    for file in files:
+    def find_missing_tools(self) -> list[str]:
+        return [
+            tool for tool in ("exiftool", "ffmpeg") if not self.find_executable(tool)
+        ]
 
-        if file.is_dir():
-            logger.warning(f"Skipping directory {file}")
-            continue
+    def write_datetime(
+        self, file: Path, date_time: datetime
+    ) -> subprocess.CompletedProcess:
+        media_type = self.get_media_type_by_file(file)
+        if media_type == "image":
+            return self._write_image(file, date_time)
+        if media_type == "video":
+            return self._write_video(file, date_time)
+        raise ValueError(f"Unsupported file type: {file.suffix}")
 
-        date_time = parse_datetime_from_filename(file.name)
+    def _write_image(
+        self, file: Path, date_time: datetime
+    ) -> subprocess.CompletedProcess:
+        date_string = date_time.strftime("%Y:%m:%d %H:%M:%S")
+        command = [
+            "exiftool",
+            "-overwrite_original",
+            f"-ModifyDate={date_string}",
+            f"-DateTimeOriginal={date_string}",
+            f"-CreateDate={date_string}",
+            str(file),
+        ]
+        self.logger.info("Running command: %s", " ".join(command))
+        return self.run_command(command, capture_output=True, text=True, check=False)
 
-        if not date_time:
-            logger.warning(f"Could not parse date for {file}")
-            continue
+    def _write_video(
+        self, file: Path, date_time: datetime
+    ) -> subprocess.CompletedProcess:
+        date_string = date_time.strftime("%Y-%m-%dT%H:%M:%S")
+        temp_file = file.with_name(f"{file.stem}.temp{file.suffix}")
+        command = [
+            "ffmpeg",
+            "-i",
+            str(file),
+            "-c",
+            "copy",
+            "-map",
+            "0",
+            "-metadata",
+            f"creation_time={date_string}",
+            "-y",
+            str(temp_file),
+        ]
+        self.logger.info("Running command: %s", " ".join(command))
+        result = self.run_command(command, capture_output=True, text=True, check=False)
 
-        logger.info(f"Parsed date for {file}: {date_time}")
+        if result.returncode == 0:
+            temp_file.replace(file)
 
-        if file.suffix in [".mp4"]:
-            result = update_datetime_videos(file, date_time)
-        elif file.suffix in [".jpg", ".jpeg"]:
-            result = update_datetime_images(file, date_time)
-        else:
-            logger.warning(f"Unknown file extension {file.suffix} for {file.name}")
-            continue
+        if temp_file.exists():
+            temp_file.unlink()
 
-        if result.returncode != 0:
-            logger.error(f"Error processing {file.name}: {result.stderr}")
-            failed_files += 1
-        else:
-            logger.info(
-                f"Successfully updated date time metadata for {file.name}:  {result.stdout}"
+        return result
+
+
+class FileProcessor:
+    def __init__(
+        self,
+        parser: DateTimeParser,
+        writer: MetadataWriter,
+        logger: logging.Logger,
+        dialog: Dialog,
+        output: Callable[[str], object] = print,
+    ):
+        self.parser = parser
+        self.writer = writer
+        self.logger = logger
+        self.dialog = dialog
+        self.output = output
+
+    def process(self, files: list[Path], dry_run: bool = False) -> int:
+        missing_tools = self.writer.find_missing_tools()
+
+        if missing_tools:
+            for tool in missing_tools:
+                self.logger.error(
+                    f"Required tool '{tool}' is not installed or not in PATH."
+                )
+            return 1
+
+        processed_files = 0
+        checked_files = 0
+        failed_files = 0
+
+        for file in files:
+            if file.is_dir():
+                self.logger.warning("Skipping directory %s", file)
+                continue
+
+            media_type = self.writer.get_media_type_by_file(file)
+
+            if media_type is None:
+                self.logger.warning(
+                    "Unknown file extension %s for %s", file.suffix, file.name
+                )
+                continue
+
+            date_time = self.parser.parse(file.name)
+
+            if date_time is None:
+                self.logger.warning("Could not parse date for %s", file)
+                continue
+
+            self.logger.info("Parsed date for %s: %s", file, date_time)
+            checked_files += 1
+
+            if dry_run:
+                self.output(f"Would update {file} ({media_type}) to {date_time}")
+                continue
+
+            result = self.writer.write_datetime(file, date_time)
+
+            if result.returncode != 0:
+                self.logger.error("Error processing %s: %s", file.name, result.stderr)
+                failed_files += 1
+                continue
+
+            self.logger.info(
+                "Successfully updated date time metadata for %s: %s",
+                file.name,
+                result.stdout,
             )
             processed_files += 1
 
-    show_popup_dialog(
-        f"Successfully updated datetime metadata for {processed_files} out of {num_files} files."
+        if dry_run:
+            self.output(
+                f"Dry run complete: checked {checked_files} file(s); no files changed."
+            )
+            return 0
+
+        self.dialog.show(
+            f"Successfully updated datetime metadata for {processed_files} out of {len(files)} files."
+        )
+        return 1 if failed_files else 0
+
+
+def main(files: list[Path], dry_run: bool = False) -> int:
+    dialog = Dialog()
+    logging_manager = LoggingManager(LOG_FILE, dialog)
+    logger = logging_manager.configure()
+
+    processor = FileProcessor(
+        parser=DateTimeParser(),
+        writer=MetadataWriter(logger),
+        logger=logger,
+        dialog=dialog,
     )
+    return processor.process(files, dry_run=dry_run)
+
+
+def parse_arguments(arguments: list[str] | None = None) -> argparse.Namespace:
+    parser = argparse.ArgumentParser()
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument("--test", action="store_true", help="run the built-in tests")
+    mode.add_argument(
+        "--dry-run", action="store_true", help="report changes without modifying files"
+    )
+    parser.add_argument("files", nargs="*")
+    return parser.parse_args(arguments)
+
+
+def run_tests() -> bool:
+    test_classes = (
+        DialogTests,
+        LoggingManagerTests,
+        DateTimeParserTests,
+        MetadataWriterTests,
+        FileProcessorTests,
+    )
+    suite = unittest.TestSuite(
+        unittest.defaultTestLoader.loadTestsFromTestCase(test_class)
+        for test_class in test_classes
+    )
+    result = unittest.TextTestRunner(verbosity=2).run(suite)
+    return result.wasSuccessful()
+
+
+# Included unit tests, use --test cli argument to run
+class DateTimeParserTests(unittest.TestCase):
+    def setUp(self):
+        self.parser = DateTimeParser()
+
+    def parsed_parts(self, filename: str) -> tuple[int, int, int, int, int, int] | None:
+        parsed = self.parser.parse(filename)
+        if parsed is None:
+            return None
+        return (
+            parsed.year,
+            parsed.month,
+            parsed.day,
+            parsed.hour,
+            parsed.minute,
+            parsed.second,
+        )
+
+    def test_regular_date_formats(self):
+        examples = [
+            "2023-09-02.jpg",
+            "2023_09_02.jpg",
+            "2023.09.02.jpg",
+            "2023/09/02.jpg",
+            "20230902.jpg",
+            "2023-0902.jpg",
+            "202309-02.jpg",
+            "2023-09/02.jpg",
+        ]
+        for filename in examples:
+            with self.subTest(filename=filename):
+                self.assertEqual(self.parsed_parts(filename), (2023, 9, 2, 12, 0, 0))
+
+    def test_regular_optional_time_formats(self):
+        examples = {
+            "2023-09-02 19:45.jpg": (2023, 9, 2, 19, 45, 0),
+            "2023-09-02T19.45.30.jpg": (2023, 9, 2, 19, 45, 30),
+            "20230902_194530.jpg": (2023, 9, 2, 19, 45, 30),
+            "2023/09/02-19-45-30.jpg": (2023, 9, 2, 19, 45, 30),
+            "IMG20260923090652.jpg": (2026, 9, 23, 9, 6, 52),
+        }
+        for filename, expected in examples.items():
+            with self.subTest(filename=filename):
+                self.assertEqual(self.parsed_parts(filename), expected)
+
+    def test_12_and_24_hour_time_formats(self):
+        examples = {
+            "WhatsApp Image 2023-09-02 at 19.42.44.jpg": (2023, 9, 2, 19, 42, 44),
+            "WhatsApp Video 2022-08-01 at 1.46.13 AM.mp4": (2022, 8, 1, 1, 46, 13),
+            "WhatsApp Image 2022-08-01 at 1.46.13 PM.jpg": (2022, 8, 1, 13, 46, 13),
+            "WhatsApp Image 2022-08-01 at 12.46.13 PM.jpg": (2022, 8, 1, 12, 46, 13),
+            "WhatsApp Image 2022-08-01 at 12.46.13 AM.jpg": (2022, 8, 1, 0, 46, 13),
+            "IMG_2022-08-01 at 1.46.13 AM.jpg": (2022, 8, 1, 1, 46, 13),
+            "camera_2023-09-02 19:42:44.jpg": (2023, 9, 2, 19, 42, 44),
+        }
+        for filename, expected in examples.items():
+            with self.subTest(filename=filename):
+                self.assertEqual(self.parsed_parts(filename), expected)
+
+    def test_unmatched_and_invalid_dates(self):
+        for filename in ("photo.jpg", "2023-02-30.jpg", "2023-09-02 29:00:00.jpg"):
+            with self.subTest(filename=filename):
+                self.assertIsNone(self.parsed_parts(filename))
+
+    def test_parsed_datetimes_use_local_timezone(self):
+        for filename in (
+            "2023-09-02.jpg",
+            "WhatsApp Image 2023-09-02 at 19.42.44.jpg",
+            "WhatsApp Video 2022-08-01 at 1.46.13 AM.mp4",
+        ):
+            with self.subTest(filename=filename):
+                parsed = self.parser.parse(filename)
+                if parsed is None:
+                    self.fail(f"Expected a parsed datetime for {filename}")
+                expected_local = parsed.replace(tzinfo=None).astimezone()
+                self.assertEqual(parsed, expected_local)
+                self.assertEqual(
+                    parsed.strftime("%Y:%m:%d %H:%M:%S"),
+                    expected_local.strftime("%Y:%m:%d %H:%M:%S"),
+                )
+
+
+class RecordingDialog(Dialog):
+    def __init__(self):
+        self.messages: list[tuple[str, int]] = []
+
+    def show(self, message: str, level: int = logging.INFO) -> None:
+        self.messages.append((message, level))
+
+
+class DialogTests(unittest.TestCase):
+    def test_show_runs_zenity_with_requested_level(self):
+        calls = []
+
+        def fake_run(command, **kwargs):
+            calls.append((command, kwargs))
+
+        Dialog(run_command=fake_run).show("Something failed", level=logging.ERROR)
+
+        self.assertEqual(
+            calls,
+            [
+                (
+                    ["zenity", "--error", "--text", "Something failed"],
+                    {"check": False},
+                )
+            ],
+        )
+
+
+class LoggingManagerTests(unittest.TestCase):
+    def test_error_is_logged_and_sent_to_dialog(self):
+        with tempfile.TemporaryDirectory() as directory:
+            dialog = RecordingDialog()
+            log_path = Path(directory) / "script.log"
+            manager = LoggingManager(
+                log_path, dialog, logger_name=f"logging-test-{id(self)}"
+            )
+            try:
+                manager.configure().error("A test error")
+                self.assertIn("A test error", log_path.read_text())
+                self.assertEqual(dialog.messages, [("A test error", logging.ERROR)])
+            finally:
+                manager.close()
+
+
+class MetadataWriterTests(unittest.TestCase):
+    def setUp(self):
+        self.logger = logging.getLogger(f"metadata-writer-test-{id(self)}")
+
+    def test_supported_file_types(self):
+        examples = {
+            "photo.jpg": "image",
+            "photo.JPEG": "image",
+            "video.mp4": "video",
+            "document.png": None,
+            "no-extension": None,
+        }
+        for filename, expected in examples.items():
+            with self.subTest(filename=filename):
+                self.assertEqual(
+                    MetadataWriter.get_media_type_by_file(Path(filename)), expected
+                )
+
+    def test_image_metadata_command(self):
+        calls = []
+
+        def fake_run(command, **kwargs):
+            calls.append((command, kwargs))
+            return subprocess.CompletedProcess(command, 0, "updated", "")
+
+        writer = MetadataWriter(self.logger, run_command=fake_run)
+        date_time = DateTimeParser().parse("2023-09-02 19:45:30.jpg")
+        if date_time is None:
+            self.fail("Expected test filename to contain a date")
+
+        with tempfile.TemporaryDirectory() as directory:
+            file = Path(directory) / "photo.jpg"
+            file.touch()
+            result = writer.write_datetime(file, date_time)
+
+        self.assertEqual(result.returncode, 0)
+        command, kwargs = calls[0]
+        self.assertEqual(command[:2], ["exiftool", "-overwrite_original"])
+        self.assertIn("-DateTimeOriginal=2023:09:02 19:45:30", command)
+        self.assertEqual(kwargs, {"capture_output": True, "text": True, "check": False})
+
+    def test_video_metadata_command_replaces_file_on_success(self):
+        commands = []
+
+        def fake_run(command, **kwargs):
+            commands.append(command)
+            Path(command[-1]).write_bytes(b"updated video")
+            return subprocess.CompletedProcess(command, 0, "updated", "")
+
+        writer = MetadataWriter(self.logger, run_command=fake_run)
+        date_time = DateTimeParser().parse("2023-09-02 19:45:30.mp4")
+        if date_time is None:
+            self.fail("Expected test filename to contain a date")
+
+        with tempfile.TemporaryDirectory() as directory:
+            file = Path(directory) / "video.mp4"
+            file.write_bytes(b"original video")
+            result = writer.write_datetime(file, date_time)
+
+            self.assertEqual(result.returncode, 0)
+            self.assertEqual(file.read_bytes(), b"updated video")
+            self.assertFalse(file.with_name("video.temp.mp4").exists())
+
+        self.assertIn("creation_time=2023-09-02T19:45:30", commands[0])
+
+    def test_missing_tools_are_reported(self):
+        writer = MetadataWriter(
+            self.logger,
+            find_executable=lambda tool: (
+                "/usr/bin/exiftool" if tool == "exiftool" else None
+            ),
+        )
+        self.assertEqual(writer.find_missing_tools(), ["ffmpeg"])
+
+
+class FileProcessorTests(unittest.TestCase):
+    def test_dry_run_does_not_change_file_or_call_writer(self):
+        with tempfile.TemporaryDirectory() as directory:
+            file = Path(directory) / "photo_20230902_194530.jpg"
+            file.write_bytes(b"unchanged")
+            output = []
+            dialog = RecordingDialog()
+            logger = logging.getLogger(f"processor-test-{id(self)}")
+
+            def unexpected_run(*args, **kwargs):
+                self.fail("dry-run must not invoke metadata commands")
+
+            writer = MetadataWriter(logger, run_command=unexpected_run)
+            processor = FileProcessor(
+                DateTimeParser(), writer, logger, dialog, output=output.append
+            )
+
+            result = processor.process([file], dry_run=True)
+
+            self.assertEqual(result, 0)
+            self.assertEqual(len(output), 2)
+            self.assertIn("Would update", output[0])
+            self.assertIn("Dry run complete", output[1])
+            self.assertIn("checked 1 file(s); no files changed", output[1])
+            self.assertEqual(file.read_bytes(), b"unchanged")
+            self.assertEqual(dialog.messages, [])
 
 
 if __name__ == "__main__":
-    args = sys.argv[1:]
-    files = []
-    for string in args:
-        files.append(Path(string).expanduser())
+    args = parse_arguments()
 
-    main(files)
+    if args.test:
+        sys.exit(0 if run_tests() else 1)
+
+    files = [Path(string).expanduser() for string in args.files]
+    sys.exit(main(files, dry_run=args.dry_run))
