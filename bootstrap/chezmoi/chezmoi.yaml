@@ -1,6 +1,3 @@
-# mkdir -p ~/.config/chezmoi
-# cp chezmoi.yaml ~/.config/chezmoi/chezmoi.yaml
-
 # set location of chezmoi repo (or folder in repo)
 sourceDir: ~/git/dotfiles/chezmoi
 # Set specific work profile if required
