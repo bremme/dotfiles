@@ -10,9 +10,3 @@
 Library
 .gnupg/gpg-agent.conf
 {{ end }}
-
-# Desktop only files #######################
-# Ignore for everything NOT headless
-{{ if ne .headless }}
-
-{{ end }}
