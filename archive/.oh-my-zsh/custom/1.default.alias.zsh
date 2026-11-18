@@ -34,8 +34,7 @@ alias proc="ps aux | grep"
 
 # find sbc
 alias find-pi="sudo arp-scan --localnet | grep b8:27:eb"
-alias find-orangepi="sudo arp-scan --localnet | grep '12:22:1e\|4a:f7:d2\|6e:a5:4d\|0a:af:65\|02:81:b4'"
-
+alias find-orangepi="sudo arp-scan --localnet | grep '12:22:1e\|4a:f7:d2\|6e:a5:4d\|0a:af:65\|02:81:b4\|02:81:29'"
 # standby disks
 alias standby-sda="sudo hdparm -y /dev/sda"
 alias standby-sdb="sudo hdparm -y /dev/sdb"
@@ -116,7 +115,6 @@ alias grepe="env | grep -i"
 alias grepp="ps aux | grep -i"
 
 alias whatsmyip="curl ifconfig.me"
-
 alias please='sudo $(fc -ln -1)'
 
 alias rtfm="man"

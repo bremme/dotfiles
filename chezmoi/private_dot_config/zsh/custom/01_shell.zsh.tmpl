@@ -149,6 +149,28 @@ alias dcu="dc up"
 alias dcd="dc down"
 alias dcufl="dc up -d && dc logs --follow"
 
+
+function _update() {
+  if command -v brew >/dev/null 2>&1; then
+    echo "Updating Homebrew packages..."
+    brew update && brew upgrade
+  fi
+  if command -v apt >/dev/null 2>&1; then
+    echo "Updating APT packages..."
+    sudo apt update && sudo apt upgrade
+  fi
+  if command -v snap >/dev/null 2>&1; then
+    echo "Updating Snap packages..."
+    sudo snap refresh
+  fi
+  if command -v flatpak >/dev/null 2>&1; then
+    echo "Updating Flatpak packages..."
+    flatpak update
+  fi
+}
+
+alias update="_update"
+
 # Mac specific settings
 {{ if eq .chezmoi.os "darwin" }}
 export HOMEBREW_NO_ENV_HINTS=1

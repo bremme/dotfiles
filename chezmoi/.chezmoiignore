@@ -1,9 +1,11 @@
 # Linux only files ########################
+# Ignore for everything NOT linux
 {{ if ne .chezmoi.os "linux" }}
 .config/Code
 {{ end }}
 
 # Mac only files ##########################
+# ignore for everything NOT Mac
 {{ if ne .chezmoi.os "darwin" }}
 Library
 .gnupg/gpg-agent.conf

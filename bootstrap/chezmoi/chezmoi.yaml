@@ -1,0 +1,5 @@
+# set location of chezmoi repo (or folder in repo)
+sourceDir: ~/git/dotfiles/chezmoi
+# Set specific work profile if required
+data:
+  profile: Employer name
