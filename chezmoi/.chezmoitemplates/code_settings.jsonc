@@ -27,7 +27,8 @@
         "*": true,
         "plaintext": false,
         "markdown": false,
-        "scminput": false
+        "scminput": false,
+        "dotenv": false
     },
     "chat.tools.terminal.autoApprove": {
         "uv": true
