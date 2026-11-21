@@ -17,3 +17,8 @@ bindkey '^[[B' history-substring-search-down
 # These work on Ubuntu
 bindkey '^[OA' history-substring-search-up
 bindkey '^[OB' history-substring-search-down
+
+
+# Fix moving forward/backward using CTRL+LEFT and CTRL+RIGHT
+bindkey '^[[1;5C' forward-word
+bindkey '^[[1;5D' backward-word

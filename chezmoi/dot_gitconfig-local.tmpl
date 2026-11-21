@@ -1,5 +1,8 @@
 
 {{ if eq .chezmoi.hostname "MC-FL613VQ2RN" }}
+[user]
+    name = {{ .gitName }}
+    email = {{ .gitEmail }}
 [commit]
     gpgSign = true
 [user]
