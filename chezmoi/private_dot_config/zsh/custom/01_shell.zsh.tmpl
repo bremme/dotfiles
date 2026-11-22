@@ -68,6 +68,10 @@ if command -v chezmoi > /dev/null 2>&1; then
    eval "$(chezmoi completion zsh)"
 fi
 
+if command -v mise > /dev/null 2>&1; then
+   eval "$(mise activate zsh)"
+fi
+
 # Easy copy to clipboard function
 copy() {
   local text
