@@ -1,7 +1,7 @@
 
 {{- $roles := list "server" "workstation" -}}
 
-source-dir: {{ .chezmoi.config.sourceDir }}
+sourceDir: {{ .chezmoi.config.sourceDir }}
 
 data:
   role: {{ promptChoice "Machine role(s/w)" $roles "server" | quote }}
