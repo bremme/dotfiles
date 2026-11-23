@@ -4,13 +4,14 @@ set -eu
 REPO="${DOTFILES_REPO:-}"
 BIN_DIR="${HOME}/.local/bin"
 
-if [ -z "$REPO" ]; then
-  printf "Error: set DOTFILES_REPO (e.g. DOTFILES_REPO=youruser)\n" >&2
-  exit 1
-fi
+# if [ -z "$REPO" ]; then
+#   printf "Error: set DOTFILES_REPO (e.g. DOTFILES_REPO=youruser)\n" >&2
+#   exit 1
+# fi
 
-<<<<<<< HEAD
-if ! command -v chezmoi >/dev/null 2>&1; then
+
+install_chezmoi() {
+
   mkdir -p "$BIN_DIR"
 
   if command -v curl >/dev/null 2>&1; then
@@ -22,24 +23,30 @@ if ! command -v chezmoi >/dev/null 2>&1; then
     exit 1
   fi
 
+}
+
+add_binary_to_path() {
   # Add BIN_DIR to PATH for this session so 'chezmoi init' can run immediately.
   # Future shells still rely on your shell config (.bashrc, .zshrc, etc.) to include it.
   case ":${PATH}:" in
-    *":${BIN_DIR}:"*) ;;
+    *":${BIN_DIR}:"*) 
+      ;;
     *)
       export PATH="${BIN_DIR}:${PATH}"
       printf "Note: added %s to PATH for this session. Ensure it is in your shell config.\n" "$BIN_DIR"
       ;;
   esac
+}
+
+if ! command -v chezmoi >/dev/null 2>&1; then
+  install_chezmoi
+  add_binary_to_path
 fi
 
-chezmoi init "$REPO"
+# See https://www.chezmoi.io/reference/commands/init/ for more information.
+
+chezmoi init
+# chezmoi init "$REPO"
+
 printf "Initialized chezmoi for %s. Run 'chezmoi diff' to review, then 'chezmoi apply'.\n" "$REPO"
-=======
-sudo apt install chezmoi -y
 
-# If install failed, try installing via the official script
-if ! command -v chezmoi &> /dev/null; then
-    sh -c "$(curl -fsLS https://get.chezmoi.io)"
-fi
->>>>>>> 27c45e1277cffa9a7434869773f2300d3d758078
