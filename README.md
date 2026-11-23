@@ -91,10 +91,12 @@ chezmoi add ~/.zshrc
 ```
 ### Install dependencies
 
+mise
+chezmoi
+
 fzf
 eza
 fastfetch
 zoxide
 starship
-chezmoi
 bat
