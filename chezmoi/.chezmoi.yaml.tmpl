@@ -1,10 +1,10 @@
 
 {{- $roles := list "server" "workstation" -}}
-{{- $role := promptChoiceOnce . "role" "Machine role" $roles -}}
-{{- $gitUserName := promptChoiceOnce . " }}
 
-
+source-dir: {{ .chezmoi.config.sourceDir }}
 
 data:
-  profile: 
-  role: {{ $role | quote }}
+  role: {{ promptChoice "Machine role" $roles "server" | quote }}
+  employer: {{ promptString "Employer" "My Company" | quote }}
+  gitUserName: {{ promptString "Git user name" "bremme" | quote }}
+  gitUserEmail: {{ promptString "Git user email" "mail@example.com" | quote }}
