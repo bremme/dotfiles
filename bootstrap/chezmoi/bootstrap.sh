@@ -45,7 +45,7 @@ fi
 
 # See https://www.chezmoi.io/reference/commands/init/ for more information.
 
-chezmoi init
+chezmoi --source . -v init
 # chezmoi init "$REPO"
 
 printf "Initialized chezmoi for %s. Run 'chezmoi diff' to review, then 'chezmoi apply'.\n" "$REPO"
