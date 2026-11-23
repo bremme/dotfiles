@@ -91,3 +91,14 @@ cp --remove-destination "$(readlink -f ~/.zshrc)" ~/.zshrc
 # add to chezmoi (if not already part of chezmoi)
 chezmoi add ~/.zshrc
 ```
+### Install dependencies
+
+mise
+chezmoi
+
+fzf
+eza
+fastfetch
+zoxide
+starship
+bat

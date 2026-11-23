@@ -1,0 +1,7 @@
+{
+  "files.associations": {
+    "*.zsh.tmpl": "shellscript",
+    "*gitconfig*": "ini",
+    "*zsh*": "shellscript"
+  }
+}

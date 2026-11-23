@@ -2,6 +2,11 @@
 
 export PATH=$HOME/.local/bin:$HOME/bin:/sbin:/usr/games:$PATH:/home/linuxbrew/.linuxbrew/bin
 
+# Make sure mise is loaded first
+if command -v mise > /dev/null 2>&1; then
+   eval "$(mise activate zsh)"
+fi
+
 # reload zsh
 alias rlz="source ~/.zshrc"
 

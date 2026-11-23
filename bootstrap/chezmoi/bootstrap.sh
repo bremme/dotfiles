@@ -9,6 +9,7 @@ if [ -z "$REPO" ]; then
   exit 1
 fi
 
+<<<<<<< HEAD
 if ! command -v chezmoi >/dev/null 2>&1; then
   mkdir -p "$BIN_DIR"
 
@@ -34,3 +35,11 @@ fi
 
 chezmoi init "$REPO"
 printf "Initialized chezmoi for %s. Run 'chezmoi diff' to review, then 'chezmoi apply'.\n" "$REPO"
+=======
+sudo apt install chezmoi -y
+
+# If install failed, try installing via the official script
+if ! command -v chezmoi &> /dev/null; then
+    sh -c "$(curl -fsLS https://get.chezmoi.io)"
+fi
+>>>>>>> 27c45e1277cffa9a7434869773f2300d3d758078

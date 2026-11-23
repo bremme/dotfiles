@@ -5,23 +5,22 @@
         "*.ipynb": "jupyter-notebook"
     },
     "workbench.externalBrowser": "firefox",
-
     "editor.fontFamily": "'FiraCode Nerd Font Mono','Droid Sans Mono', 'monospace', 'monospace'",
     "editor.fontSize": 14,
     "editor.fontWeight": "500",
     "editor.fontLigatures": true,
-
     "editor.renderWhitespace": "all",
-    "editor.rulers": [88, 100, 120],
+    "editor.rulers": [
+        88,
+        100,
+        120
+    ],
     "editor.suggestSelection": "first",
     "editor.inlineSuggest.enabled": true,
-
     "diffEditor.ignoreTrimWhitespace": false,
-
     "explorer.confirmDragAndDrop": false,
     "explorer.confirmDelete": false,
     "explorer.confirmPasteNative": false,
-
     "github.copilot.nextEditSuggestions.enabled": true,
     "github.copilot.enable": {
         "*": true,
@@ -34,7 +33,6 @@
         "uv": true
     },
     "chat.viewSessions.orientation": "stacked",
-
     "files.associations": {
         "*.desktop": "ini",
         "flake8": "ini",
@@ -55,18 +53,14 @@
     "files.autoSave": "afterDelay",
     "files.autoSaveDelay": 30000,
     "update.showReleaseNotes": false,
-
     "git.confirmSync": false,
     "git.autofetch": true,
     "git.blame.editorDecoration.enabled": false,
-
     "redhat.telemetry.enabled": false,
-
     // Terminal settings ///////////////////////////////////////////////////////////////
     "terminal.integrated.fontSize": 16,
     "terminal.integrated.fontFamily": "'FiraCode Nerd Font Mono'",
     "terminal.integrated.initialHint": false,
-
     // Proofing and language //////////////////////////////////////////////////////////
     "cSpell.language": "en,nl",
     "cSpell.userWords": [
@@ -75,6 +69,7 @@
         "Alliander",
         "bremme",
         "derating",
+        "dockercompose",
         "dtap",
         "fromdict",
         "github",
@@ -101,20 +96,18 @@
         "repareerbaar",
         "sasl",
         "sdist",
+        "shellcheck",
         "sonarqube",
         "ssid",
         "structlog",
         "vens"
     ],
-
     // Formatter settings //////////////////////////////////////////////////////////////
     // "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": false,
     "editor.codeActionsOnSave": {
         // "source.organizeImports": "explicit"
-
     },
-
     // Python settings /////////////////////////////////////////////////////////////////
     "[python]": {
         // "editor.defaultFormatter": "ms-python.black-formatter",
@@ -124,30 +117,24 @@
             "source.organizeImports": "explicit",
             "source.fixAll": "explicit"
         },
-
         "editor.formatOnType": true
     },
     "python.analysis.autoImportCompletions": true,
     "python.analysis.typeCheckingMode": "standard",
-
     "python.languageServer": "Pylance",
     "ty.disableLanguageServices": true,
-
     // Jupyter notebook ////////////////////////////////////////////////////////////////
     "notebook.cellToolbarLocation": {
         "default": "right",
         "jupyter-notebook": "left"
     },
-
     // Markdown settings ///////////////////////////////////////////////////////////////
     "[markdown]": {
         "editor.defaultFormatter": "DavidAnson.vscode-markdownlint",
         "editor.formatOnSave": false,
     },
-
     // Other language settings /////////////////////////////////////////////////////////////
     "[typescript]": {},
-
     "[json]": {
         "editor.defaultFormatter": "vscode.json-language-features"
     },
@@ -160,11 +147,8 @@
     "[toml]": {
         "editor.defaultFormatter": "tamasfe.even-better-toml",
         // "editor.formatOnSave": true
-
-
     },
     "evenBetterToml.formatter.arrayAutoCollapse": false,
-
     "[xml]": {
         "editor.defaultFormatter": "redhat.vscode-xml"
     },
@@ -175,7 +159,9 @@
         "editor.insertSpaces": true,
         "editor.tabSize": 2,
         "editor.autoIndent": "advanced",
-        "editor.defaultFormatter": "redhat.vscode-yaml"
+        // "editor.defaultFormatter": "redhat.vscode-yaml"
+        "editor.defaultFormatter": "SashaBusinaro.yaml-compose-sorter",
+        // "editor.formatOnSave": true
     },
     "shellcheck.customArgs": [
         "--external-sources"
@@ -206,8 +192,39 @@
             "region": "EU"
         }
     ],
-
-
+    // Docker compose sorting order settings
+    // Order of keys within each service definition
+    "yaml-compose-sorter.serviceKeyOrder": [
+        "image",
+        "build",
+        "container_name",
+        "labels",
+        "network_mode",
+        "ports",
+        "expose",
+        "env_file",
+        "environment",
+        "secrets",
+        "volumes",
+        "user",
+        "cap_drop",
+        "cap_add",
+        "security_opt",
+        "depends_on",
+        "healthcheck",
+        "networks",
+        "restart"
+    ],
+    // Order of top-level keys in Docker Compose files
+    "yaml-compose-sorter.topLevelKeyOrder": [
+        "version",
+        "name",
+        "services",
+        "volumes",
+        "networks",
+        "configs",
+        "secrets"
+    ],
     // Java settings ///////////////////////////////////////////////////////////////////
     // "[java]": {
     //     "editor.defaultFormatter": "richardwillis.vscode-spotless-gradle",
@@ -216,12 +233,9 @@
     //       },
     //     "files.trimTrailingWhitespace": false
     // },
-
     // "redhat.telemetry.enabled": false,
     // "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx1G -Xms100m -javaagent:\"/home/bremme/.vscode/extensions/gabrielbb.vscode-lombok-1.0.1/server/lombok.jar\"",
-
     // "spotlessGradle.format.enable": true,
     // "spotlessGradle.diagnostics.enable": true,
-
     // "java.format.settings.url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
 }

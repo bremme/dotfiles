@@ -1,0 +1,8 @@
+[tools]
+chezmoi = "latest"
+eza = "latest"
+fzf = "latest"
+zoxide = "latest"
+fastfetch = "latest"
+starship = "latest"
+bat = "latest"

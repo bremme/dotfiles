@@ -11,6 +11,9 @@ source $PREFIX_ANTIDOTE/antidote.zsh
 # initialize plugins statically with ${ZDOTDIR:-$HOME}/.zsh_plugins.txt
 antidote load
 
+# Required for mise
+fpath+=('~/.local/share/zsh/site-functions')
+
 autoload -Uz compinit; compinit
 
 # Look custom files

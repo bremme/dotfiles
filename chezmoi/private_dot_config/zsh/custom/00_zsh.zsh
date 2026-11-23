@@ -17,3 +17,13 @@ bindkey '^[[B' history-substring-search-down
 # These work on Ubuntu
 bindkey '^[OA' history-substring-search-up
 bindkey '^[OB' history-substring-search-down
+
+
+
+# Remove characters from WORDCHARS that should not be considered part of a word for moving forward/backward
+# default: *-?_-.[]~=/&;!#$%^(){}<>
+WORDCHARS='*?[]~=/;!%^(){}<>'
+
+# CTRL+LEFT and CTRL+RIGHT for moving by words
+bindkey '^[[1;5C' forward-word
+bindkey '^[[1;5D' backward-word
