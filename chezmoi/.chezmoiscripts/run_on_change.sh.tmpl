@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+{{- if eq .chezmoi.os "darwin" }}
+# Brewfile hash: {{ include "dot_dotfiles.Brewfile" | sha256sum }}
+brew bundle --file="$HOME/.dotfiles.Brewfile" --no-lock
+{{- end }}
+
+
+{{ else if eq .chezmoi.os "linux" -}}
+# config.toml hash: {{ include "dot_config/mise/config.toml" | sha256sum }}
+mise install --yes
+{{- end}}
+

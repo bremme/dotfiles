@@ -1,6 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -euo pipefail
 
+# MacOS: Install via Homebrew
 {{ if eq .chezmoi.os "darwin" -}}
 if ! command -v antidote &> /dev/null; then
   echo "Installing Antidote via Homebrew..."
@@ -9,8 +10,8 @@ else
   echo "Antidote is already installed via Homebrew."
 fi
 
-{{ else if eq .chezmoi.os "linux" -}}
 # Linux: Install via Git clone
+{{ else if eq .chezmoi.os "linux" -}}
 ANTIDOTE_DIR="${HOME}/.antidote"
 
 if [ ! -d "${ANTIDOTE_DIR}" ]; then
