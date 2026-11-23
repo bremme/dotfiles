@@ -72,6 +72,8 @@ sourceDir: ~/git/dotfiles/chezmoi
 # Set specific work profile if required
 data:
   profile: Employer name
+  gitUserName: John Doe
+  gitEmail: johndoe@example.com
 ```
 
 ### Homeshick to Chezmoi migration
