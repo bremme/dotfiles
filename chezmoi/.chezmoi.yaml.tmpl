@@ -1,0 +1,10 @@
+
+{{- $roles := list "server" "workstation" -}}
+{{- $role := promptChoiceOnce . "role" "Machine role" $roles -}}
+{{- $gitUserName := promptChoiceOnce . " }}
+
+
+
+data:
+  profile: 
+  role: {{ $role | quote }}
