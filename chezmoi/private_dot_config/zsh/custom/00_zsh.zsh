@@ -9,16 +9,14 @@ setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_SPACE
 
 # Use up/down to complete command from history (instead of looping through previous commands)
+autoload -U up-line-or-beginning-search down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
 
-# These work on macOS
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
-
-# These work on Ubuntu
-bindkey '^[OA' history-substring-search-up
-bindkey '^[OB' history-substring-search-down
-
-
+bindkey '^[[A' up-line-or-beginning-search
+bindkey '^[[B' down-line-or-beginning-search
+bindkey '^[OA' up-line-or-beginning-search
+bindkey '^[OB' down-line-or-beginning-search
 
 # Remove characters from WORDCHARS that should not be considered part of a word for moving forward/backward
 # default: *-?_-.[]~=/&;!#$%^(){}<>
