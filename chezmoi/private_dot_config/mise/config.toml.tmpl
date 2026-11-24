@@ -1,0 +1,4 @@
+[tools]
+{{ range .packages }}
+{{- if .mise }}{{ .mise }} = "{{ .version }}"{{ end }}
+{{ end }}

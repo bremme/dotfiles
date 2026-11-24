@@ -1,7 +1,0 @@
-brew "bat"
-brew "chezmoi"
-brew "eza"
-brew "fastfetch"
-brew "fzf"
-brew "starship"
-brew "zoxide"

@@ -1,5 +1,5 @@
 
-{{- $roles := list "server" "workstation" -}}
+{{- $roles := list "edge" "server" "workstation" -}}
 
 sourceDir: {{ .chezmoi.config.sourceDir }}
 
@@ -7,4 +7,4 @@ data:
   role: {{ promptChoiceOnce . "role" "Machine role(s/w)" $roles "server" | quote }}
   work: {{ promptBoolOnce . "work" "Work account?(y/n)" false }}
   gitName: {{ promptStringOnce . "gitName" "Git user name" "bremme" | quote }}
-  gitEmail: {{ promptStringOnce . "gitEmail" "Git user email" "mail@example.com" | quote }}
+  gitEmail: {{ promptStringOnce . "gitEmail" "Git user email" "6715707+bremme@users.noreply.github.com" | quote }}

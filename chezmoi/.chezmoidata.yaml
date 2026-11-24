@@ -1,0 +1,29 @@
+packages:
+  - mise: bat
+    version: latest
+    brew: bat
+    apt: bat
+  - mise: chezmoi
+    version: latest
+    brew: chezmoi
+    apt: chezmoi
+  - mise: eza
+    version: latest
+    brew: eza
+    apt: eza
+  - mise: fastfetch
+    version: latest
+    brew: fastfetch
+    apt: fastfetch
+  - mise: fzf
+    version: latest
+    brew: fzf
+    apt: fzf
+  - mise: starship
+    version: latest
+    brew: starship
+    apt: starship
+  - mise: zoxide
+    version: latest
+    brew: zoxide
+    apt: zoxide

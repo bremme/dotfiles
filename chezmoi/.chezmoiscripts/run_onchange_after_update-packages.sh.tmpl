@@ -1,23 +1,31 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# handle macOS case
-{{- if eq .chezmoi.os "darwin" }}
+# Package inventory hash: {{ include ".chezmoidata.yaml" | sha256sum }}
 
-# Brewfile hash: {{ include "dot_dotfiles.Brewfile" | sha256sum }}
+{{- if eq .chezmoi.os "darwin" }}
+# handle macOS case
+
 brew bundle --file "$HOME/.dotfiles.Brewfile"
 
-
-# handle linux amd64 and arm64 case
 {{- else if and (eq .chezmoi.os "linux") (or (eq .chezmoi.arch "amd64") (eq .chezmoi.arch "arm64")) }}
+# handle linux amd64 and arm64 case
 
-# config.toml hash: {{ include "private_dot_config/mise/config.toml" | sha256sum }}
 mise install --yes
+
+{{- else if and (eq .chezmoi.os "linux") (contains "debian" .chezmoi.osRelease.idLike) }}
+# handle unsupported architecture for Debian-based Linux
+printf "Unsupported architecture, try apt install fallback\n"
+
+sudo apt update
+apt_packages=(
+{{ range .packages }}
+{{- if .apt }}  "{{ .apt }}"{{ end }}
+{{ end }})
+sudo apt install -y "${apt_packages[@]}"
 
 {{- else }}
 
-printf "Unsupported system, try apt install fallback\n"
-sudo apt update
-sudo apt install eza bat fastfetch fzf starship zoxide
-
+printf "Unsupported system, try manual installation\n"
+exit 1
 {{- end}}
