@@ -1,5 +1,5 @@
-#!/usr/bin/env sh
-set -eu
+#!/usr/bin/env bash
+set -euo pipefail
 
 REPO="${DOTFILES_REPO:-}"
 BIN_DIR="${HOME}/.local/bin"
@@ -33,10 +33,14 @@ add_binary_to_path() {
       ;;
     *)
       export PATH="${BIN_DIR}:${PATH}"
-      printf "Note: added %s to PATH for this session. Ensure it is in your shell config.\n" "$BIN_DIR"
       ;;
   esac
 }
+
+# Check if the shell is already set to zsh
+if [ -z "${ZSH_VERSION:-}" ]; then
+  printf "Warning: Your shell is set to %s, it should be set to zsh for proper functionality.\n" "$SHELL" >&2
+fi
 
 if ! command -v chezmoi >/dev/null 2>&1; then
   install_chezmoi
@@ -45,8 +49,10 @@ fi
 
 # See https://www.chezmoi.io/reference/commands/init/ for more information.
 
-chezmoi --source . -v init
+# NOTE this only works if running from the root of the dotfiles repository
+chezmoi --source . --verbose init
 # chezmoi init "$REPO"
 
+printf 'Please update your PATH first:\n\n\t\texport PATH=%s:$PATH\n\n' "$BIN_DIR"
 printf "Initialized chezmoi for %s. Run 'chezmoi diff' to review, then 'chezmoi apply'.\n" "$REPO"
 
