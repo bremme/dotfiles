@@ -1,6 +1,7 @@
 # keep this in sync with .dotfiles.Brewfile (for mac)
 [tools]
 bat = "latest"
+chezmoi = "latest"
 eza = "latest"
 fastfetch = "latest"
 fzf = "latest"
