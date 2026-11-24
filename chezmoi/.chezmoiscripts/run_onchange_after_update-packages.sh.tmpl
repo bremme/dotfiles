@@ -1,14 +1,23 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# handle macOS case
 {{- if eq .chezmoi.os "darwin" }}
+
 # Brewfile hash: {{ include "dot_dotfiles.Brewfile" | sha256sum }}
 brew bundle --file "$HOME/.dotfiles.Brewfile"
-{{- end }}
 
 
-{{- if eq .chezmoi.os "linux" }}
+# handle linux amd64 and arm64 case
+{{- else if and (eq .chezmoi.os "linux") (or (eq .chezmoi.arch "amd64") (eq .chezmoi.arch "arm64")) }}
+
 # config.toml hash: {{ include "private_dot_config/mise/config.toml" | sha256sum }}
 mise install --yes
-{{- end}}
 
+{{- else }}
+
+printf "Unsupported system, try apt install fallback\n"
+sudo apt update
+sudo apt install eza bat fastfetch fzf starship zoxide
+
+{{- end}}
