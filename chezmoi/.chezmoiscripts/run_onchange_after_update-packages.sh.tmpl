@@ -19,9 +19,12 @@ printf "Unsupported architecture, try apt install fallback\n"
 
 sudo apt update
 apt_packages=(
-{{ range .packages }}
-{{- if .apt }}  "{{ .apt }}"{{ end }}
-{{ end }})
+{{- range $package := .packages }}
+{{- if and $package.apt (has $.role $package.roles) }}
+	"{{ $package.apt }}"
+{{- end }}
+{{- end }}
+)
 sudo apt install -y "${apt_packages[@]}"
 
 {{- else }}

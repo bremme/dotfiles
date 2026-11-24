@@ -1,4 +1,6 @@
 [tools]
-{{ range .packages }}
-{{- if .mise }}{{ .mise }} = "{{ .version }}"{{ end }}
-{{ end }}
+{{- range $package := .packages }}
+{{- if and $package.mise (has $.role $package.roles) }}
+{{ $package.mise }} = "{{ $package.version }}"
+{{- end }}
+{{- end }}

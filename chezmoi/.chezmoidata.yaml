@@ -1,29 +1,36 @@
 packages:
-  - mise: bat
-    version: latest
+  - roles: [edge, server, workstation]
+    mise: bat
     brew: bat
     apt: bat
-  - mise: chezmoi
     version: latest
+  - roles: [edge, server, workstation]
+    mise: chezmoi
     brew: chezmoi
     apt: chezmoi
-  - mise: eza
     version: latest
+  - roles: [edge, server, workstation]
+    mise: eza
     brew: eza
     apt: eza
-  - mise: fastfetch
     version: latest
+  - roles: [server, workstation]
+    mise: fastfetch
     brew: fastfetch
     apt: fastfetch
-  - mise: fzf
     version: latest
+  - roles: [edge, server, workstation]
+    mise: fzf
     brew: fzf
     apt: fzf
-  - mise: starship
     version: latest
+  - roles: [edge, server, workstation]
+    mise: starship
     brew: starship
     apt: starship
-  - mise: zoxide
     version: latest
+  - roles: [edge, server, workstation]
+    mise: zoxide
     brew: zoxide
     apt: zoxide
+    version: latest

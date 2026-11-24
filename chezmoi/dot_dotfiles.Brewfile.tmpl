@@ -1,3 +1,5 @@
-{{ range .packages }}
-{{- if .brew }}brew "{{ .brew }}"{{ end }}
-{{ end }}
+{{- range $package := .packages }}
+{{- if and $package.brew (has $.role $package.roles) }}
+brew "{{ $package.brew }}"
+{{- end }}
+{{- end }}
