@@ -1,7 +1,0 @@
-# Copy this file to ~/.config/chezmoi/chezmoi.yaml and edit as needed
-
-# Set the source directory for the dotfiles repository
-sourceDir: ~/git/dotfiles/chezmoi
-# Set specific work profile if required
-data:
-  profile: Employer name
