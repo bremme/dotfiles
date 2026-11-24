@@ -4,7 +4,7 @@
 sourceDir: {{ .chezmoi.config.sourceDir }}
 
 data:
-  role: {{ promptChoice "Machine role(s/w)" $roles "server" | quote }}
-  work: {{ promptBool "Work account?(y/n)" false }}
-  gitUserName: {{ promptString "Git user name" "bremme" | quote }}
-  gitUserEmail: {{ promptString "Git user email" "mail@example.com" | quote }}
+  role: {{ promptChoiceOnce . "role" "Machine role(s/w)" $roles "server" | quote }}
+  work: {{ promptBoolOnce . "work" "Work account?(y/n)" false }}
+  gitName: {{ promptStringOnce . "gitName" "Git user name" "bremme" | quote }}
+  gitEmail: {{ promptStringOnce . "gitEmail" "Git user email" "mail@example.com" | quote }}

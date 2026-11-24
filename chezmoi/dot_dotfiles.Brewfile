@@ -1,4 +1,3 @@
-
 brew "bat"
 brew "eza"
 brew "fastfetch"
