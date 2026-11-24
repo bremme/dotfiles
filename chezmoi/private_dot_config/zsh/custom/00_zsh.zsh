@@ -18,10 +18,13 @@ bindkey '^[[B' down-line-or-beginning-search
 bindkey '^[OA' up-line-or-beginning-search
 bindkey '^[OB' down-line-or-beginning-search
 
-# Remove characters from WORDCHARS that should not be considered part of a word for moving forward/backward
-# default: *-?_-.[]~=/&;!#$%^(){}<>
-WORDCHARS='*?[]~=/;!%^(){}<>'
+# Home/End beginning enf of line
+bindkey '^[[H' beginning-of-line
+bindkey '^[[F' end-of-line
 
 # CTRL+LEFT and CTRL+RIGHT for moving by words
 bindkey '^[[1;5C' forward-word
 bindkey '^[[1;5D' backward-word
+# Remove characters from WORDCHARS that should not be considered part of a word for moving forward/backward
+# default: *-?_-.[]~=/&;!#$%^(){}<>
+WORDCHARS='*?[]~=/;!%^(){}<>'
