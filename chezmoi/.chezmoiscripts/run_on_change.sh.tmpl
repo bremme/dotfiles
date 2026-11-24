@@ -3,7 +3,7 @@ set -euo pipefail
 
 {{- if eq .chezmoi.os "darwin" }}
 # Brewfile hash: {{ include "dot_dotfiles.Brewfile" | sha256sum }}
-brew bundle --file="$HOME/.dotfiles.Brewfile" --no-lock
+brew bundle --file "$HOME/.dotfiles.Brewfile"
 {{- end }}
 
 

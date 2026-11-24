@@ -1,8 +1,8 @@
+# keep this in sync with .dotfiles.Brewfile (for mac)
 [tools]
-chezmoi = "latest"
-eza = "latest"
-fzf = "latest"
-zoxide = "latest"
-fastfetch = "latest"
-starship = "latest"
 bat = "latest"
+eza = "latest"
+fastfetch = "latest"
+fzf = "latest"
+starship = "latest"
+zoxide = "latest"
