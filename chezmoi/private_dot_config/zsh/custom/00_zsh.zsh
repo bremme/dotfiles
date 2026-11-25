@@ -28,3 +28,6 @@ bindkey '^[[1;5D' backward-word
 # Remove characters from WORDCHARS that should not be considered part of a word for moving forward/backward
 # default: *-?_-.[]~=/&;!#$%^(){}<>
 WORDCHARS='*?[]~=/;!%^(){}<>'
+
+# Restore CTRL+C clear line (on Mac OS?) again. probably messed up by an extension?
+bindkey -M emacs '^C' send-break
