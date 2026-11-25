@@ -9,4 +9,5 @@
 {{ if ne .chezmoi.os "darwin" }}
 Library
 .gnupg/gpg-agent.conf
+.dotfiles.Brewfile
 {{ end }}
